@@ -1,0 +1,89 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+
+        <div class="row">
+            <div class="col-lg-12">
+			
+				<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">用户增量统计
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <div class="form-group">
+										<input type="text" class="form-control input-sm date" id="user_id" name="user_id" placeholder="用户USER_ID" value="{$user_id}">&nbsp;&nbsp;<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="开始时间" value="{$date11}">&nbsp;&nbsp;
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+		
+		<div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>用户UID</th>
+									<th>金币增量&nbsp;<a href="{:U($By_tpl.'/userincr')}&sortscate=1&sortsflag=1&user_id={$user_id}&beginTime={$date11}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userincr')}&sortscate=1&sortsflag=2&user_id={$user_id}&beginTime={$date11}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+									<th>存款增量&nbsp;<a href="{:U($By_tpl.'/userincr')}&sortscate=2&sortsflag=1&user_id={$user_id}&beginTime={$date11}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userincr')}&sortscate=2&sortsflag=2&user_id={$user_id}&beginTime={$date11}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+									<th>钻石增量&nbsp;<a href="{:U($By_tpl.'/userincr')}&sortscate=3&sortsflag=1&user_id={$user_id}&beginTime={$date11}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userincr')}&sortscate=3&sortsflag=2&user_id={$user_id}&beginTime={$date11}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+									<th>奖券增量&nbsp;<a href="{:U($By_tpl.'/userincr')}&sortscate=4&sortsflag=1&user_id={$user_id}&beginTime={$date11}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userincr')}&sortscate=4&sortsflag=2&user_id={$user_id}&beginTime={$date11}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+									<th>汽车增量&nbsp;<a href="{:U($By_tpl.'/userincr')}&sortscate=5&sortsflag=1&user_id={$user_id}&beginTime={$date11}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userincr')}&sortscate=5&sortsflag=2&user_id={$user_id}&beginTime={$date11}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+									<th>房子增量&nbsp;<a href="{:U($By_tpl.'/userincr')}&sortscate=6&sortsflag=1&user_id={$user_id}&beginTime={$date11}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userincr')}&sortscate=6&sortsflag=2&user_id={$user_id}&beginTime={$date11}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+									<th>飞机增量&nbsp;<a href="{:U($By_tpl.'/userincr')}&sortscate=7&sortsflag=1&user_id={$user_id}&beginTime={$date11}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userincr')}&sortscate=7&sortsflag=2&user_id={$user_id}&beginTime={$date11}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+									<th>存款增量&nbsp;<a href="{:U($By_tpl.'/userincr')}&sortscate=8&sortsflag=1&user_id={$user_id}&beginTime={$date11}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userincr')}&sortscate=8&sortsflag=2&user_id={$user_id}&beginTime={$date11}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <volist	name="list" id="vo">
+										<tr>
+                                            <td>{$vo.id}</td>
+											<td>{$vo.user_id}</td>
+                                            <td>{$vo.gold_incr}</td>
+											<td>{$vo.deposit_incr}</td>
+											<td>{$vo.diamond_incr}</td>
+											<td>{$vo.ticket_incr}</td>
+											<td>{$vo.car_incr}</td>
+											<td>{$vo.villa_incr}</td>
+											<td>{$vo.yacht_incr}</td>
+											<td>{$vo.paycount_incr}</td>
+                                        </tr>
+
+                                        </volist>
+                                 </tbody>
+                            </table>
+							<div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+
+}   
+</script>
+
+<include file = "public:footer"/>

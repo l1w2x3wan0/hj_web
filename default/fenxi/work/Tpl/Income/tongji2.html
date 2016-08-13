@@ -1,0 +1,118 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">付费玩家</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;"></div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <div class="form-group">
+										<input type="text" class="form-control input-sm" name="user_id" placeholder="输入USER_ID" value="{$user_id}">&nbsp;
+										<input type="text" class="form-control input-sm" name="channel" placeholder="输入渠道号" value="{$channel}">&nbsp;
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="开始时间" value="{$date11}">
+                                        -
+                                        <input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="endTime" id="endTime" placeholder="结束时间" value="{$date12}">&nbsp;<a onclick="selday('1');" href="javascript:;">今日</a>&nbsp;|&nbsp;<a onclick="selday('-1');" href="javascript:;">昨日</a>&nbsp;|&nbsp;<a onclick="selday('7');" href="javascript:;">近7日</a>&nbsp;|&nbsp;<a onclick="selday('30');" href="javascript:;">近30日</a>&nbsp;
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div id="container" style="min-width: 310px;  padding-right:10px; margin: 0 auto"></div>
+						
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+
+		<script type="text/javascript">
+function selday(id){
+	if (id=="1"){
+		$('#beginTime').val("{$seldate[0].date1}");
+		$('#endTime').val("{$seldate[0].date2}");
+	}else if (id=="-1"){
+		$('#beginTime').val("{$seldate[1].date1}");
+		$('#endTime').val("{$seldate[1].date2}");
+	}else if (id=="7"){
+		$('#beginTime').val("{$seldate[2].date1}");
+		$('#endTime').val("{$seldate[2].date2}");
+	}else if (id=="30"){
+		$('#beginTime').val("{$seldate[3].date1}");
+		$('#endTime').val("{$seldate[3].date2}");
+	}
+	document.form1.submit();
+}
+
+showid = 'container';
+function showdiv(id){
+	show1 = "#"+id;
+	show2 = "#"+showid;
+	$(show2).hide();
+	$(show1).show();
+	showid = id;
+	if (id=="showtable"){
+		$("#showpage1").show();
+		$("#log_table").attr("class","log_table_on");
+		$("#log_line").attr("class","log_line");
+	}else{
+		$("#showpage1").hide();
+		$("#log_table").attr("class","log_table");
+		$("#log_line").attr("class","log_line_on");
+	}
+}
+
+var tongji1={$list};
+page_max = {$pagesize};
+function getdata1(page){
+	ulink = "{:U($By_tpl.'/tongji2')}";
+	showtable1 = "<table class=\"table table-bordered\"><tr class=\"order_tr\"><td colspan=\"11\" ><div style=\"text-align:center;font-weight:bold;\">付费玩家</div></td></tr><tr class=\"order_tr\"><td ><div style=\"text-align:center; \">序号</div></td><td ><div style=\"text-align:center; \">用户ID</div></td><td ><div style=\"text-align:center; \">充值次数&nbsp;<a href=\""+ulink+"&sortscate=1&sortsflag=1&user_id={$user_id}&channel={$channel}&beginTime={$date11}&endTime={$date12}\"><img src=\"__PUBLIC__/images/green.gif\" ></a><a href=\""+ulink+"&sortscate=1&sortsflag=2&user_id={$user_id}&channel={$channel}&beginTime={$date11}&endTime={$date12}\"><img src=\"__PUBLIC__/images/red.gif\" ></a></div></td><td ><div style=\"text-align:center; \">充值金额&nbsp;<a href=\""+ulink+"&sortscate=2&sortsflag=1&user_id={$user_id}&channel={$channel}&beginTime={$date11}&endTime={$date12}\"><img src=\"__PUBLIC__/images/green.gif\" ></a><a href=\""+ulink+"&sortscate=2&sortsflag=2&user_id={$user_id}&channel={$channel}&beginTime={$date11}&endTime={$date12}\"><img src=\"__PUBLIC__/images/red.gif\" ></a></div></td><td ><div style=\"text-align:center; \">当前金币&nbsp;<a href=\""+ulink+"&sortscate=3&sortsflag=1&user_id={$user_id}&channel={$channel}&beginTime={$date11}&endTime={$date12}\"><img src=\"__PUBLIC__/images/green.gif\" ></a><a href=\""+ulink+"&sortscate=3&sortsflag=2&user_id={$user_id}&channel={$channel}&beginTime={$date11}&endTime={$date12}\"><img src=\"__PUBLIC__/images/red.gif\" ></a></div></td><td ><div style=\"text-align:center; \">VIP等级&nbsp;<a href=\""+ulink+"&sortscate=4&sortsflag=1&user_id={$user_id}&channel={$channel}&beginTime={$date11}&endTime={$date12}\"><img src=\"__PUBLIC__/images/green.gif\" ></a><a href=\""+ulink+"&sortscate=4&sortsflag=2&user_id={$user_id}&channel={$channel}&beginTime={$date11}&endTime={$date12}\"><img src=\"__PUBLIC__/images/red.gif\" ></a></div></td><td ><div style=\"text-align:center; \">注册渠道&nbsp;<a href=\""+ulink+"&sortscate=5&sortsflag=1&user_id={$user_id}&channel={$channel}&beginTime={$date11}&endTime={$date12}\"><img src=\"__PUBLIC__/images/green.gif\" ></a><a href=\""+ulink+"&sortscate=5&sortsflag=2&user_id={$user_id}&channel={$channel}&beginTime={$date11}&endTime={$date12}\"><img src=\"__PUBLIC__/images/red.gif\" ></a></div></td><td ><div style=\"text-align:center; \">注册时间&nbsp;<a href=\""+ulink+"&sortscate=6&sortsflag=1&user_id={$user_id}&channel={$channel}&beginTime={$date11}&endTime={$date12}\"><img src=\"__PUBLIC__/images/green.gif\" ></a><a href=\""+ulink+"&sortscate=6&sortsflag=2&user_id={$user_id}&channel={$channel}&beginTime={$date11}&endTime={$date12}\"><img src=\"__PUBLIC__/images/red.gif\" ></a></div></td><td ><div style=\"text-align:center; \">最近登录时间&nbsp;<a href=\""+ulink+"&sortscate=7&sortsflag=1&user_id={$user_id}&channel={$channel}&beginTime={$date11}&endTime={$date12}\"><img src=\"__PUBLIC__/images/green.gif\" ></a><a href=\""+ulink+"&sortscate=7&sortsflag=2&user_id={$user_id}&channel={$channel}&beginTime={$date11}&endTime={$date12}\"><img src=\"__PUBLIC__/images/red.gif\" ></a></div></td><td ><div style=\"text-align:center; \">最后支付日期&nbsp;<a href=\""+ulink+"&sortscate=8&sortsflag=1&user_id={$user_id}&channel={$channel}&beginTime={$date11}&endTime={$date12}\"><img src=\"__PUBLIC__/images/green.gif\" ></a><a href=\""+ulink+"&sortscate=8&sortsflag=2&user_id={$user_id}&channel={$channel}&beginTime={$date11}&endTime={$date12}\"><img src=\"__PUBLIC__/images/red.gif\" ></a></div></td><td ><div style=\"text-align:center; \">充值记录</div></td></tr>";
+	if (tongji1.length==0){
+		showtable1 = showtable1 + "<tr class=\"order_tr\"><td colspan=\"11\" ><div style=\"text-align:center;\">暂无数据</div></td></tr></table>";
+	}else{
+		for (i=(page-1)*20; i<page*20; i++){
+			if (i<tongji1.length){
+				showi = tongji1.length - i - 1;
+				j = i + 1;
+				showtable1 = showtable1 + "<tr class=\"order_tr\"><td><div style=\"text-align:center\">"+j+"</div></td><td><div style=\"text-align:center; \" >"+tongji1[showi].user_id+"</div></td><td><div style=\"text-align:center; \">"+tongji1[showi].count1+"</div></td><td><div style=\"text-align:center; \">"+tongji1[showi].count2+"元</div></td><td><div style=\"text-align:center; \">"+tongji1[showi].gold+"</div></td><td><div style=\"text-align:center; \">"+tongji1[showi].vip+"</div></td><td><div style=\"text-align:center; \">"+tongji1[showi].channel+"</div></td><td><div style=\"text-align:center; \">"+tongji1[showi].register_date+"</div></td><td><div style=\"text-align:center; \">"+tongji1[showi].last_login_date+"</div></td><td><div style=\"text-align:center; \">"+tongji1[showi].order_pay_time+"</div></td><td><div style=\"text-align:center; \"><a href=\""+ulink+"&act=info&id="+tongji1[showi].user_id+"\" target=\"_blank\">查看详情</a></div></td></tr>";
+			}
+		}
+		prev = Number(page) - 1;
+		if (prev < 1) prev = 1;
+		next = Number(page) + 1;
+		if (next > page_max) next = page_max;
+		showtable1 = showtable1 + "<tr class=\"order_tr\"><td colspan=\"11\" ><div style=\"text-align:right; padding-right:10px;\"><a onclick=\"getdata1('"+prev+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_left.png\"></a> "+ page + "/" + page_max +" <a onclick=\"getdata1('"+next+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_right.png\"></a></div></td></tr>";
+		showtable1 = showtable1 + " </table>";
+	}
+	
+	$("#container").html(showtable1);
+}
+getdata1(1);
+		</script>
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script>

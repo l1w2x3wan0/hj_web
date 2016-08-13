@@ -1,0 +1,91 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">VIP16上线喇叭开关</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+		<if condition="$caozuo.add eq 1">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <form class="form-horizontal" method="POST" action="" id="addUserForm">
+
+							
+							
+							
+							<div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">开关</label>
+                                <div class="col-sm-4">
+                                    开启&nbsp;<input type="radio" name="flag" value="1" <if condition="$list[0] eq 1">checked="checked"</if>>&nbsp;&nbsp;
+                               	 	关闭&nbsp;<input type="radio" name="flag" value="0" <if condition="$list[0] eq 0">checked="checked"</if>>
+                                </div>
+                            </div>
+							
+							<div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">颜色(十进制)</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="color" name="color" placeholder="颜色" value="{$list[1]}">
+                                </div>
+                            </div>
+							
+							
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" id="addUserSubmit" class="btn btn-primary">提 交</button>
+                                </div>
+                            </div>
+							
+	
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+		</if>
+		
+		
+
+    </div>
+
+           
+
+<include file = "public:footer"/>
+
+<link rel="stylesheet" type="text/css" href="{$Think.const.CSS_PATH}iColor-min.css" />
+<script type="text/javascript" src="{$Think.const.JS_PATH}jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="{$Think.const.JS_PATH}iColor-min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('input').iColor({'x': 10, 'y': -50});
+	$('#color').iColor(function(hx) {
+		console.log('自定义回调：我不修改背景色');
+		this.val('#' + hx)
+	});
+    $('[name="mousecolor"]').iColor({
+        'type': 'mouseover', 
+        'open': function(e) {
+            var color = this.data('color');
+            console.log('事件类型' + e.type);
+            console.log(color ? '之前设置的颜色为：' + color : '之前没有设置颜色');
+        },
+        'set': function(hx) {
+            this.data('color', '#'+hx);
+            this.val('').css('background', '#' + hx);
+            console.log('现在设置的颜色为：' + '#'+hx);
+        }
+    });
+});
+</script>

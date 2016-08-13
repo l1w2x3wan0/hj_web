@@ -1,0 +1,47 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">渠道限制用户管理</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <if condition="$caozuo.add eq 1"><a class="btn btn-primary btn-sm" href="{:U('Other/limituser_add')}"><i class="fa fa-plus"></i> 添加渠道限制用户</a></if>&nbsp;
+						<a href="{:U('Other/channel')}" data-toggle="tooltip" data-placement="bottom" title=""><b>返回渠道列表</b></a>&nbsp;
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>限制用户USER_ID</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <volist	name="list" id="vo">
+										<tr>
+                                            <td>{$vo.id}</td>
+											<td>{$vo.user_id}</td>
+                                            <td><if condition="$caozuo.edit eq 1"><a href="{:U('Other/limituser_edit','id='.$vo['id'])}">修改限制用户</a></if>&nbsp;<if condition="$caozuo.del eq 1"><a onclick="return confirm('您确定删除该纪录吗？')" href="{:U('Other/limituser_delete','id='.$vo['id'])}">删除限制用户</a></if></td>
+                                        </tr>
+                                       </volist>
+                                 </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+<include file = "public:footer"/>

@@ -1,0 +1,631 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">破产分布</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							
+							<a onclick="showuser('new');" href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="" id="textnew" class="text01">新用户</a> | 
+							<a onclick="showuser('old');" href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="" id="textold" class="text02">老用户</a> | 
+							<a onclick="showuser('all');" href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="" id="textall" class="text02">总用户</a><br>
+							<a onclick="showtongji('1');" href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="" id="text1" class="text01">首次破产</a> | 
+							<a onclick="showtongji('2');" href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="" id="text2" class="text02">二次破产</a> | 
+							<a onclick="showtongji('3');" href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="" id="text3" class="text02">三次破产</a>
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <div class="form-group">
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="开始时间" value="{$date11}">
+                                        -
+                                        <input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="endTime" id="endTime" placeholder="结束时间" value="{$date12}">&nbsp;<a onclick="selday('1');" href="javascript:;">今日</a>&nbsp;|&nbsp;<a onclick="selday('-1');" href="javascript:;">昨日</a>&nbsp;|&nbsp;<a onclick="selday('7');" href="javascript:;">近7日</a>&nbsp;|&nbsp;<a onclick="selday('30');" href="javascript:;">近30日</a>&nbsp;
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+					<div class="panel-body">
+                        <div class="table-responsive" style="width:100%;overflow:auto">
+                            <table class="table table-bordered" id="idnew1" >
+                                <thead>
+								<tr class="order_tr">
+                                    <th height="40"><div style="text-align:center; ">日期</div></th>
+									<th ><div style="text-align:center">破产用户</div></th>
+									<th ><div style="text-align:center">1局</div></th>
+									<th ><div style="text-align:center">2局</div></th>
+									<th ><div style="text-align:center">3局</div></th>
+									<th ><div style="text-align:center">4局</div></th>
+									<th ><div style="text-align:center">5局</div></th>
+                                    <th ><div style="text-align:center">6局</div></th>
+                                    <th ><div style="text-align:center">7局</div></th>
+									<th ><div style="text-align:center">8局</div></th>
+									<th ><div style="text-align:center">9局</div></th>
+									<th ><div style="text-align:center">10局</div></th>
+									<th ><div style="text-align:center">11-15局</div></th>
+									<th ><div style="text-align:center">16-20局</div></th>
+									<th ><div style="text-align:center">21-25局</div></th>
+									<th ><div style="text-align:center">26-30局</div></th>
+									<th ><div style="text-align:center">31-35局</div></th>
+									<th ><div style="text-align:center">36-40局</div></th>
+									<th ><div style="text-align:center">41-45局</div></th>
+									<th ><div style="text-align:center">46-50局</div></th>
+									<th ><div style="text-align:center">51局以上</div></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+										<volist	name="tongji1" id="vo">
+                                        <tr class="order_tr">
+                                            <td height="35" align="center">{$vo.date}</td>
+											<td  align="center">{$vo[count21][19]}</td>
+											<td  align="center">{$vo[count21][0]}</td>
+											<td  align="center">{$vo[count21][1]}</td>
+											<td  align="center">{$vo[count21][2]}</td>
+											<td  align="center">{$vo[count21][3]}</td>
+											<td  align="center">{$vo[count21][4]}</td>
+											<td  align="center">{$vo[count21][5]}</td>
+											<td  align="center">{$vo[count21][6]}</td>
+											<td  align="center">{$vo[count21][7]}</td>
+											<td  align="center">{$vo[count21][8]}</td>
+											<td  align="center">{$vo[count21][9]}</td>
+											<td  align="center">{$vo[count21][10]}</td>
+											<td  align="center">{$vo[count21][11]}</td>
+											<td  align="center">{$vo[count21][12]}</td>
+											<td  align="center">{$vo[count21][13]}</td>
+											<td  align="center">{$vo[count21][14]}</td>
+											<td  align="center">{$vo[count21][15]}</td>
+											<td  align="center">{$vo[count21][16]}</td>
+											<td  align="center">{$vo[count21][17]}</td>
+											<td  align="center">{$vo[count21][18]}</td>
+                                        </tr>
+										</volist>
+                                </tbody>
+                            </table>
+							
+							<table class="table table-bordered" id="idnew2" style="display:none;">
+                                <thead>
+								<tr class="order_tr">
+                                    <th height="40"><div style="text-align:center; ">日期</div></th>
+									<th ><div style="text-align:center">破产用户</div></th>
+									<th ><div style="text-align:center">1局</div></th>
+									<th ><div style="text-align:center">2局</div></th>
+									<th ><div style="text-align:center">3局</div></th>
+									<th ><div style="text-align:center">4局</div></th>
+									<th ><div style="text-align:center">5局</div></th>
+                                    <th ><div style="text-align:center">6局</div></th>
+                                    <th ><div style="text-align:center">7局</div></th>
+									<th ><div style="text-align:center">8局</div></th>
+									<th ><div style="text-align:center">9局</div></th>
+									<th ><div style="text-align:center">10局</div></th>
+									<th ><div style="text-align:center">11-15局</div></th>
+									<th ><div style="text-align:center">16-20局</div></th>
+									<th ><div style="text-align:center">21-25局</div></th>
+									<th ><div style="text-align:center">26-30局</div></th>
+									<th ><div style="text-align:center">31-35局</div></th>
+									<th ><div style="text-align:center">36-40局</div></th>
+									<th ><div style="text-align:center">41-45局</div></th>
+									<th ><div style="text-align:center">46-50局</div></th>
+									<th ><div style="text-align:center">51局以上</div></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+										<volist	name="tongji1" id="vo">
+                                        <tr class="order_tr">
+                                            <td height="35" align="center">{$vo.date}</td>
+											<td  align="center">{$vo[count22][19]}</td>
+											<td  align="center">{$vo[count22][0]}</td>
+											<td  align="center">{$vo[count22][1]}</td>
+											<td  align="center">{$vo[count22][2]}</td>
+											<td  align="center">{$vo[count22][3]}</td>
+											<td  align="center">{$vo[count22][4]}</td>
+											<td  align="center">{$vo[count22][5]}</td>
+											<td  align="center">{$vo[count22][6]}</td>
+											<td  align="center">{$vo[count22][7]}</td>
+											<td  align="center">{$vo[count22][8]}</td>
+											<td  align="center">{$vo[count22][9]}</td>
+											<td  align="center">{$vo[count22][10]}</td>
+											<td  align="center">{$vo[count22][11]}</td>
+											<td  align="center">{$vo[count22][12]}</td>
+											<td  align="center">{$vo[count22][13]}</td>
+											<td  align="center">{$vo[count22][14]}</td>
+											<td  align="center">{$vo[count22][15]}</td>
+											<td  align="center">{$vo[count22][16]}</td>
+											<td  align="center">{$vo[count22][17]}</td>
+											<td  align="center">{$vo[count22][18]}</td>
+                                        </tr>
+										</volist>
+                                </tbody>
+                            </table>
+							
+							<table class="table table-bordered" id="idnew3" style="display:none;">
+                                <thead>
+								<tr class="order_tr">
+                                    <th height="40"><div style="text-align:center; ">日期</div></th>
+									<th ><div style="text-align:center">破产用户</div></th>
+									<th ><div style="text-align:center">1局</div></th>
+									<th ><div style="text-align:center">2局</div></th>
+									<th ><div style="text-align:center">3局</div></th>
+									<th ><div style="text-align:center">4局</div></th>
+									<th ><div style="text-align:center">5局</div></th>
+                                    <th ><div style="text-align:center">6局</div></th>
+                                    <th ><div style="text-align:center">7局</div></th>
+									<th ><div style="text-align:center">8局</div></th>
+									<th ><div style="text-align:center">9局</div></th>
+									<th ><div style="text-align:center">10局</div></th>
+									<th ><div style="text-align:center">11-15局</div></th>
+									<th ><div style="text-align:center">16-20局</div></th>
+									<th ><div style="text-align:center">21-25局</div></th>
+									<th ><div style="text-align:center">26-30局</div></th>
+									<th ><div style="text-align:center">31-35局</div></th>
+									<th ><div style="text-align:center">36-40局</div></th>
+									<th ><div style="text-align:center">41-45局</div></th>
+									<th ><div style="text-align:center">46-50局</div></th>
+									<th ><div style="text-align:center">51局以上</div></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+										<volist	name="tongji1" id="vo">
+                                        <tr class="order_tr">
+                                            <td height="35" align="center">{$vo.date}</td>
+											<td  align="center">{$vo[count23][19]}</td>
+											<td  align="center">{$vo[count23][0]}</td>
+											<td  align="center">{$vo[count23][1]}</td>
+											<td  align="center">{$vo[count23][2]}</td>
+											<td  align="center">{$vo[count23][3]}</td>
+											<td  align="center">{$vo[count23][4]}</td>
+											<td  align="center">{$vo[count23][5]}</td>
+											<td  align="center">{$vo[count23][6]}</td>
+											<td  align="center">{$vo[count23][7]}</td>
+											<td  align="center">{$vo[count23][8]}</td>
+											<td  align="center">{$vo[count23][9]}</td>
+											<td  align="center">{$vo[count23][10]}</td>
+											<td  align="center">{$vo[count23][11]}</td>
+											<td  align="center">{$vo[count23][12]}</td>
+											<td  align="center">{$vo[count23][13]}</td>
+											<td  align="center">{$vo[count23][14]}</td>
+											<td  align="center">{$vo[count23][15]}</td>
+											<td  align="center">{$vo[count23][16]}</td>
+											<td  align="center">{$vo[count23][17]}</td>
+											<td  align="center">{$vo[count23][18]}</td>
+                                        </tr>
+										</volist>
+                                </tbody>
+                            </table>
+							
+							<table class="table table-bordered" id="idall1" style="display:none;">
+                                <thead>
+								<tr class="order_tr">
+                                    <th height="40"><div style="text-align:center; ">日期</div></th>
+									<th ><div style="text-align:center">破产用户</div></th>
+									<th ><div style="text-align:center">1局</div></th>
+									<th ><div style="text-align:center">2局</div></th>
+									<th ><div style="text-align:center">3局</div></th>
+									<th ><div style="text-align:center">4局</div></th>
+									<th ><div style="text-align:center">5局</div></th>
+                                    <th ><div style="text-align:center">6局</div></th>
+                                    <th ><div style="text-align:center">7局</div></th>
+									<th ><div style="text-align:center">8局</div></th>
+									<th ><div style="text-align:center">9局</div></th>
+									<th ><div style="text-align:center">10局</div></th>
+									<th ><div style="text-align:center">11-15局</div></th>
+									<th ><div style="text-align:center">16-20局</div></th>
+									<th ><div style="text-align:center">21-25局</div></th>
+									<th ><div style="text-align:center">26-30局</div></th>
+									<th ><div style="text-align:center">31-35局</div></th>
+									<th ><div style="text-align:center">36-40局</div></th>
+									<th ><div style="text-align:center">41-45局</div></th>
+									<th ><div style="text-align:center">46-50局</div></th>
+									<th ><div style="text-align:center">51局以上</div></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+										<volist	name="tongji1" id="vo">
+                                        <tr class="order_tr">
+                                            <td height="35" align="center">{$vo.date}</td>
+											<td  align="center">{$vo[count11][19]}</td>
+											<td  align="center">{$vo[count11][0]}</td>
+											<td  align="center">{$vo[count11][1]}</td>
+											<td  align="center">{$vo[count11][2]}</td>
+											<td  align="center">{$vo[count11][3]}</td>
+											<td  align="center">{$vo[count11][4]}</td>
+											<td  align="center">{$vo[count11][5]}</td>
+											<td  align="center">{$vo[count11][6]}</td>
+											<td  align="center">{$vo[count11][7]}</td>
+											<td  align="center">{$vo[count11][8]}</td>
+											<td  align="center">{$vo[count11][9]}</td>
+											<td  align="center">{$vo[count11][10]}</td>
+											<td  align="center">{$vo[count11][11]}</td>
+											<td  align="center">{$vo[count11][12]}</td>
+											<td  align="center">{$vo[count11][13]}</td>
+											<td  align="center">{$vo[count11][14]}</td>
+											<td  align="center">{$vo[count11][15]}</td>
+											<td  align="center">{$vo[count11][16]}</td>
+											<td  align="center">{$vo[count11][17]}</td>
+											<td  align="center">{$vo[count11][18]}</td>
+                                        </tr>
+										</volist>
+                                </tbody>
+                            </table>
+							
+							<table class="table table-bordered" id="idall2" style="display:none;">
+                                <thead>
+								<tr class="order_tr">
+                                    <th height="40"><div style="text-align:center; ">日期</div></th>
+									<th ><div style="text-align:center">破产用户</div></th>
+									<th ><div style="text-align:center">1局</div></th>
+									<th ><div style="text-align:center">2局</div></th>
+									<th ><div style="text-align:center">3局</div></th>
+									<th ><div style="text-align:center">4局</div></th>
+									<th ><div style="text-align:center">5局</div></th>
+                                    <th ><div style="text-align:center">6局</div></th>
+                                    <th ><div style="text-align:center">7局</div></th>
+									<th ><div style="text-align:center">8局</div></th>
+									<th ><div style="text-align:center">9局</div></th>
+									<th ><div style="text-align:center">10局</div></th>
+									<th ><div style="text-align:center">11-15局</div></th>
+									<th ><div style="text-align:center">16-20局</div></th>
+									<th ><div style="text-align:center">21-25局</div></th>
+									<th ><div style="text-align:center">26-30局</div></th>
+									<th ><div style="text-align:center">31-35局</div></th>
+									<th ><div style="text-align:center">36-40局</div></th>
+									<th ><div style="text-align:center">41-45局</div></th>
+									<th ><div style="text-align:center">46-50局</div></th>
+									<th ><div style="text-align:center">51局以上</div></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+										<volist	name="tongji1" id="vo">
+                                        <tr class="order_tr">
+                                            <td height="35" align="center">{$vo.date}</td>
+											<td  align="center">{$vo[count12][19]}</td>
+											<td  align="center">{$vo[count12][0]}</td>
+											<td  align="center">{$vo[count12][1]}</td>
+											<td  align="center">{$vo[count12][2]}</td>
+											<td  align="center">{$vo[count12][3]}</td>
+											<td  align="center">{$vo[count12][4]}</td>
+											<td  align="center">{$vo[count12][5]}</td>
+											<td  align="center">{$vo[count12][6]}</td>
+											<td  align="center">{$vo[count12][7]}</td>
+											<td  align="center">{$vo[count12][8]}</td>
+											<td  align="center">{$vo[count12][9]}</td>
+											<td  align="center">{$vo[count12][10]}</td>
+											<td  align="center">{$vo[count12][11]}</td>
+											<td  align="center">{$vo[count12][12]}</td>
+											<td  align="center">{$vo[count12][13]}</td>
+											<td  align="center">{$vo[count12][14]}</td>
+											<td  align="center">{$vo[count12][15]}</td>
+											<td  align="center">{$vo[count12][16]}</td>
+											<td  align="center">{$vo[count12][17]}</td>
+											<td  align="center">{$vo[count12][18]}</td>
+                                        </tr>
+										</volist>
+                                </tbody>
+                            </table>
+							
+							<table class="table table-bordered" id="idall3" style="display:none;">
+                                <thead>
+								<tr class="order_tr">
+                                    <th height="40"><div style="text-align:center; ">日期</div></th>
+									<th ><div style="text-align:center">破产用户</div></th>
+									<th ><div style="text-align:center">1局</div></th>
+									<th ><div style="text-align:center">2局</div></th>
+									<th ><div style="text-align:center">3局</div></th>
+									<th ><div style="text-align:center">4局</div></th>
+									<th ><div style="text-align:center">5局</div></th>
+                                    <th ><div style="text-align:center">6局</div></th>
+                                    <th ><div style="text-align:center">7局</div></th>
+									<th ><div style="text-align:center">8局</div></th>
+									<th ><div style="text-align:center">9局</div></th>
+									<th ><div style="text-align:center">10局</div></th>
+									<th ><div style="text-align:center">11-15局</div></th>
+									<th ><div style="text-align:center">16-20局</div></th>
+									<th ><div style="text-align:center">21-25局</div></th>
+									<th ><div style="text-align:center">26-30局</div></th>
+									<th ><div style="text-align:center">31-35局</div></th>
+									<th ><div style="text-align:center">36-40局</div></th>
+									<th ><div style="text-align:center">41-45局</div></th>
+									<th ><div style="text-align:center">46-50局</div></th>
+									<th ><div style="text-align:center">51局以上</div></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+										<volist	name="tongji1" id="vo">
+                                        <tr class="order_tr">
+                                            <td height="35" align="center">{$vo.date}</td>
+											<td  align="center">{$vo[count13][19]}</td>
+											<td  align="center">{$vo[count13][0]}</td>
+											<td  align="center">{$vo[count13][1]}</td>
+											<td  align="center">{$vo[count13][2]}</td>
+											<td  align="center">{$vo[count13][3]}</td>
+											<td  align="center">{$vo[count13][4]}</td>
+											<td  align="center">{$vo[count13][5]}</td>
+											<td  align="center">{$vo[count13][6]}</td>
+											<td  align="center">{$vo[count13][7]}</td>
+											<td  align="center">{$vo[count13][8]}</td>
+											<td  align="center">{$vo[count13][9]}</td>
+											<td  align="center">{$vo[count13][10]}</td>
+											<td  align="center">{$vo[count13][11]}</td>
+											<td  align="center">{$vo[count13][12]}</td>
+											<td  align="center">{$vo[count13][13]}</td>
+											<td  align="center">{$vo[count13][14]}</td>
+											<td  align="center">{$vo[count13][15]}</td>
+											<td  align="center">{$vo[count13][16]}</td>
+											<td  align="center">{$vo[count13][17]}</td>
+											<td  align="center">{$vo[count13][18]}</td>
+                                        </tr>
+										</volist>
+                                </tbody>
+                            </table>
+							
+							
+							<table class="table table-bordered" id="idold1" style="display:none;">
+                                <thead>
+								<tr class="order_tr">
+                                    <th height="40"><div style="text-align:center; ">日期</div></th>
+									<th ><div style="text-align:center">破产用户</div></th>
+									<th ><div style="text-align:center">1局</div></th>
+									<th ><div style="text-align:center">2局</div></th>
+									<th ><div style="text-align:center">3局</div></th>
+									<th ><div style="text-align:center">4局</div></th>
+									<th ><div style="text-align:center">5局</div></th>
+                                    <th ><div style="text-align:center">6局</div></th>
+                                    <th ><div style="text-align:center">7局</div></th>
+									<th ><div style="text-align:center">8局</div></th>
+									<th ><div style="text-align:center">9局</div></th>
+									<th ><div style="text-align:center">10局</div></th>
+									<th ><div style="text-align:center">11-15局</div></th>
+									<th ><div style="text-align:center">16-20局</div></th>
+									<th ><div style="text-align:center">21-25局</div></th>
+									<th ><div style="text-align:center">26-30局</div></th>
+									<th ><div style="text-align:center">31-35局</div></th>
+									<th ><div style="text-align:center">36-40局</div></th>
+									<th ><div style="text-align:center">41-45局</div></th>
+									<th ><div style="text-align:center">46-50局</div></th>
+									<th ><div style="text-align:center">51局以上</div></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+										<volist	name="tongji1" id="vo">
+                                        <tr class="order_tr">
+                                            <td height="35" align="center">{$vo.date}</td>
+											<td  align="center">{$vo[count31][19]}</td>
+											<td  align="center">{$vo[count31][0]}</td>
+											<td  align="center">{$vo[count31][1]}</td>
+											<td  align="center">{$vo[count31][2]}</td>
+											<td  align="center">{$vo[count31][3]}</td>
+											<td  align="center">{$vo[count31][4]}</td>
+											<td  align="center">{$vo[count31][5]}</td>
+											<td  align="center">{$vo[count31][6]}</td>
+											<td  align="center">{$vo[count31][7]}</td>
+											<td  align="center">{$vo[count31][8]}</td>
+											<td  align="center">{$vo[count31][9]}</td>
+											<td  align="center">{$vo[count31][10]}</td>
+											<td  align="center">{$vo[count31][11]}</td>
+											<td  align="center">{$vo[count31][12]}</td>
+											<td  align="center">{$vo[count31][13]}</td>
+											<td  align="center">{$vo[count31][14]}</td>
+											<td  align="center">{$vo[count31][15]}</td>
+											<td  align="center">{$vo[count31][16]}</td>
+											<td  align="center">{$vo[count31][17]}</td>
+											<td  align="center">{$vo[count31][18]}</td>
+                                        </tr>
+										</volist>
+                                </tbody>
+                            </table>
+							
+							<table class="table table-bordered" id="idold2" style="display:none;">
+                                <thead>
+								<tr class="order_tr">
+                                    <th height="40"><div style="text-align:center; ">日期</div></th>
+									<th ><div style="text-align:center">破产用户</div></th>
+									<th ><div style="text-align:center">1局</div></th>
+									<th ><div style="text-align:center">2局</div></th>
+									<th ><div style="text-align:center">3局</div></th>
+									<th ><div style="text-align:center">4局</div></th>
+									<th ><div style="text-align:center">5局</div></th>
+                                    <th ><div style="text-align:center">6局</div></th>
+                                    <th ><div style="text-align:center">7局</div></th>
+									<th ><div style="text-align:center">8局</div></th>
+									<th ><div style="text-align:center">9局</div></th>
+									<th ><div style="text-align:center">10局</div></th>
+									<th ><div style="text-align:center">11-15局</div></th>
+									<th ><div style="text-align:center">16-20局</div></th>
+									<th ><div style="text-align:center">21-25局</div></th>
+									<th ><div style="text-align:center">26-30局</div></th>
+									<th ><div style="text-align:center">31-35局</div></th>
+									<th ><div style="text-align:center">36-40局</div></th>
+									<th ><div style="text-align:center">41-45局</div></th>
+									<th ><div style="text-align:center">46-50局</div></th>
+									<th ><div style="text-align:center">51局以上</div></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+										<volist	name="tongji1" id="vo">
+                                        <tr class="order_tr">
+                                            <td height="35" align="center">{$vo.date}</td>
+											<td  align="center">{$vo[count32][19]}</td>
+											<td  align="center">{$vo[count32][0]}</td>
+											<td  align="center">{$vo[count32][1]}</td>
+											<td  align="center">{$vo[count32][2]}</td>
+											<td  align="center">{$vo[count32][3]}</td>
+											<td  align="center">{$vo[count32][4]}</td>
+											<td  align="center">{$vo[count32][5]}</td>
+											<td  align="center">{$vo[count32][6]}</td>
+											<td  align="center">{$vo[count32][7]}</td>
+											<td  align="center">{$vo[count32][8]}</td>
+											<td  align="center">{$vo[count32][9]}</td>
+											<td  align="center">{$vo[count32][10]}</td>
+											<td  align="center">{$vo[count32][11]}</td>
+											<td  align="center">{$vo[count32][12]}</td>
+											<td  align="center">{$vo[count32][13]}</td>
+											<td  align="center">{$vo[count32][14]}</td>
+											<td  align="center">{$vo[count32][15]}</td>
+											<td  align="center">{$vo[count32][16]}</td>
+											<td  align="center">{$vo[count32][17]}</td>
+											<td  align="center">{$vo[count32][18]}</td>
+                                        </tr>
+										</volist>
+                                </tbody>
+                            </table>
+							
+							<table class="table table-bordered" id="idold3" style="display:none;">
+                                <thead>
+								<tr class="order_tr">
+                                    <th height="40"><div style="text-align:center; ">日期</div></th>
+									<th ><div style="text-align:center">破产用户</div></th>
+									<th ><div style="text-align:center">1局</div></th>
+									<th ><div style="text-align:center">2局</div></th>
+									<th ><div style="text-align:center">3局</div></th>
+									<th ><div style="text-align:center">4局</div></th>
+									<th ><div style="text-align:center">5局</div></th>
+                                    <th ><div style="text-align:center">6局</div></th>
+                                    <th ><div style="text-align:center">7局</div></th>
+									<th ><div style="text-align:center">8局</div></th>
+									<th ><div style="text-align:center">9局</div></th>
+									<th ><div style="text-align:center">10局</div></th>
+									<th ><div style="text-align:center">11-15局</div></th>
+									<th ><div style="text-align:center">16-20局</div></th>
+									<th ><div style="text-align:center">21-25局</div></th>
+									<th ><div style="text-align:center">26-30局</div></th>
+									<th ><div style="text-align:center">31-35局</div></th>
+									<th ><div style="text-align:center">36-40局</div></th>
+									<th ><div style="text-align:center">41-45局</div></th>
+									<th ><div style="text-align:center">46-50局</div></th>
+									<th ><div style="text-align:center">51局以上</div></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+										<volist	name="tongji1" id="vo">
+                                        <tr class="order_tr">
+                                            <td height="35" align="center">{$vo.date}</td>
+											<td  align="center">{$vo[count33][19]}</td>
+											<td  align="center">{$vo[count33][0]}</td>
+											<td  align="center">{$vo[count33][1]}</td>
+											<td  align="center">{$vo[count33][2]}</td>
+											<td  align="center">{$vo[count33][3]}</td>
+											<td  align="center">{$vo[count33][4]}</td>
+											<td  align="center">{$vo[count33][5]}</td>
+											<td  align="center">{$vo[count33][6]}</td>
+											<td  align="center">{$vo[count33][7]}</td>
+											<td  align="center">{$vo[count33][8]}</td>
+											<td  align="center">{$vo[count33][9]}</td>
+											<td  align="center">{$vo[count33][10]}</td>
+											<td  align="center">{$vo[count33][11]}</td>
+											<td  align="center">{$vo[count33][12]}</td>
+											<td  align="center">{$vo[count33][13]}</td>
+											<td  align="center">{$vo[count33][14]}</td>
+											<td  align="center">{$vo[count33][15]}</td>
+											<td  align="center">{$vo[count33][16]}</td>
+											<td  align="center">{$vo[count33][17]}</td>
+											<td  align="center">{$vo[count33][18]}</td>
+                                        </tr>
+										</volist>
+                                </tbody>
+                            </table>
+							
+							
+                            <div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+<script>
+function selday(id){
+	if (id=="1"){
+		$('#beginTime').val("{$seldate[0].date1}");
+		$('#endTime').val("{$seldate[0].date2}");
+	}else if (id=="-1"){
+		$('#beginTime').val("{$seldate[1].date1}");
+		$('#endTime').val("{$seldate[1].date2}");
+	}else if (id=="7"){
+		$('#beginTime').val("{$seldate[2].date1}");
+		$('#endTime').val("{$seldate[2].date2}");
+	}else if (id=="30"){
+		$('#beginTime').val("{$seldate[3].date1}");
+		$('#endTime').val("{$seldate[3].date2}");
+	}
+	document.form1.submit();
+}
+
+tongjiid = 'idnew';
+tongjinum = '1';
+function showuser(showid){
+	show2 = "#"+tongjiid+tongjinum;
+	$(show2).hide();
+	
+	temp = "id"+showid;
+	tongjiid = temp;
+	showtongji('1');
+}
+
+function showtongji(id){
+	show1 = "#"+tongjiid+id;
+	show2 = "#"+tongjiid+tongjinum;
+	$(show2).hide();
+	$(show1).show();
+	tongjinum = id;
+
+	if (tongjiid=="idall"){
+		$("#textall").attr("class","text01");
+		$("#textnew").attr("class","text02");
+		$("#textold").attr("class","text02");
+	}else if (tongjiid=="idold"){
+		$("#textold").attr("class","text01");
+		$("#textnew").attr("class","text02");
+		$("#textall").attr("class","text02");
+	}else if (tongjiid=="idnew"){
+		$("#textnew").attr("class","text01");
+		$("#textall").attr("class","text02");
+		$("#textold").attr("class","text02");
+	}
+	
+	
+	if (id=="1"){
+		$("#text1").attr("class","text01");
+		$("#text2").attr("class","text02");
+		$("#text3").attr("class","text02");
+	}else if (id=="2"){
+		$("#text2").attr("class","text01");
+		$("#text1").attr("class","text02");
+		$("#text3").attr("class","text02");
+	}else if (id=="3"){
+		$("#text3").attr("class","text01");
+		$("#text1").attr("class","text02");
+		$("#text2").attr("class","text02");
+	}
+	
+}
+
+$('[data-toggle="tooltip"]').tooltip();
+</script>
+		
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script>

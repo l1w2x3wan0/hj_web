@@ -1,0 +1,205 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">发牌参数配置</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading" style="padding:10px;">
+                       <div class="row">
+                            <div class="col-sm-10" style="padding-top:10px; color:#FF0000; font-weight:bold;">
+							PS：“玩牌局数小于”设置为0时不处理,如有写入值,必须为递增，即:玩牌局数1<玩牌局数2<玩牌局数3<玩牌局数4<玩牌局数5；幸运值=3,代表该局数内的新手在初级场发牌除了去掉最小的注数外,再额外去掉最小的3注（请注意理解）<br>请注意：去掉最小注数≤4、幸运值≤5（否则提交失败）
+							</div>
+                        </div>    
+    
+                    </div>
+                    
+					<div class="panel-body">
+						<form name="form1" action="" method="post">
+						<volist	name="list" id="vo" key="k"> 
+						<div id="showdata{$k}" style="width:32%; background-color:#FCFCFC; float:left; padding:10px; margin-right:10px;">
+						<table class="table table-bordered" >
+							
+							<tr class="order_tr">
+								<td colspan="2" height="35"><div style="text-align:center;"><if condition="$vo.roomtype eq 1"><b>初级场参数</b></if><if condition="$vo.roomtype eq 2"><b>中级场参数</b></if><if condition="$vo.roomtype eq 3"><b>高级场参数</b></if></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">去掉最小注数</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="delminnum{$vo.roomtype}" id="delminnum{$vo.roomtype}" placeholder="去掉最小注数" value="{$vo.delminnum}"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">去掉最大牌概率</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="delmax1rate{$vo.roomtype}" id="delmax1rate{$vo.roomtype}" placeholder="去掉最大牌概率" value="{$vo.delmax1rate}"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">去掉第二大牌概率</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="delmax2rate{$vo.roomtype}" id="delmax2rate{$vo.roomtype}" placeholder="去掉第二大牌概率" value="{$vo.delmax2rate}"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">去掉第三大牌概率</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="delmax3rate{$vo.roomtype}" id="delmax3rate{$vo.roomtype}" placeholder="去掉第三大牌概率" value="{$vo.delmax3rate}"></div></td>
+							</tr>
+							<if condition="$vo.roomtype eq 1">
+							<tr bgcolor="#FFFBEC" class="order_tr">
+							  <td height="30"><div style="text-align:right; padding-top:5px;">玩牌局数1小于</div></td>
+							  <td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="playcount1{$vo.roomtype}" id="playcount1{$vo.roomtype}" placeholder="玩牌局数" value="{$vo.playcount1}"></div></td>
+							</tr>
+							<tr bgcolor="#FFFBEC" class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">新手好牌最大幸运值</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="startpos1{$vo.roomtype}" id="startpos1{$vo.roomtype}" placeholder="从第几注开始随机" value="{$vo.startpos1}"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">玩牌局数2小于</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="playcount2{$vo.roomtype}" id="playcount2{$vo.roomtype}" placeholder="玩牌局数" value="{$vo.playcount2}"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">新手好牌第2大幸运值</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="startpos2{$vo.roomtype}" id="startpos2{$vo.roomtype}" placeholder="从第几注开始随机" value="{$vo.startpos2}"></div></td>
+							</tr>
+							<tr bgcolor="#FFFBEC" class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">玩牌局数3小于</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="playcount3{$vo.roomtype}" id="playcount3{$vo.roomtype}" placeholder="玩牌局数" value="{$vo.playcount3}"></div></td>
+							</tr>
+							<tr bgcolor="#FFFBEC" class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">新手好牌第3大幸运值</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="startpos3{$vo.roomtype}" id="startpos3{$vo.roomtype}" placeholder="从第几注开始随机" value="{$vo.startpos3}"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">玩牌局数4小于</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="playcount4{$vo.roomtype}" id="playcount4{$vo.roomtype}" placeholder="玩牌局数" value="{$vo.playcount4}"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">新手好牌第4大幸运值</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="startpos4{$vo.roomtype}" id="startpos4{$vo.roomtype}" placeholder="从第几注开始随机" value="{$vo.startpos4}"></div></td>
+							</tr>
+							<tr bgcolor="#FFFBEC" class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">玩牌局数5小于</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="playcount5{$vo.roomtype}" id="playcount5{$vo.roomtype}" placeholder="玩牌局数" value="{$vo.playcount5}"></div></td>
+							</tr>
+							<tr bgcolor="#FFFBEC" class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">新手好牌第5大幸运值</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="startpos5{$vo.roomtype}" id="startpos5{$vo.roomtype}" placeholder="从第几注开始随机" value="{$vo.startpos5}"></div></td>
+							</tr>
+							<else />
+							<tr class="order_tr">
+								<td height="47"><div style="text-align:right; padding-top:5px;"></div></td>
+								<td><div style="text-align:left;"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="47"><div style="text-align:right; padding-top:5px;"></div></td>
+								<td><div style="text-align:left;"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="47"><div style="text-align:right; padding-top:5px;"></div></td>
+								<td><div style="text-align:left;"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="47"><div style="text-align:right; padding-top:5px;"></div></td>
+								<td><div style="text-align:left;"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="47"><div style="text-align:right; padding-top:5px;"></div></td>
+								<td><div style="text-align:left;"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="47"><div style="text-align:right; padding-top:5px;"></div></td>
+								<td><div style="text-align:left;"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="47"><div style="text-align:right; padding-top:5px;"></div></td>
+								<td><div style="text-align:left;"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="47"><div style="text-align:right; padding-top:5px;"></div></td>
+								<td><div style="text-align:left;"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="47"><div style="text-align:right; padding-top:5px;"></div></td>
+								<td><div style="text-align:left;"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="47"><div style="text-align:right; padding-top:5px;"></div></td>
+								<td><div style="text-align:left;"></div></td>
+							</tr>
+							</if>
+							
+						</table>
+						</div>
+						</volist> 
+						
+						<div style="width:97%; background-color:#FCFCFC; float:left; padding:10px; margin-top:10px;">
+						<table class="table-bordered"  style="width:100%; ">
+							<tr class="order_tr">
+								<td height="35" width="12%"><div style="text-align:right; font-weight:bold;padding:5px;">修改原因：</div></td>
+							    <td ><div style="text-align:left;padding:5px;"><input type="text" style="width:100%; height:25px; text-align:left;" name="remark" id="remark" placeholder="请输入修改原因" value=""> </div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="50" colspan="2" ><div style="text-align:center;">
+								  <input type="submit" name="Submit" style=" font-size:14px; font-weight:bold; width:200px; height:40px;" value="修 改 参 数" />&nbsp;&nbsp;<input onclick="reconfig();" type="button" name="Submit" style=" font-size:14px; font-weight:bold; width:200px; height:40px;" value="恢 复 默 认" />
+								</div></td>
+							</tr>
+						</table>
+						</div>
+						</form>
+					</div>
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+<script>
+function reconfig(){
+
+	$("#delminnum1").val(3);
+	$("#delmax1rate1").val(60);
+	$("#delmax2rate1").val(50);
+	$("#delmax3rate1").val(40);
+	
+	$("#delminnum2").val(3);
+	$("#delmax1rate2").val(60);
+	$("#delmax2rate2").val(50);
+	$("#delmax3rate2").val(40);
+	
+	$("#delminnum3").val(3);
+	$("#delmax1rate3").val(60);
+	$("#delmax2rate3").val(50);
+	$("#delmax3rate3").val(40);
+	
+	$("#playcount11").val(1);
+	$("#startpos11").val(5);
+	$("#playcount21").val(2);
+	$("#startpos21").val(4);
+	$("#playcount31").val(5);
+	$("#startpos31").val(3);
+	$("#playcount41").val(10);
+	$("#startpos41").val(2);
+	$("#playcount51").val(20);
+	$("#startpos51").val(1);
+	
+}
+
+</script>
+		
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script> 

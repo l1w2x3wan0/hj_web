@@ -1,0 +1,124 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">获取渠道数据</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- 日报开始 -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							<a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title=""><b>获取渠道数据</b></a>&nbsp;
+							<a href="{:U('Other/limituser_add')}" data-toggle="tooltip" data-placement="bottom" title=""><b>添加渠道限制用户</b></a>&nbsp;
+							<a href="{:U('Other/limituser')}" data-toggle="tooltip" data-placement="bottom" title=""><b>渠道限制用户列表</b></a>&nbsp;
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <input type="hidden" name="flag" value="" />
+									<div class="form-group">
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="日报时间" value="{$beginTime}">
+                                        
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">获取</button>&nbsp;&nbsp;<button class="btn btn-primary btn-sm" type="button" id="sendto">发送数据</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table-bordered" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <td height="50"><div style="text-align:center; font-weight:bold; ">日期</div></td>
+                                    <td><div style="text-align:center; font-weight:bold; ">游戏</div></td>
+                                    <td><div style="text-align:center; font-weight:bold; ">渠道</div></td>
+									<td><div style="text-align:center; font-weight:bold; ">新增用户</div></td>
+									<td><div style="text-align:center; font-weight:bold; ">活跃用户</div></td>
+									<td><div style="text-align:center; font-weight:bold; ">有效用户</div></td>
+									<td><div style="text-align:center; font-weight:bold; ">付费用户<br>独立</div></td>
+									<td><div style="text-align:center; font-weight:bold; ">付费用户<br>新增</div></td>
+									<td><div style="text-align:center; font-weight:bold; ">新增付费</div></td>
+									<td><div style="text-align:center; font-weight:bold; ">总收入</div></td>
+                                    <volist	name="payment" id="v1">
+									<td><div style="text-align:center; font-weight:bold;">{$v1.payment_name}</div></td>
+									</volist>
+									<td><div style="text-align:center; font-weight:bold; ">付费率(%)</div></td>
+									<td><div style="text-align:center; font-weight:bold; ">付费用户<br>(ARPU)</div></td>
+									<td><div style="text-align:center; font-weight:bold; ">活跃用户<br>(ARPU)</div></td>
+									<td><div style="text-align:center; font-weight:bold; ">次日留存率(%)</div></td>
+									<td><div style="text-align:center; font-weight:bold; ">7日留存率(%)</div></td>
+									<td><div style="text-align:center; font-weight:bold; ">15日留存率(%)</div></td>
+									<td><div style="text-align:center; font-weight:bold; ">状态</div></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <volist	name="list" id="vo"> 
+								<tr>
+                                    <td height="30"><div style="text-align:center; ">{$vo[tongji][data]}</div></td>
+                                    <td><div style="text-align:center; ">{$vo[tongji][game]}</div></td>
+                                    <td><div style="text-align:center; ">{$vo.channel}</div></td>
+									<td><div style="text-align:center; ">{$vo[tongji][count1]}</div></td>
+									<td><div style="text-align:center; ">{$vo[tongji][count2]}</div></td>
+									<td><div style="text-align:center; ">{$vo[tongji][count3]}</div></td>
+									<td><div style="text-align:center; ">{$vo[tongji][count4]}</div></td>
+									<td><div style="text-align:center; ">{$vo[tongji][count9]}</div></td>
+									<td><div style="text-align:center; ">{$vo[tongji][count5]}</div></td>
+									<td><div style="text-align:center; ">{$vo[tongji][count13]}</div></td>
+									<volist	name="vo[tongji][payment]" id="vo1"> 
+									<td><div style="text-align:center; ">{$vo1.count}</div></td>
+									</volist>
+	
+									<td><div style="text-align:center; ">{$vo[tongji][count6]}</div></td>
+									<td><div style="text-align:center; ">{$vo[tongji][count7]}</div></td>
+									<td><div style="text-align:center; ">{$vo[tongji][count8]}</div></td>
+									<td><div style="text-align:center; ">{$vo[tongji][count10]}</div></td>
+									<td><div style="text-align:center; ">{$vo[tongji][count11]}</div></td>
+									<td><div style="text-align:center; ">{$vo[tongji][count12]}</div></td>
+									<td><div style="text-align:center; ">{$vo.showflag}</div></td>
+                                </tr>
+								</volist>   
+                                </tbody>
+                            </table>
+							<div class="showpage">{$pageshow}</div>
+                         </div>
+                    </div>
+					
+					
+					
+
+                </div>
+            	<!-- 日报结束 -->
+				
+			</div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+    <script type="text/javascript">
+$("#sendto").click(function(){
+	$.get("{:U('Other/channel_ajax')}", { time: Math.random() }, 
+	   function(data){
+		 alert("发送完毕");
+		 location.reload();
+	});
+});
+    </script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>

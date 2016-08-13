@@ -1,0 +1,108 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">百人场配置</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading" style="padding:10px;">
+                       <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							<if condition="$caozuo.pub eq 1"><if condition="$flag eq 0"><button type="button" id="Goodson" class="btn btn-primary">审核通过</button>&nbsp;<button type="button" id="Goodsoff" class="btn btn-primary">审核取消</button></if>&nbsp;</if>
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    
+                                </form>
+                            </div>
+                        </div>    
+    
+                    </div>
+                    
+					<div class="panel-body">
+						<form name="form1" action="" method="post">
+						
+						<div style="width:97%; background-color:#FCFCFC; float:left; padding:10px; margin-bottom:10px;">
+						<table class="table-bordered"  style="width:100%; ">
+							 
+							<tr class="order_tr">
+								<volist	name="show_meno" id="vo" key="k" mod="2">
+								
+								<td height="45" width="15%"><div style="text-align:right; font-weight:bold;padding:5px;">{$vo.keymeno}</div></td>
+								<td width="35%"><div class="col-sm-8">{$vo.keyvalue}</div></td>
+								
+								<eq name="mod" value="1"></tr><tr class="order_tr"></eq>
+							    </volist>
+				
+							</tr>
+							
+							 
+							
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">修改原因</div></td>
+								<td colspan="3"><div class="col-sm-8">{$info.remark}</div></td>
+							    
+							</tr>
+							
+						</table>
+						</div>
+						
+						
+						</form>
+					</div>
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+<script>
+function reconfig(){
+
+	$("#minute1").val(60);
+	$("#coin1").val(100);
+	
+	$("#minute2").val(300);
+	$("#coin2").val(150);
+	
+	$("#minute3").val(600);
+	$("#coin3").val(300);
+	
+	$("#minute4").val(1200);
+	$("#coin4").val(600);
+	
+	$("#minute5").val(1800);
+	$("#coin5").val(900);
+	
+	$("#minute6").val(3000);
+	$("#coin6").val(1500);
+	
+	$("#minute7").val(3600);
+	$("#coin7").val(1800);
+
+}
+
+</script>
+		
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script> 

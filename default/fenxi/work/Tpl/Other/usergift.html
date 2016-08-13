@@ -1,0 +1,94 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <form name="form1" class="form-inline " method="post" action="">
+			<input type="hidden" name="act" value="play" />
+			<input type="hidden" name="id" value="{$id}" />  
+			<div class="col-lg-12">
+                <h4 class="page-header" style="line-height:30px;">礼物记录</h4>
+            </div>
+			</form>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+		
+		<div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;"></div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+									<input type="hidden" name="act" value="gift" />
+									<input type="hidden" name="id" value="{$id}" />  
+                                    <div class="form-group">
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="giftdate" id="giftdate" placeholder="选择某一天" value="{$giftdate}">&nbsp;
+                                    </div>
+									<div class="form-group">
+										类型：<select name="transtype" id="transtype" style="height:25px;"><option value="1">卖礼物</option><option value="2">大转盘抽奖</option><option value="3">转入礼物</option><option value="4">转出礼物</option></select>&nbsp;
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+
+								<tr>
+                                   <td><div style="text-align:center;">ID</div></td>
+								   <td><div style="text-align:center;">用户UID</div></td>
+								   <td><div style="text-align:center;">送礼物用户</div></td>
+								   <td><div style="text-align:center;">类型</div></td>
+								   <td><div style="text-align:center;">礼物</div></td>
+								   <td><div style="text-align:center;">变动数量</div></td>
+								   <td><div style="text-align:center;">变动前数量</div></td>
+								   <td><div style="text-align:center;">变动后数量</div></td>
+								   <td><div style="text-align:center;">时间</div></td>
+                                </tr>
+								
+								<volist	name="info" id="vo">
+								<tr>
+                                   <td><div style="text-align:center;">{$vo.id}</div></td>
+								   <td><div style="text-align:center;">{$vo.user_id}({$vo.nickname})</div></td>
+								   <td><div style="text-align:center;">{$vo.otheruid}({$vo.othernickname})</div></td>
+								   <td><div style="text-align:center;">{$vo.type}</div></td>
+								   <td><div style="text-align:center;">{$vo.gift}</div></td>
+								   <td><div style="text-align:center;">{$vo.changenum}</div></td>
+								   <td><div style="text-align:center;">{$vo.beforenum}</div></td>
+								   <td><div style="text-align:center;">{$vo.afternum}</div></td> 
+								   <td><div style="text-align:center;">{$vo.disdate}</div></td>
+								</tr>
+								</volist>	
+								
+                            </table>
+							<div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+
+}   
+</script>
+
+<include file = "public:footer"/>

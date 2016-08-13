@@ -1,0 +1,67 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">充值奖励详情</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+						<div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;"></div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <div class="form-group">
+										<input type="text" class="form-control input-sm" name="orderid" placeholder="输入订单号" value="{$orderid}">&nbsp;
+										<input type="text" class="form-control input-sm" name="userid" placeholder="输入USERID" value="{$userid}">&nbsp;
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>&nbsp;&nbsp;<a href="{:U('Income/chong')}&act=exceldo" target="_blank"><img src="__PUBLIC__/images/daochu.png" ></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>订单号</th>
+									<th>用户ID</th>
+									<th>支付方式</th>
+									<th>支付金额(元)</th>
+									<th>发放金币</th>
+									<th>发放钻石</th>
+                                    <th>发放时间</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <volist	name="list" id="vo">
+										<tr>
+                                            <td>{$vo.orderid}</td>
+                                            <td>{$vo.userid}</td>
+											<td>{$vo.payment}</td>
+											<td>{$vo.money}</td>
+											<td>{$vo.golds}</td>
+											<td>{$vo.diamond}</td>
+											<td>{$vo.pay_date}</td>
+                                            
+                                        </tr>
+                                        </volist>
+                                 </tbody>
+                            </table>
+							{$pageshow}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+<include file = "public:footer"/>

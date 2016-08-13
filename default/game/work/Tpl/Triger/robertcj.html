@@ -1,0 +1,80 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">机器人抽奖配置</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <form class="form-horizontal" method="POST" action="" id="addGoodsForm">
+
+                            <div class="form-group">
+                                <label for="goods_id" class="col-sm-4 control-label">机器人模拟PUSH“{$info.show1}”的间隔时间为：(分钟)</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" id="pei1" name="pei1" placeholder="" value="{$info.pei1}">
+                                </div>
+                            </div>
+							
+							<div class="form-group">
+                                <label for="goods_id" class="col-sm-4 control-label">机器人模拟PUSH“{$info.show2}”的间隔时间为：(分钟)</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" id="pei2" name="pei2" placeholder="" value="{$info.pei2}">
+                                </div>
+                            </div>
+							
+							<div class="form-group">
+                                <label for="goods_id" class="col-sm-4 control-label">机器人模拟PUSH“{$info.show3}”的间隔时间为：(分钟)</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" id="pei3" name="pei3" placeholder="" value="{$info.pei3}">
+                                </div>
+                            </div>
+							
+							<div class="form-group">
+                                <label for="goods_id" class="col-sm-4 control-label">机器人模拟PUSH“{$info.show4}”的间隔时间为：(分钟)</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" id="pei4" name="pei4" placeholder="" value="{$info.pei4}">
+                                </div>
+                            </div>
+							
+							<div class="form-group">
+                                <label for="goods_id" class="col-sm-4 control-label">修改原因</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" id="remark" name="remark" placeholder="修改原因">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-4 col-sm-10">
+                                    <button type="submit" id="addGoodsSubmit" class="btn btn-primary">提 交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    
+<include file = "public:footer"/>

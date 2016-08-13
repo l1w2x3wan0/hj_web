@@ -1,0 +1,172 @@
+<include file = "public:head"/>
+ <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">修改栏目</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <form class="form-horizontal" method="POST" action="" id="editUserForm">
+                          <input type="hidden" name="id" value="{$info.id}">
+                            
+							<div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">栏目层级</label>
+                                <div class="col-sm-4">
+                                    <select name="lanmu_num" style="height:30px;">
+										<option value="0" <if condition="$info.lanmu_num eq 0">selected</if>>顶级</option>
+										<volist name="lanmu" id="vo">
+										<option value="{$vo.id}" <eq name="vo.id" value="$info.lanmu_num">selected</eq>>{$vo.lanmu_name}</option>
+										</volist>
+									</select>
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">栏目名称</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="lanmu_name" name="lanmu_name" placeholder="栏目名称" value="{$info.lanmu_name}">
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">栏目方法</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="lanmu_m" name="lanmu_m" placeholder="栏目方法" value="{$info.lanmu_m}">
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">栏目操作</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="lanmu_a" name="lanmu_a" placeholder="栏目操作" value="{$info.lanmu_a}">
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">栏目样式</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="lanmu_css" name="lanmu_css" placeholder="栏目样式" value="{$info.lanmu_css}">
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">栏目排序</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="lanmu_sort" name="lanmu_sort" placeholder="栏目排序" value="{$info.lanmu_sort}">
+                                </div>
+                            </div>
+							
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" id="editUserSubmit" class="btn btn-primary">提 交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+	    function build_html(status,info,operation){
+		if(status === 1){
+            var html = [
+                '<div class="modal-header">',
+                    '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>',
+                    '<h4 class="modal-title" id="gridSystemModalLabel">' + operation + '</h4>',
+                '</div>',
+                '<div class="modal-body">',
+                    '<div class="container-fluid">',
+                        '<div class="row">',
+                            '<div class="col-md-2">',
+                                '<button type="button" class="btn btn-success btn-circle">',
+                                    '<i class="fa fa-check"></i>',
+                                '</button>',
+                            '</div>',
+                            '<div class="col-md-8"> 成功 </div>',
+                        '</div>',
+                    '</div>',
+                '</div>',
+            ].join('');
+		}
+		else{
+            var html = [
+                '<div class="modal-header">',
+                    '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>',
+                    '<h4 class="modal-title" id="gridSystemModalLabel">' + operation + '</h4>',
+                '</div>',
+                '<div class="modal-body">',
+                    '<div class="container-fluid">',
+                        '<div class="row">',
+                            '<div class="col-md-2">',
+                                '<button type="button" class="btn btn-danger btn-circle">',
+                                    '<i class="fa fa-times"></i>',
+                                '</button>',
+                            '</div>',
+                            '<div class="col-md-8"> ' + info + ' </div>',
+                        '</div>',
+                    '</div>',
+                '</div>',
+            ].join('');
+		}
+		return html;
+	}
+    // ajax form拦截提交事件 
+	$('#editUserSubmit').click(function(){
+		var options = {
+			dataType: 'json',
+			timeout: 3000,
+			success: function (data) {
+				var html = build_html(data.status,data.info,data.operation);
+				$('.modal-content').html(html);
+                $('#postTip').modal('show');
+
+				setTimeout( function(){
+                    if(data.status === 1)  //成功
+                    {
+                        var url = data.url;
+                        var hostname = window.location.hostname;
+                        var re = url.indexOf(hostname);
+                        if(re != -1)
+                        {
+                            window.location = url;
+                        }
+                        else{
+                            window.location = '{:U('Game/Game')}';
+                        }
+                    }
+                },3000);
+
+			},
+			error: function(){
+				var html = build_html(0, '服务器端异常', '操作');
+				$('.modal-content').html(html);
+                $('#postTip').modal('show');
+				//setTimeout("location.reload()",2000);
+			}
+		};
+		$('#editUserForm').ajaxForm(options);
+
+	});
+ });
+</script>
+
+<include file = "public:footer"/>
+

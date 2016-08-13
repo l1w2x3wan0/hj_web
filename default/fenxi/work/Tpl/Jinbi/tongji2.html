@@ -1,0 +1,298 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">金币回收</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							<a onclick="showtongji0('container');" href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="" id="texttop" class="text01">金币回收绝对值</a> ~ 
+							<a onclick="showtongji0('container2');" href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="" id="texttop2" class="text02">占比</a>
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <div class="form-group">
+
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="开始时间" value="{$date11}">
+                                        -
+                                        <input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="endTime" id="endTime" placeholder="结束时间" value="{$date12}">&nbsp;<a onclick="selday('1');" href="javascript:;">今日</a>&nbsp;|&nbsp;<a onclick="selday('-1');" href="javascript:;">昨日</a>&nbsp;|&nbsp;<a onclick="selday('7');" href="javascript:;">近7日</a>&nbsp;|&nbsp;<a onclick="selday('30');" href="javascript:;">近30日</a>&nbsp;
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div id="container" style="min-width: 310px; height: 395px; padding-right:10px; margin: 0 auto"></div>
+						<div id="container2" style="min-width: 82%; height: 395px; padding-right:10px; margin: 0 auto; display:none;" ></div>
+                    </div>
+                </div>
+				<!-- 表格开始 -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							<a onclick="showtongji('tabledau');" href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="" id="textall" class="text01">金币回收绝对值</a> ~ 
+							<a onclick="showtongji('tabledau2');" href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="" id="textall2" class="text02">占比</a>
+							</div>
+							<div class="col-sm-8">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body" id="tabledau">
+						<div id="showtable" class="table-responsive"></div>
+                    </div>
+					
+					<div class="panel-body" id="tabledau2" style="display:none;">
+						<div id="showtable2" class="table-responsive"></div>
+                    </div>
+
+                </div>
+				<!-- 表格结束 -->
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+
+		<script type="text/javascript">
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: '金币回收'
+        },
+        xAxis: {
+            categories: [{$data1[0]}]//这里应该输入时间
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: '金币'
+            }
+        },
+        tooltip: {
+            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br>',
+            shared: true
+        },
+        plotOptions: {
+            column: {
+                stacking: 'normal'
+            }
+        },
+        series: [{
+            name: '玩家台费',
+            data: [{$data1[1]}]//这里应该输入到诊数据
+        },{
+            name: '大喇叭金币回收',
+            data: [{$data1[2]}]//这里应该输入到诊数据
+        },{
+            name: '道具发送金币回收',
+            data: [{$data1[3]}]//这里应该输入到诊数据
+        },{
+            name: 'AI回收',
+            data: [{$data1[4]}]//这里应该输入到诊数据
+        },{
+            name: '礼物变卖回收',
+            data: [{$data1[5]}]//这里应该输入到诊数据
+        },{
+            name: '老虎机购买回收',
+            data: [{$data1[6]}]//这里应该输入到诊数据
+        },{
+            name: 'T人回收',
+            data: [{$data1[7]}]//这里应该输入到诊数据
+        },{
+            name: '幸运转轮购买回收',
+            data: [{$data1[8]}]//这里应该输入到诊数据
+        },{
+            name: '创建私人房回收',
+            data: [{$data1[9]}]//这里应该输入到诊数据
+        },{
+            name: '金币交易回收',
+            data: [{$data1[10]}]//这里应该输入到诊数据
+        }]
+    });
+	
+	$('#container2').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: '金币回收'
+        },
+        xAxis: {
+            categories: [{$data2[0]}]//这里应该输入时间
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: '占比(%)'
+            }
+        },
+        tooltip: {
+            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}%</b><br>',
+            shared: true
+        },
+        plotOptions: {
+            column: {
+                stacking: 'normal'
+            }
+        },
+        series: [{
+            name: '玩家台费',
+            data: [{$data2[1]}]//这里应该输入到诊数据
+        },{
+            name: '大喇叭金币回收',
+            data: [{$data2[2]}]//这里应该输入到诊数据
+        },{
+            name: '道具发送金币回收',
+            data: [{$data2[3]}]//这里应该输入到诊数据
+        },{
+            name: 'AI回收',
+            data: [{$data2[4]}]//这里应该输入到诊数据
+        },{
+            name: '礼物变卖回收',
+            data: [{$data2[5]}]//这里应该输入到诊数据
+        },{
+            name: '老虎机购买回收',
+            data: [{$data2[6]}]//这里应该输入到诊数据
+        },{
+            name: 'T人回收',
+            data: [{$data2[7]}]//这里应该输入到诊数据
+        },{
+            name: '幸运转轮购买回收',
+            data: [{$data2[8]}]//这里应该输入到诊数据
+        },{
+            name: '创建私人房回收',
+            data: [{$data2[9]}]//这里应该输入到诊数据
+        },{
+            name: '金币交易回收',
+            data: [{$data2[10]}]//这里应该输入到诊数据
+        }]
+    });
+});
+
+function selday(id){
+	if (id=="1"){
+		$('#beginTime').val("{$seldate[0].date1}");
+		$('#endTime').val("{$seldate[0].date2}");
+	}else if (id=="-1"){
+		$('#beginTime').val("{$seldate[1].date1}");
+		$('#endTime').val("{$seldate[1].date2}");
+	}else if (id=="7"){
+		$('#beginTime').val("{$seldate[2].date1}");
+		$('#endTime').val("{$seldate[2].date2}");
+	}else if (id=="30"){
+		$('#beginTime').val("{$seldate[3].date1}");
+		$('#endTime').val("{$seldate[3].date2}");
+	}
+	document.form1.submit();
+}
+
+tongjiid = 'tabledau';
+function showtongji(id){
+	show1 = "#"+id;
+	show2 = "#"+tongjiid;
+	$(show2).hide();
+	$(show1).show();
+	tongjiid = id;
+	
+	if (id=="tabledau"){
+		$("#textall").attr("class","text01");
+		$("#textall2").attr("class","text02");
+	}else if (id=="tabledau2"){
+		$("#textall2").attr("class","text01");
+		$("#textall").attr("class","text02");
+	}
+}
+
+tongjiid0 = 'container';
+function showtongji0(id){
+	show1 = "#"+id;
+	show2 = "#"+tongjiid0;
+	$(show2).hide();
+	$(show1).show();
+	tongjiid0 = id;
+	
+	if (id=="container"){
+		$("#texttop").attr("class","text01");
+		$("#texttop2").attr("class","text02");
+	}else if (id=="container2"){
+		$("#texttop2").attr("class","text01");
+		$("#texttop").attr("class","text02");
+	}
+}
+
+var page_max = {$pagesize};
+var tongji1={$tongji1};
+var alltotal={$alltotal};
+function getdata1(page){
+	showtable1 = "<table class=\"table table-bordered\"><tr class=\"order_tr\"><td colspan=\"12\" ><div style=\"text-align:center; font-weight:bold;\">金币回收</div></td></tr><tr class=\"order_tr\"><td ><div style=\"text-align:center; \">日期</div></td><td><div style=\"text-align:center;\">回收</div></td><td><div style=\"text-align:center;\">玩家台费(总计)</div></td><td><div style=\"text-align:center;\">大喇叭回收</div></td><td><div style=\"text-align:center;\">道具回收</div></td><td><div style=\"text-align:center;\">AI台费(总计)</div></td><td><div style=\"text-align:center;\">礼物变卖回收</div></td><td><div style=\"text-align:center;\">老虎机购买回收</div></td><td><div style=\"text-align:center;\">T人回收</div></td><td><div style=\"text-align:center;\">幸运转轮购买回收</div></td><td><div style=\"text-align:center;\">创建私人房回收</div></td><td><div style=\"text-align:center;\">金币交易回收</div></td>";
+	showtable1 = showtable1 + "</tr><tr class=\"order_tr\"><td ><div style=\"text-align:center;font-weight:bold; \"  class=\"order_td_red\">总计</div></td><td><div style=\"text-align:center;font-weight:bold;\" class=\"order_td_red\">"+alltotal[0]+"</div></td><td><div style=\"text-align:center;font-weight:bold;\" class=\"order_td_red\">"+alltotal[1]+"</div></td><td><div style=\"text-align:center;font-weight:bold;\" class=\"order_td_red\">"+alltotal[2]+"</div></td><td><div style=\"text-align:center;font-weight:bold;\" class=\"order_td_red\">"+alltotal[3]+"</div></td><td><div style=\"text-align:center;font-weight:bold;\" class=\"order_td_red\">"+alltotal[4]+"</div></td><td><div style=\"text-align:center;font-weight:bold;\" class=\"order_td_red\">"+alltotal[5]+"</div></td><td><div style=\"text-align:center;font-weight:bold;\" class=\"order_td_red\">"+alltotal[6]+"</div></td><td><div style=\"text-align:center;font-weight:bold;\" class=\"order_td_red\">"+alltotal[7]+"</div></td><td><div style=\"text-align:center;font-weight:bold;\" class=\"order_td_red\">"+alltotal[8]+"</div></td><td><div style=\"text-align:center;font-weight:bold;\" class=\"order_td_red\">"+alltotal[9]+"</div></td><td><div style=\"text-align:center;font-weight:bold;\" class=\"order_td_red\">"+alltotal[10]+"</div></td>";
+	showtable1 = showtable1 + "</tr>";
+	for (i=(page-1)*10; i<page*10; i++){
+		if (i<tongji1.length){
+			showi = tongji1.length - i - 1;
+			showtable1 = showtable1 + "<tr class=\"order_tr\"><td><div style=\"text-align:center\">"+tongji1[showi].data+"</div></td><td><div style=\"text-align:center;font-weight:bold;\">"+tongji1[showi].module0_format+"</div></td><td><div style=\"text-align:center;font-weight:bold;\">"+tongji1[showi].module3_format+"</div></td><td><div style=\"text-align:center;font-weight:bold;\">"+tongji1[showi].module10_format+"</div></td><td><div style=\"text-align:center;font-weight:bold;\">"+tongji1[showi].module11_format+"</div></td><td><div style=\"text-align:center;font-weight:bold;\">"+tongji1[showi].module12_format+"</div></td><td><div style=\"text-align:center;font-weight:bold;\">"+tongji1[showi].module14_format+"</div></td><td><div style=\"text-align:center;font-weight:bold;\">"+tongji1[showi].module15_format+"</div></td><td><div style=\"text-align:center;font-weight:bold;\">"+tongji1[showi].module17_format+"</div></td><td><div style=\"text-align:center;font-weight:bold;\">"+tongji1[showi].module20_format+"</div></td><td><div style=\"text-align:center;font-weight:bold;\">"+tongji1[showi].module22_format+"</div></td><td><div style=\"text-align:center;font-weight:bold;\">"+tongji1[showi].module26_format+"</div></td>";
+			showtable1 = showtable1 + "</tr>";
+		}
+
+	}
+	prev = Number(page) - 1;
+	if (prev < 1) prev = 1;
+	next = Number(page) + 1;
+	if (next > page_max) next = page_max;
+	showtable1 = showtable1 + "<tr class=\"order_tr\"><td colspan=\"12\" ><div style=\"text-align:right; padding-right:10px;\"><a onclick=\"getdata1('"+prev+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_left.png\"></a> "+ page + "/" + page_max +" <a onclick=\"getdata1('"+next+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_right.png\"></a></div></td></tr>";
+	showtable1 = showtable1 + " </table>";
+	$("#showtable").html(showtable1);
+}
+getdata1(1);
+
+var bl={$bl};
+function getdata2(page){
+	showtable1 = "<table class=\"table table-bordered\"><tr class=\"order_tr\"><td colspan=\"12\" ><div style=\"text-align:center; font-weight:bold;\">金币回收</div></td></tr><tr class=\"order_tr\"><td ><div style=\"text-align:center; \">日期</div></td><td><div style=\"text-align:center;\">回收</div></td><td><div style=\"text-align:center;\">玩家台费(总计)</div></td><td><div style=\"text-align:center;\">大喇叭回收</div></td><td><div style=\"text-align:center;\">道具回收</div></td><td><div style=\"text-align:center;\">AI台费(总计)</div></td><td><div style=\"text-align:center;\">礼物变卖回收</div></td><td><div style=\"text-align:center;\">老虎机购买回收</div></td><td><div style=\"text-align:center;\">T人回收</div></td><td><div style=\"text-align:center;\">幸运转轮购买回收</div></td><td><div style=\"text-align:center;\">创建私人房回收</div></td><td><div style=\"text-align:center;\">金币交易回收</div></td>";
+	showtable1 = showtable1 + "</tr><tr class=\"order_tr\"><td ><div style=\"text-align:center;font-weight:bold; \"  class=\"order_td_red\">总计</div></td><td><div style=\"text-align:center;font-weight:bold;\" class=\"order_td_red\">"+alltotal[0]+"</div></td><td><div style=\"text-align:center;font-weight:bold;\" class=\"order_td_red\">"+bl[0]+"%</div></td><td><div style=\"text-align:center;font-weight:bold;\" class=\"order_td_red\">"+bl[1]+"%</div></td><td><div style=\"text-align:center;font-weight:bold;\" class=\"order_td_red\">"+bl[2]+"%</div></td><td><div style=\"text-align:center;font-weight:bold;\" class=\"order_td_red\">"+bl[3]+"%</div></td><td><div style=\"text-align:center;font-weight:bold;\" class=\"order_td_red\">"+bl[4]+"%</div></td><td><div style=\"text-align:center;font-weight:bold;\" class=\"order_td_red\">"+bl[5]+"%</div></td><td><div style=\"text-align:center;font-weight:bold;\" class=\"order_td_red\">"+bl[6]+"%</div></td><td><div style=\"text-align:center;font-weight:bold;\" class=\"order_td_red\">"+bl[7]+"%</div></td><td><div style=\"text-align:center;font-weight:bold;\" class=\"order_td_red\">"+bl[8]+"%</div></td><td><div style=\"text-align:center;font-weight:bold;\" class=\"order_td_red\">"+bl[9]+"%</div></td>";
+	showtable1 = showtable1 + "</tr>";
+	for (i=(page-1)*10; i<page*10; i++){
+		if (i<tongji1.length){
+			showi = tongji1.length - i - 1;
+			showtable1 = showtable1 + "<tr class=\"order_tr\"><td><div style=\"text-align:center\">"+tongji1[showi].data+"</div></td><td><div style=\"text-align:center;font-weight:bold;\">"+tongji1[showi].module0_format+"</div></td><td><div style=\"text-align:center;font-weight:bold;\">"+tongji1[showi].bl3+"%</div></td><td><div style=\"text-align:center;font-weight:bold;\">"+tongji1[showi].bl10+"%</div></td><td><div style=\"text-align:center;font-weight:bold;\">"+tongji1[showi].bl11+"%</div></td><td><div style=\"text-align:center;font-weight:bold;\">"+tongji1[showi].bl12+"%</div></td><td><div style=\"text-align:center;font-weight:bold;\">"+tongji1[showi].bl14+"%</div></td><td><div style=\"text-align:center;font-weight:bold;\">"+tongji1[showi].bl15+"%</div></td><td><div style=\"text-align:center;font-weight:bold;\">"+tongji1[showi].bl17+"%</div></td><td><div style=\"text-align:center;font-weight:bold;\">"+tongji1[showi].bl20+"%</div></td><td><div style=\"text-align:center;font-weight:bold;\">"+tongji1[showi].bl22+"%</div></td><td><div style=\"text-align:center;font-weight:bold;\">"+tongji1[showi].bl26+"%</div></td>";
+			showtable1 = showtable1 + "</tr>";
+		}
+	}
+	prev = Number(page) - 1;
+	if (prev < 1) prev = 1;
+	next = Number(page) + 1;
+	if (next > page_max) next = page_max;
+	showtable1 = showtable1 + "<tr class=\"order_tr\"><td colspan=\"12\" ><div style=\"text-align:right; padding-right:10px;\"><a onclick=\"getdata1('"+prev+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_left.png\"></a> "+ page + "/" + page_max +" <a onclick=\"getdata1('"+next+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_right.png\"></a></div></td></tr>";
+	showtable1 = showtable1 + " </table>";
+	$("#showtable2").html(showtable1);
+}
+getdata2(1);
+
+		</script>
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script>

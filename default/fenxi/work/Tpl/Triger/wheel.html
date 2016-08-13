@@ -1,0 +1,85 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <form name="form1" class="form-inline " method="post" action="">
+			<input type="hidden" name="act" value="play" />
+			<input type="hidden" name="id" value="{$id}" />  
+			<div class="col-lg-12">
+                <h4 class="page-header" style="line-height:30px;">大转盘抽奖记录</h4>
+            </div>
+			</form>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+		
+		<div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;"></div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                   <div class="form-group">
+										USER_ID：<input type="text" name="user_id" id="user_id" value="{$user_id}" />&nbsp;&nbsp;类型：<select name="awardtype" id="awardtype" style="height:25px;"><option value="1" <if condition="$awardtype eq 1">selected</if>>金币</option><option value="2" <if condition="$awardtype eq 2">selected</if>>话费</option><option value="3" <if condition="$awardtype eq 3">selected</if>>车</option><option value="4" <if condition="$awardtype eq 4">selected</if>>飞机</option><option value="5" <if condition="$awardtype eq 5">selected</if>>奖券</option></select>&nbsp;
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+
+								<tr>
+                                   <td><div style="text-align:center;">ID</div></td>
+								   <td><div style="text-align:center;">用户UID</div></td>
+								   <td><div style="text-align:center;">抽奖类型</div></td>
+								   <td><div style="text-align:center;">连抽次数</div></td>
+								   <td><div style="text-align:center;">奖励类型</div></td>
+								   <td><div style="text-align:center;">奖励数量</div></td>
+								   <td><div style="text-align:center;">时间</div></td>
+                                </tr>
+								
+								<volist	name="list" id="vo">
+								<tr>
+                                   <td><div style="text-align:center;">{$vo.id}</div></td>
+								   <td><div style="text-align:center;">{$vo.user_id}({$vo.nickname})</div></td>
+								   <td><div style="text-align:center;">{$vo.type}</div></td>
+								   <td><div style="text-align:center;">{$vo.drawtimes}</div></td>
+								   <td><div style="text-align:center;">{$vo.showtype}</div></td>
+								   <td><div style="text-align:center;">{$vo.awardvalue}</div></td> 
+								   <td><div style="text-align:center;">{$vo.operator}</div></td>
+								</tr>
+								</volist>	
+								
+                            </table>
+							<div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+
+}   
+</script>
+
+<include file = "public:footer"/>

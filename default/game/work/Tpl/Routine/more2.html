@@ -1,0 +1,174 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">时时彩配置</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading" style="padding:10px;">
+                       <div class="row">
+                            <div class="col-sm-10" style="padding-top:10px; color:#FF0000; font-weight:bold;">
+							PS：X是Y和Z的约束条件，Y和Z是对应的范围；X=真实投注次数；Y=频率内模拟下注次数；Z=本局机器人最大模拟下注次数<br>
+							</div>
+                        </div>    
+    
+                    </div>
+                    
+					<div class="panel-body">
+						<form name="form{$k}" action="" method="post">
+						<div style="width:97%; background-color:#FCFCFC; float:left; padding:10px; margin-bottom:10px;">
+						<table class="table-bordered"  style="width:100%; ">
+							<volist	name="list" id="vo">
+							<tr class="order_tr">
+								<td height="30" width="15%"><div style="text-align:right; font-weight:bold;padding:5px;">条件X{$vo.id}的范围：</div></td>
+								<td width="18%"><div style="text-align:left;padding:5px;"><if condition="$vo.id eq 1">{$info[minuserbet1]}</if><if condition="$vo.id eq 2">{$info[minuserbet2]}</if><if condition="$vo.id eq 3">{$info[minuserbet3]}</if><if condition="$vo.id eq 4">{$info[minuserbet4]}</if><if condition="$vo.id eq 5">{$info[minuserbet5]}</if><if condition="$vo.id eq 6">{$info[minuserbet6]}</if><if condition="$vo.id eq 7">{$info[minuserbet7]}</if> - <if condition="$vo.id eq 1">{$info[maxuserbet1]}</if><if condition="$vo.id eq 2">{$info[maxuserbet2]}</if><if condition="$vo.id eq 3">{$info[maxuserbet3]}</if><if condition="$vo.id eq 4">{$info[maxuserbet4]}</if><if condition="$vo.id eq 5">{$info[maxuserbet5]}</if><if condition="$vo.id eq 6">{$info[maxuserbet6]}</if><if condition="$vo.id eq 7">{$info[maxuserbet7]}</if></div></td>
+							    <td width="15%"><div style="text-align:right; font-weight:bold;padding:5px;">Y{$vo.id}的范围：</div></td>
+							    <td width="18%"><div style="text-align:left;padding:5px;"><if condition="$vo.id eq 1">{$info[minperrobitbet1]}</if><if condition="$vo.id eq 2">{$info[minperrobitbet2]}</if><if condition="$vo.id eq 3">{$info[minperrobitbet3]}</if><if condition="$vo.id eq 4">{$info[minperrobitbet4]}</if><if condition="$vo.id eq 5">{$info[minperrobitbet5]}</if><if condition="$vo.id eq 6">{$info[minperrobitbet6]}</if><if condition="$vo.id eq 7">{$info[minperrobitbet7]}</if> - <if condition="$vo.id eq 1">{$info[maxperrobitbet1]}</if><if condition="$vo.id eq 2">{$info[maxperrobitbet2]}</if><if condition="$vo.id eq 3">{$info[maxperrobitbet3]}</if><if condition="$vo.id eq 4">{$info[maxperrobitbet4]}</if><if condition="$vo.id eq 5">{$info[maxperrobitbet5]}</if><if condition="$vo.id eq 6">{$info[maxperrobitbet6]}</if><if condition="$vo.id eq 7">{$info[maxperrobitbet7]}</if></div></td>
+							    <td width="15%"><div style="text-align:right; font-weight:bold;padding:5px;">Z{$vo.id}的范围：</div></td>
+							    <td><div style="text-align:left;padding:5px;"><if condition="$vo.id eq 1">{$info[minrobitsumbet1]}</if><if condition="$vo.id eq 2">{$info[minrobitsumbet2]}</if><if condition="$vo.id eq 3">{$info[minrobitsumbet3]}</if><if condition="$vo.id eq 4">{$info[minrobitsumbet4]}</if><if condition="$vo.id eq 5">{$info[minrobitsumbet5]}</if><if condition="$vo.id eq 6">{$info[minrobitsumbet6]}</if><if condition="$vo.id eq 7">{$info[minrobitsumbet7]}</if> - <if condition="$vo.id eq 1">{$info[maxrobitsumbet1]}</if><if condition="$vo.id eq 2">{$info[maxrobitsumbet2]}</if><if condition="$vo.id eq 3">{$info[maxrobitsumbet3]}</if><if condition="$vo.id eq 4">{$info[maxrobitsumbet4]}</if><if condition="$vo.id eq 5">{$info[maxrobitsumbet5]}</if><if condition="$vo.id eq 6">{$info[maxrobitsumbet6]}</if><if condition="$vo.id eq 7">{$info[maxrobitsumbet7]}</if></div></td>
+							</tr>
+							</volist>
+							<tr class="order_tr">
+								<td height="30" width="8%"><div style="text-align:right; font-weight:bold;padding:5px;">时时彩净耗率：</div></td>
+								<td colspan="5"><div style="text-align:left;padding:5px;">{$info.deftaxrate} (单位：百分比%)</div></td>
+						    </tr>
+							<tr class="order_tr">
+								<td height="30" width="8%"><div style="text-align:right; font-weight:bold;padding:5px;">净耗率浮动区间：</div></td>
+								<td colspan="5"><div style="text-align:left;padding:5px;">{$info.mintaxrate} - {$info.maxtaxrate} (单位：百分比%)</div></td>
+						    </tr>
+							<tr class="order_tr">
+								<td height="30" width="8%"><div style="text-align:right; font-weight:bold;padding:5px;">单人投注多个牌型：</div></td>
+								<td colspan="5"><div style="text-align:left;padding:5px;"><if condition="$info.multiplebet eq 1">允许<else />不允许</if></div></td>
+						    </tr>
+							<tr class="order_tr">
+								<td height="30" width="8%"><div style="text-align:right; font-weight:bold;padding:5px;">单个牌型最大次数：</div></td>
+								<td colspan="5"><div style="text-align:left;padding:5px;">{$info.xzmaxcount} (单位：次)</div></td>
+						    </tr>
+							<tr class="order_tr">
+								<td height="30" width="8%"><div style="text-align:right; font-weight:bold;padding:5px;">下注时长：</div></td>
+								<td colspan="5"><div style="text-align:left;padding:5px;">{$info.xztime} (单位：秒S)</div></td>
+						    </tr>
+							<tr class="order_tr">
+								<td height="30" width="8%"><div style="text-align:right; font-weight:bold;padding:5px;">结算时长：</div></td>
+								<td colspan="5"><div style="text-align:left;padding:5px;">{$info.jstime} (单位：秒S)</div></td>
+						    </tr>
+						</table>
+						</div>
+						
+						<div style="width:97%; background-color:#FCFCFC; float:left; padding:10px; margin-top:10px;">
+						<table class="table-bordered"  style="width:100%; ">
+							<tr class="order_tr">
+								<td height="35" width="12%"><div style="text-align:right; font-weight:bold;padding:5px;">修改原因：</div></td>
+							    <td ><div style="text-align:left;padding:5px;">{$info.remark} </div></td>
+							</tr>
+							
+						</table>
+						</div>
+						</form>
+					</div>
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+<script>
+function reconfig(){
+
+	for (t=1; t<=7; t++){
+		temp1 = "#minuserbet" + t;
+		temp2 = "#maxuserbet" + t;
+		temp3 = "#minperrobitbet" + t;
+		temp4 = "#maxperrobitbet" + t;
+		temp5 = "#minrobitsumbet" + t;
+		temp6 = "#maxrobitsumbet" + t;
+		if (t == 1){
+			$(temp1).val(0);
+			$(temp2).val(0);
+			$(temp3).val(0);
+			$(temp4).val(1);
+			$(temp5).val(10);
+			$(temp6).val(20);
+		}else if (t == 2){
+			$(temp1).val(1);
+			$(temp2).val(2);
+			$(temp3).val(0);
+			$(temp4).val(1);
+			$(temp5).val(20);
+			$(temp6).val(30);
+		}else if (t == 3){
+			$(temp1).val(3);
+			$(temp2).val(5);
+			$(temp3).val(0);
+			$(temp4).val(2);
+			$(temp5).val(30);
+			$(temp6).val(40);
+		}else if (t == 4){
+			$(temp1).val(6);
+			$(temp2).val(8);
+			$(temp3).val(1);
+			$(temp4).val(2);
+			$(temp5).val(40);
+			$(temp6).val(60);
+		}else if (t == 5){
+			$(temp1).val(9);
+			$(temp2).val(13);
+			$(temp3).val(1);
+			$(temp4).val(3);
+			$(temp5).val(50);
+			$(temp6).val(80);
+		}else if (t == 6){
+			$(temp1).val(14);
+			$(temp2).val(20);
+			$(temp3).val(1);
+			$(temp4).val(3);
+			$(temp5).val(60);
+			$(temp6).val(100);
+		}else if (t == 7){
+			$(temp1).val(21);
+			$(temp2).val(-1);
+			$(temp3).val(1);
+			$(temp4).val(4);
+			$(temp5).val(-1);
+			$(temp6).val(-1);
+		}
+	}
+
+	$("#deftaxrate").val(10);
+	$("#mintaxrate").val(-5);
+	$("#maxtaxrate").val(5);
+	$("#xzmaxcount").val(100);
+	$("#xztime").val(120);
+	$("#jstime").val(10);
+
+	
+	$("input[name='multiplebet']").eq(0).attr("checked","checked");
+    $("input[name='multiplebet']").eq(1).removeAttr("checked");
+    $("input[name='multiplebet']").eq(0).click();
+	
+}
+
+</script>
+		
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script> 

@@ -1,0 +1,144 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">百人场统计</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							<a href="index.php?m=Paiju&a=brc_bank" data-toggle="tooltip" data-placement="bottom" title="" id="textall" class="text02">庄家统计</a> | 
+							<a href="index.php?m=Paiju&a=brc_sanjia" data-toggle="tooltip" data-placement="bottom" title="" id="textnew" class="text01">闲家统计</a>
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <div class="form-group">
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="开始时间" value="{$beginTime}">
+                                        -
+                                        <input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="endTime" id="endTime" placeholder="结束时间" value="{$endTime}">&nbsp;&nbsp;
+										全部闲家:
+										<select name="sanjiaall" id="sanjiaall" style="width:100px; height:30px;">
+										<option value="0">请选择</option>
+										<option value="1">用户闲家</option>
+										<option value="2">机器人闲家</option>
+										</select>
+										&nbsp;&nbsp;
+										
+										闲家ID:<input type="text" class="form-control input-sm" name="user_id" id="user_id" placeholder="闲家ID" value="{$user_id}">
+										&nbsp;&nbsp;
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+					<div class="panel-body">
+                        <div class="table-responsive" style="width:100%;overflow:auto">
+                            <table class="table table-bordered" id="idall" >
+                                <thead>
+								<tr class="order_tr">
+								  <th rowspan="2" valign="middle"><div align="center" style="padding-bottom:20px;">总数据</div></th>
+								  <th height="40" ><div align="center">总局数：</div></th>
+								  <th ><div align="left" style="padding-left:5px;" class="text01">{$sum[0]}</div></th>
+								  <th ><div align="center">玩家总输赢：</div></th>
+								  <th ><div align="left" style="padding-left:5px;" class="text01">{$sum[1]}</div></th>
+								  <th ><div align="center">总押注金：</div></th>
+								  <th ><div align="left" style="padding-left:5px;" class="text01">{$sum[2]}</div></th>
+								  <th ><div align="center">总税收：</div></th>
+								  <th colspan="9" ><div align="left" style="padding-left:5px;" class="text01">{$sum[3]}</div></th>
+								  </tr>
+								<tr class="order_tr">
+								  <th height="40" ><div align="center"></div></th>
+								  <th ><div align="left" style="padding-left:5px;" class="text01"></div></th>
+								  <th ><div align="center">AI总输赢：</div></th>
+								  <th ><div align="left" style="padding-left:5px;" class="text01">{$sum[4]}</div></th>
+								  <th ><div align="center">总押注金：</div></th>
+								  <th ><div align="left" style="padding-left:5px;" class="text01">{$sum[5]}</div></th>
+								  <th ><div align="center">总税收：</div></th>
+								  <th colspan="9" ><div align="left" style="padding-left:5px;" class="text01">{$sum[6]}</div></th>
+								  </tr>
+								</tbody>
+                            </table>
+							<table class="table table-bordered" id="idall" >
+                                <thead>	  
+								<tr class="order_tr">
+                                    <th height="40"><div style="text-align:center; ">编号</div></th>
+									<th ><div style="text-align:center">操作时间</div></th>
+									<th ><div style="text-align:center">昵称</div></th>
+									<th ><div style="text-align:center">ID</div></th>
+                                    <th ><div style="text-align:center">押注前金币</div></th>
+                                    <th ><div style="text-align:center">输赢金币</div></th>
+									<th ><div style="text-align:center">结算后金币</div></th>
+									<th ><div style="text-align:center">税收</div></th>
+									<th ><div style="text-align:center">总押注</div></th>
+									<th ><div style="text-align:center">东押注</div></th>
+                                    <th ><div style="text-align:center">东倍率</div></th>
+                                    <th ><div style="text-align:center">南押注</div></th>
+									<th ><div style="text-align:center">南倍率</div></th>
+									<th ><div style="text-align:center">西押注</div></th>
+                                    <th ><div style="text-align:center">西倍率</div></th>
+									<th ><div style="text-align:center">北押注</div></th>
+									<th ><div style="text-align:center">北倍率</div></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+										<volist	name="list" id="vo">
+                                        <tr class="order_tr">
+                                            <td height="35" align="center">{$vo.id}</td>
+											<td height="35" align="center">{$vo.operatedate}</td>
+											<td height="35" align="center">{$vo.nickname}</td>
+											<td height="35" align="center">{$vo.user_id}</td>
+											<td height="35" align="center">{$vo.beforegold}</td>
+											<td height="35" align="center">{$vo.changegold}</td>
+											<td height="35" align="center">{$vo.aftergold}</td>
+											<td height="35" align="center">{$vo.taxgold}</td>
+											<td height="35" align="center">{$vo.allxzcount}</td>
+											<td height="35" align="center">{$vo.eastxzcount}</td>
+											<td height="35" align="center">{$vo.eastrate}</td>
+											<td height="35" align="center">{$vo.southxzcount}</td>
+											<td height="35" align="center">{$vo.southrate}</td>
+											<td height="35" align="center">{$vo.westxzcount}</td>
+											<td height="35" align="center">{$vo.westrate}</td>
+											<td height="35" align="center">{$vo.northxzcount}</td>
+											<td height="35" align="center">{$vo.northrate}</td>
+                                        </tr>
+										</volist>
+                                </tbody>
+                            </table>
+							
+													
+							
+                            <div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+		
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script>

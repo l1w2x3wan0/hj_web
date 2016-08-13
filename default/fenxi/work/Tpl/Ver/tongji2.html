@@ -1,0 +1,135 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">版本统计</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <div class="form-group">
+										<input type="text" class="form-control input-sm" name="channel" id="channel" placeholder="输入渠道号" value="{$channel}">&nbsp;
+										<input type="text" class="form-control input-sm" name="version" id="version" placeholder="输入版本号" value="{$version}">&nbsp;
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="开始时间" value="{$date11}">
+                                        -
+                                        <input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="endTime" id="endTime" placeholder="结束时间" value="{$date12}">&nbsp;<a onclick="selday('1');" href="javascript:;">今日</a>&nbsp;|&nbsp;<a onclick="selday('-1');" href="javascript:;">昨日</a>&nbsp;|&nbsp;<a onclick="selday('7');" href="javascript:;">近7日</a>&nbsp;|&nbsp;<a onclick="selday('30');" href="javascript:;">近30日</a>&nbsp;
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+					<div class="panel-body">
+                        <div class="table-responsive" style="width:100%;overflow:auto">
+                            <table class="table table-bordered" id="idall" >
+                                <thead>
+								<tr class="order_tr">
+                                    <th height="40"><div style="text-align:center; ">日期</div></th>
+									<th ><div style="text-align:center">版本号</div></th>
+									<th ><div style="text-align:center">截止今日版本累计</div></th>
+									<th ><div style="text-align:center">新增用户</div></th>
+                                    <th ><div style="text-align:center">升级用户</div></th>
+                                    <th ><div style="text-align:center">新增+升级</div></th>
+									<th ><div style="text-align:center">活跃用户</div></th>
+									<th ><div style="text-align:center">启动次数</div></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+										<volist	name="tongji1" id="vo">
+											<volist	name="vo.tongji" id="vo1">
+                                        <tr class="order_tr">
+                                            <td height="35" align="center">{$vo.data}</td>
+											<td height="35" align="center">{$vo1.version}</td>
+											<td height="35" align="center">{$vo1.count1}({$vo1.count2})</td>
+											<td height="35" align="center">{$vo1.count3}</td>
+											<td height="35" align="center">{$vo1.count4}</td>
+											<td height="35" align="center">{$vo1.count5}</td>
+											<td height="35" align="center">{$vo1.count6}({$vo1.count7})</td>
+											<td height="35" align="center">{$vo1.count8}</td>
+                                        </tr>
+											</volist>
+										</volist>
+                                </tbody>
+                            </table>
+							
+                            <div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+<script>
+function selday(id){
+	if (id=="1"){
+		$('#beginTime').val("{$seldate[0].date1}");
+		$('#endTime').val("{$seldate[0].date2}");
+	}else if (id=="-1"){
+		$('#beginTime').val("{$seldate[1].date1}");
+		$('#endTime').val("{$seldate[1].date2}");
+	}else if (id=="7"){
+		$('#beginTime').val("{$seldate[2].date1}");
+		$('#endTime').val("{$seldate[2].date2}");
+	}else if (id=="30"){
+		$('#beginTime').val("{$seldate[3].date1}");
+		$('#endTime').val("{$seldate[3].date2}");
+	}
+	document.form1.submit();
+}
+
+tongjiid = 'idall';
+function showtongji(id){
+	show1 = "#"+id;
+	show2 = "#"+tongjiid;
+	$(show2).hide();
+	$(show1).show();
+	tongjiid = id;
+	
+	if (id=="idall"){
+		$("#textall").attr("class","text01");
+		$("#textnew").attr("class","text02");
+		$("#textold").attr("class","text02");
+	}else if (id=="idnew"){
+		$("#textnew").attr("class","text01");
+		$("#textall").attr("class","text02");
+		$("#textold").attr("class","text02");
+	}else if (id=="idold"){
+		$("#textold").attr("class","text01");
+		$("#textall").attr("class","text02");
+		$("#textnew").attr("class","text02");
+	}
+	
+}
+
+$('[data-toggle="tooltip"]').tooltip();
+</script>
+		
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script>

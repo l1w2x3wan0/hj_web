@@ -1,0 +1,120 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">提交审核商品</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        
+						<div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							<if condition="$caozuo.pub eq 1"><a class="btn btn-primary btn-sm" href="javascript:;" onclick="notice_service();"><i class="fa fa-plus"></i> 通知服务器</a></if>
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <div class="form-group">
+
+										
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th ><div style="text-align:center">修改类型</div></th>
+									<th ><div style="text-align:center">状态</div></th>
+
+								    <th ><div style="text-align:center">ID</div></th>
+                                    <th ><div style="text-align:center">类别</div></th>
+									<th ><div style="text-align:center">商品名称</div></th>
+									<th ><div style="text-align:center">所需奖券</div></th>
+									<th ><div style="text-align:center">兑换金币</div></th>
+									<th ><div style="text-align:center">图片地址</div></th>
+									<th ><div style="text-align:center">备注说明</div></th>
+                                    <th ><div style="text-align:center">显示顺序</div></th>
+    								<th ><div style="text-align:center">是否有效</div></th>
+									<th ><div style="text-align:center">添加时间</div></th>
+                                    <th ><div style="text-align:center">操作</div></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <volist	name="list" id="vo">
+										
+										<tr>
+                                            <td><div style="text-align:center">{$vo.showcate}</div></td>
+											<td><div style="text-align:center">{$vo.flagshow}</div></td>
+
+											<td><div style="text-align:center">{$vo.id}</div></td>
+                                            <td><div style="text-align:center">{$vo.typename}</div></td>
+											<td><div style="text-align:center">{$vo.names}</div></td>
+											<td><div style="text-align:center">{$vo.nums}</div></td>
+											<td><div style="text-align:center">{$vo.gold}</div></td>
+											<td><div style="text-align:center">{$vo.pic}</div></td>
+                                            <td><div style="text-align:center">{$vo.meno}</div></td>
+                                            <td><div style="text-align:center">{$vo.sorts}</div></td>
+     										<td><div style="text-align:center">{$vo.status}</div></td>
+											<td><div style="text-align:center">{$vo.addtime}</div></td>
+											
+                                            <td><div style="text-align:center"><if condition="$vo.flag eq 0"><if condition="$caozuo.pub eq 1"><a onclick="shenheon('{$vo.id}');" href="javascript:;">审核通过</a> | <a onclick="shenheoff('{$vo.id}');" href="javascript:;">审核取消</a></if></if></div></td>
+                                        </tr>
+										
+                                        </volist>
+                                </tbody>
+                            </table>
+							
+							<div class="showpage">{$pageshow}</div>
+                                                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+	<script>
+	function shenheon(id){
+		url = "{:U($By_tpl.'/shenhe_show','act=on')}" + "&id="+ id;
+		if (confirm('您确定审核通过该纪录吗？')){
+			$.get(url, function(result){
+				if (result == "1"){alert("审核完成");} else {alert("审核失败");}
+				location.reload();
+			});
+		}
+	}
+	
+	function shenheoff(id){
+		url = "{:U($By_tpl.'/shenhe_show','act=off')}" + "&id="+ id;
+		if (confirm('您确定审核取消该纪录吗？')){
+			$.get(url, function(result){
+				if (result == "1"){alert("审核完成");} else {alert("审核失败");}
+				location.reload();
+			});
+		}
+	}
+	
+	function notice_service(){
+		url = "{:U($By_tpl.'/notice')}";
+		$.get(url, function(result){
+
+			if (result == "1"){
+				alert("通知服务器成功");
+			}else{
+				alert("通知服务器失败，请再试一次");
+			}
+		});
+		location.reload();
+	}
+	</script>
+
+<include file = "public:footer"/>

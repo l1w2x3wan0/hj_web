@@ -1,0 +1,217 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">添加快充商品</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <form class="form-horizontal" method="POST" action="" id="addGoodsForm">
+						<input type="hidden" name="IsQuickPay" value="4" />
+						
+                            <div class="form-group">
+                                <label for="goods_id" class="col-sm-2 control-label">商品ID</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="GoodsID" name="GoodsID" placeholder="商品ID">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="goods_name" class="col-sm-2 control-label">商品名称</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="GoodsName" name="GoodsName" placeholder="商品名称">
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="goods_name" class="col-sm-2 control-label">商品名称(钻石)</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="GoodsName_D" name="GoodsName_D" placeholder="商品名称(钻石)">
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="goods_name" class="col-sm-2 control-label">商品描述</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="GoodsDescribe" name="GoodsDescribe" placeholder="商品描述">
+                                </div>
+                            </div>
+							
+							<div class="form-group">
+                                <label for="goods_name" class="col-sm-2 control-label">房间ID</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="RoomID" name="RoomID" placeholder="房间ID"> (0:商城显示 大于0是房间ID)
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="goods_name" class="col-sm-2 control-label">ChannelID</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="ChannelID" name="ChannelID" placeholder="ChannelID"> 
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="goods_price" class="col-sm-2 control-label">获取的金币数量</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="GoldNum" name="GoldNum" placeholder="获取的金币数量">
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="goods_price" class="col-sm-2 control-label">赠送金币数量</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="GiveGoldNum" name="GiveGoldNum" placeholder="赠送金币数量">
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="goods_price" class="col-sm-2 control-label">获取的钻石数量</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="Diamond" name="Diamond" placeholder="获取的钻石数量" >
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="goods_price" class="col-sm-2 control-label">赠送钻石数量</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="GiveDiamond" name="GiveDiamond" placeholder="赠送钻石数量">
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="goods_price" class="col-sm-2 control-label">赠送兑奖券数量</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="Ticket" name="Ticket" placeholder="赠送兑奖券数量">
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="goods_price" class="col-sm-2 control-label">商品价格</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="GoodsPrice" name="GoodsPrice" placeholder="以分为单位" value="" >
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="goods_price" class="col-sm-2 control-label">兑换钻石</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="GoodsValue" name="GoodsValue" placeholder="兑换钻石" value="" >
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="goods_price" class="col-sm-2 control-label">显示顺序</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="DisplayOrder" name="DisplayOrder" placeholder="显示顺序" value="0" >
+                                </div>
+                            </div>
+							
+							<div class="form-group">
+                                <label class="col-sm-2 control-label">商品是否有效</label>
+                                <div class="col-sm-10">
+                                                                            <label class="radio-inline">
+                                            <input type="radio" name="Enable" value="1" checked> 是
+                                        </label>
+                                                                            <label class="radio-inline">
+                                            <input type="radio" name="Enable" value="0" > 否
+                                        </label>
+                                                                    </div>
+                            </div>
+							
+							<div class="form-group">
+                                <label class="col-sm-2 control-label">商城是否显示</label>
+                                <div class="col-sm-10">
+                                                                            <label class="radio-inline">
+                                            <input type="radio" name="MallDisplay" value="1" checked> 是
+                                        </label>
+                                                                            <label class="radio-inline">
+                                            <input type="radio" name="MallDisplay" value="0" > 否
+                                        </label>
+                                                                    </div>
+                            </div>
+							
+							<div class="form-group">
+                                <label class="col-sm-2 control-label">是否充值来选择房间充值商品</label>
+                                <div class="col-sm-10">
+                                                                            <label class="radio-inline">
+                                            <input type="radio" name="IsPayed" value="1" checked> 是
+                                        </label>
+                                                                            <label class="radio-inline">
+                                            <input type="radio" name="IsPayed" value="0" > 否
+                                        </label>
+                                                                    </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">只有首充赠送</label>
+                                <div class="col-sm-10">
+                                                                            <label class="radio-inline">
+                                            <input type="radio" name="IsFirstPayGive" value="1" > 是
+                                        </label>
+                                                                            <label class="radio-inline">
+                                            <input type="radio" name="IsFirstPayGive" value="0" checked> 否
+                                        </label>
+                                                                    </div>
+                            </div>
+							<div class="form-group">
+                                <label class="col-sm-2 control-label">短信充值</label>
+                                <div class="col-sm-10">
+                                                                            <label class="radio-inline">
+                                            <input type="radio" name="IsEnableSms" value="1" > 是
+                                        </label>
+                                                                            <label class="radio-inline">
+                                            <input type="radio" name="IsEnableSms" value="0" checked> 否
+                                        </label>
+                                                                    </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">首充商品</label>
+                                <div class="col-sm-10">
+                                                                            <label class="radio-inline">
+                                            <input type="radio" name="IsFirstPay" value="1" > 是
+                                        </label>
+                                                                            <label class="radio-inline">
+                                            <input type="radio" name="IsFirstPay" value="0" checked> 否
+                                        </label>
+                                                                    </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="remark" class="col-sm-2 control-label">备注</label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control" rows="3" id="Remarks" name="Remarks"></textarea>
+                                </div>
+                            </div>
+							
+							<div class="form-group">
+                                <label for="remark" class="col-sm-2 control-label">辅助说明</label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control" rows="3" id="RemarksDesc" name="RemarksDesc"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" id="addGoodsSubmit" class="btn btn-primary">提 交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    
+<include file = "public:footer"/>

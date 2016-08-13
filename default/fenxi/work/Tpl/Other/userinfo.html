@@ -1,0 +1,145 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">玩家详情</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+		
+		<div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+
+								<tr>
+                                   <td width="10%"><div style="text-align:right;">用户UID：</div></td>
+                                   <td width="23%"><div style="text-align:left; padding-left:10px;">{$info.user_id}</div></td>
+								   <td width="10%"><div style="text-align:right;">登录账号：</div></td>
+                                   <td width="23%"><div style="text-align:left; padding-left:10px;">{$info.user_name}(密码：{$info.user_pwd})</div></td>
+								   <td width="10%"><div style="text-align:right;">用户昵称：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.nickname}</div></td>
+                                </tr>
+								<tr>
+                                   <td><div style="text-align:right;">金币：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.gold}</div></td>
+								   <td><div style="text-align:right;">钻石：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.diamond}</div></td>
+								   <td><div style="text-align:right;">礼券：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.ticket}</div></td>
+								   
+                                </tr>
+								<tr>
+								   <td><div style="text-align:right;">VIP等级：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.viplevel}</div></td>
+								   <td><div style="text-align:right;">vip到期时间：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.vipovertime}</div></td>
+								   <td><div style="text-align:right;">银行存款：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.deposit}(密码：{$info.deposit_pwd})</div></td>
+								   
+                                </tr>
+								<tr>
+								   <td><div style="text-align:right;">魅力值：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.charm}</div></td>
+								   <td><div style="text-align:right;">鲜花：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.flower}</div></td>
+								   <td><div style="text-align:right;">鸡蛋：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.aggs}</div></td>
+                                </tr>
+								<tr>
+								   <td><div style="text-align:right;">汽车：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.car}</div></td>
+								   <td><div style="text-align:right;">房子：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.villa}</div></td>
+								   <td><div style="text-align:right;">飞机：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.yacht}</div></td>
+                                </tr>
+								<tr>
+                                   <td><div style="text-align:right;">用户输的次数：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.lost_count}次</div></td>
+								   <td><div style="text-align:right;">用户赢的次数：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.win_count}次</div></td>
+								   <td><div style="text-align:right;">胜率：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.lv}%</div></td>
+                                </tr>
+								<tr>
+                                   <td><div style="text-align:right;">注册日期：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.register_date}</div></td>
+								   <td><div style="text-align:right;">最后登录日期：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.last_login_date}</div></td>
+								   <td><div style="text-align:right;">联系地址：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.contact}</div></td>
+                                </tr>
+								<tr>
+                                   <td><div style="text-align:right;">登录次数：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.login_count}</div></td>
+								   <td><div style="text-align:right;">版本号：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.version} (当前游戏版本：{$info.gameversion})</div></td>
+								   <td><div style="text-align:right;">渠道号：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.channel} (最后登陆渠道：{$info.last_channel})</div></td>
+                                </tr>
+								<tr>
+                                   <td><div style="text-align:right;">手机卡号：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.imsi}</div></td>
+								   <td><div style="text-align:right;">机型：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.model}</div></td>
+								   <td><div style="text-align:right;">机器号：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.imei}</div></td>
+                                </tr>
+								<tr>
+                                   <td><div style="text-align:right;">充值次数：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.paycount}</div></td>
+								   <td><div style="text-align:right;">充值金额：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">&yen;{$info.total_pay_num}元</div></td>
+								   <td><div style="text-align:right;">手机号：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.phone_number}</div></td>
+                                </tr>
+								<tr>
+                                   <td><div style="text-align:right;">注册IP：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.ip1}{$info.area1}</div></td>
+								   <td><div style="text-align:right;">最近登陆IP：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.ip2}{$info.area2}</div></td>
+								   <td><div style="text-align:right;">性别：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.sex}</div></td>
+                                </tr>
+								<tr>
+                                   <td><div style="text-align:right;">状态：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;"><if condition="$info.enable eq 1">启动<else />禁用</if></div></td>
+								   <td><div style="text-align:right;">网卡地址：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.macaddr}</div></td>
+								   <td><div style="text-align:right;">免费抽奖券数量：</div></td>
+                                   <td><div style="text-align:left; padding-left:10px;">{$info.lotterydraw_count}</div></td>
+                                </tr>
+
+                            </table>
+		
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+
+}   
+</script>
+
+<include file = "public:footer"/>

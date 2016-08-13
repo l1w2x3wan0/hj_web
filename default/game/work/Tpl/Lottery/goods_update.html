@@ -1,0 +1,120 @@
+<include file = "public:head"/>
+ <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">编辑奖券</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <form class="form-horizontal" method="POST" action="" id="editGoodsForm" enctype="multipart/form-data">
+                           <input type="hidden" name="id" value="{$info.id}">
+
+                            <div class="form-group">
+                                <label for="goods_id" class="col-sm-2 control-label">ID</label>
+                                <div class="col-sm-8">
+                                    {$info.id}
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label class="col-sm-2 control-label">商品类型</label>
+                                <div class="col-sm-10">
+                                                                            <label class="radio-inline">
+                                            <input type="radio" name="type" value="1" <if condition="$info.type eq 1">checked</if>> 虚拟物品
+                                        </label>
+                                                                            <label class="radio-inline">
+                                            <input type="radio" name="type" value="3" <if condition="$info.type eq 3">checked</if>> 实物
+                                        </label>
+                              </div>
+                            </div>
+							<div class="form-group">
+                                <label for="goods_name" class="col-sm-2 control-label">商品名称</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="names" name="names" placeholder="商品名称" value="{$info.names}">
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="goods_name" class="col-sm-2 control-label">所需奖券</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="nums" name="nums" placeholder="所需奖券" value="{$info.nums}"> 
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="goods_name" class="col-sm-2 control-label">兑换金币</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="gold" name="gold" placeholder="兑换金币" value="{$info.gold}"> 
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="goods_name" class="col-sm-2 control-label">上传图片</label>
+                              <div class="col-sm-8">
+                                    <input type="file" name="photo" /> {$info.pic}
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="goods_name" class="col-sm-2 control-label">备注说明</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="meno" name="meno" placeholder="备注说明" value="{$info.meno}">
+                                </div>
+                            </div>
+							
+							<div class="form-group">
+                                <label for="goods_price" class="col-sm-2 control-label">显示顺序</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="sorts" name="sorts" placeholder="显示顺序" value="{$info.sorts}" >
+                                </div>
+                            </div>
+							
+							<div class="form-group">
+                                <label class="col-sm-2 control-label">是否有效</label>
+                                <div class="col-sm-10">
+                                                                            <label class="radio-inline">
+                                            <input type="radio" name="status" value="1" <if condition="$info.status eq 1">checked</if>> 是
+                                        </label>
+                                                                            <label class="radio-inline">
+                                            <input type="radio" name="status" value="0" <if condition="$info.status eq 0">checked</if>> 否
+                                        </label>
+                              </div>
+                            </div>
+							
+							
+							
+							
+                            
+							
+							
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" id="editGoodsSubmit" class="btn btn-primary">提 交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+
+
+<include file = "public:footer"/>
+

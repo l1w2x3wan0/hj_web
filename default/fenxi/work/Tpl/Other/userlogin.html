@@ -1,0 +1,93 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">登陆日志</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+		
+		<div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+						<div class="row">
+                            <div class="col-sm-8">
+								
+							</div>
+							<div class="col-sm-4">
+                                <form name="form1" class="form-inline pull-right" method="get" action="">
+									<input type="hidden" name="m" value="Other">
+									<input type="hidden" name="a" value="userlist">
+									<input type="hidden" name="act" value="jinbi">
+									<input type="hidden" name="id" value="{$id}">
+                                    <div class="form-group">
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="date11" id="date11" placeholder="选择月份的某一天" value="{$date11}">
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+					<div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+
+								<tr>
+                                   <td><div style="text-align:center;">ID</div></td>
+								   <td><div style="text-align:center;">用户UID</div></td>
+								   <td><div style="text-align:center;">登陆IP</div></td>
+								   <td><div style="text-align:center;">手机卡号</div></td>
+								   <td><div style="text-align:center;">机器号</div></td>
+								   <td><div style="text-align:center;">机型</div></td>
+								   <td><div style="text-align:center;">登录版本号</div></td>
+								   <td><div style="text-align:center;">游戏版本号</div></td>
+								   <td><div style="text-align:center;">渠道号</div></td>
+								   <td><div style="text-align:center;">类型</div></td>
+								   <td><div style="text-align:center;">时间</div></td>
+                                </tr>
+								<volist	name="info" id="vo">
+								<tr>
+                                   <td><div style="text-align:center;">{$vo.log_id}</div></td>
+								   <td><div style="text-align:center;">{$vo.user_id}</div></td>
+                                   <td><div style="text-align:center;">{$vo.ip}</div></td>
+								   <td><div style="text-align:center;">{$vo.imsi}</div></td>
+								   <td><div style="text-align:center;">{$vo.imei}</div></td>
+								   <td><div style="text-align:center;">{$vo.model}</div></td>
+								   <td><div style="text-align:center;">{$vo.version}</div></td>
+								   <td><div style="text-align:center;">{$vo.gameversion}</div></td>
+								   <td><div style="text-align:center;">{$vo.channel}</div></td>
+								   <td><div style="text-align:center;">{$vo.type}</div></td>
+								   <td><div style="text-align:center;">{$vo.login_date}</div></td>
+								</tr>
+								</volist>	
+                            </table>
+							<div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+
+}   
+</script>
+
+<include file = "public:footer"/>

@@ -1,0 +1,99 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">修改会员VIP等级</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+		<if condition="$caozuo.add eq 1">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <form class="form-horizontal" method="POST" action="" id="addUserForm">
+
+							<div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">用户UID</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="user_id" name="user_id" placeholder="用户UID">
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">用户等级</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="viplevel" name="viplevel" placeholder="用户等级">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" id="addUserSubmit" class="btn btn-primary">提 交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+		</if>
+		
+		<div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th width="10%">ID</th>
+                                    <th width="15%">用户ID</th>
+									<th width="15%">实际累计充值(元)</th>
+									<th width="15%">修改后累计充值(元)</th>
+									<th width="15%">修改后VIP等级</th>
+									<th width="15%">操作时间</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <volist	name="list" id="vo">
+										<tr>
+                                            <td>{$vo.id}</td>
+                                            <td>{$vo.user_id}({$vo.usernick})</td>
+											<td>{$vo.nowpay}</td>
+											<td>{$vo.curpay}</td>
+											<td>{$vo.viplevel}</td>
+											<td>{$vo.operatortime}</td>
+                                        </tr>
+
+                                        </volist>
+                                 </tbody>
+                            </table>
+							<div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+
+}   
+</script>
+
+<include file = "public:footer"/>

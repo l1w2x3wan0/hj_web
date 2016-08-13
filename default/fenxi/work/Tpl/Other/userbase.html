@@ -1,0 +1,107 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">玩家基本信息</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							
+
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <div class="form-group">
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="开始时间" value="{$beginTime}">
+                                        -
+                                        <input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="endTime" id="endTime" placeholder="结束时间" value="{$endTime}">&nbsp;
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>&nbsp;&nbsp;<a href="{:U($By_tpl.'/userbaseexcel')}&act=exceldo&sortscate={$sortscate}&sortsflag={$sortsflag}&beginTime={$beginTime}&endTime={$endTime}" target="_blank"><img src="__PUBLIC__/images/daochu.png" ></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>用户UID</th>
+									<th>注册时间&nbsp;<a href="{:U($By_tpl.'/userbase')}&sortscate=1&sortsflag=1&beginTime={$beginTime}&endTime={$endTime}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userbase')}&sortscate=1&sortsflag=2&beginTime={$beginTime}&endTime={$endTime}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+									<th>金币&nbsp;<a href="{:U($By_tpl.'/userbase')}&sortscate=2&sortsflag=1&beginTime={$beginTime}&endTime={$endTime}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userbase')}&sortscate=2&sortsflag=2&beginTime={$beginTime}&endTime={$endTime}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+									<th>总局数&nbsp;<a href="{:U($By_tpl.'/userbase')}&sortscate=5&sortsflag=1&beginTime={$beginTime}&endTime={$endTime}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userbase')}&sortscate=5&sortsflag=2&beginTime={$beginTime}&endTime={$endTime}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+									<th>充值金额&nbsp;<a href="{:U($By_tpl.'/userbase')}&sortscate=6&sortsflag=1&beginTime={$beginTime}&endTime={$endTime}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userbase')}&sortscate=6&sortsflag=2&beginTime={$beginTime}&endTime={$endTime}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+									<th>签名&nbsp;<a href="{:U($By_tpl.'/userbase')}&sortscate=3&sortsflag=1&beginTime={$beginTime}&endTime={$endTime}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userbase')}&sortscate=3&sortsflag=2&beginTime={$beginTime}&endTime={$endTime}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+									<th>联系方式&nbsp;<a href="{:U($By_tpl.'/userbase')}&sortscate=4&sortsflag=1&beginTime={$beginTime}&endTime={$endTime}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userbase')}&sortscate=4&sortsflag=2&beginTime={$beginTime}&endTime={$endTime}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                       <tr>
+                                            <td></td>
+                                            <td></td>
+											<td></td>
+											<td><font color="#FF0000"><b>{$sum[0]}</b></font></td>
+											<td><font color="#FF0000"><b>{$sum[1]}</b></font></td>
+											<td><font color="#FF0000"><b>{$sum[2]}</b></font></td>
+											<td></td>
+											<td></td>
+                                        </tr>
+									    <volist	name="list" id="vo">
+										<tr>
+                                            <td>{$vo.id}</td>
+                                            <td>{$vo.user_id}</td>
+											<td>{$vo.register_date}</td>
+											<td>{$vo.gold}</td>
+											<td>{$vo.gamenum}</td>
+											<td>{$vo.chongzhi}</td>
+											<td>{$vo.sign}</td>
+											<td>{$vo.contact}</td>
+                                        </tr>
+
+                                        </volist>
+                                 </tbody>
+                            </table>
+							<div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+
+}   
+</script>
+
+<include file = "public:footer"/>

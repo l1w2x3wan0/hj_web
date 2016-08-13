@@ -1,0 +1,202 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">实时在线</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <div class="form-group">
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="开始时间" value="{$date11}">
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body" id="idplay">
+                        <div id="container" style="min-width: 310px; height: 395px; padding-right:10px; margin: 0 auto"></div>
+                   </div>
+				   
+				   <div class="panel-body" id="idmy" style="display:none;">
+						<div id="container2" style="display:none; min-width: 310px; height: 395px; padding-right:10px; margin: 0 auto"></div>
+                    </div>
+					
+					<div class="panel-body">
+						<div id="showdata1" style="width:49%; height:125px; background-color:#FCFCFC; float:left; padding:10px;">
+						<table class="table table-bordered">
+							<tr class="order_tr">
+								<td colspan="6" ><div style="text-align:center; ">实时在线</div>	</td>
+							</tr>
+							<tr class="order_tr">
+								<td ><div style="text-align:center; ">总计</div>	</td>
+								<td ><div style="text-align:center; ">大厅</div>	</td>
+								<td ><div style="text-align:center; ">初级场</div>	</td>
+								<td ><div style="text-align:center; ">中级场</div>	</td>
+								<td ><div style="text-align:center; ">高级场</div>	</td>
+								<td ><div style="text-align:center; ">土豪场</div>	</td>
+							</tr>
+							<tr class="order_tr">
+								<td ><div style="text-align:center; color:#FF0000; font-weight:bold;" id="ss_sum1">{$online_now.sum1}</div>	</td>
+								<td ><div style="text-align:center; " id="ss_lobby">{$online_now.lobby}</div>	</td>
+								<td ><div style="text-align:center; " id="ss_room1">{$online_now.room1}</div>	</td>
+								<td ><div style="text-align:center; " id="ss_room2">{$online_now.room2}</div>	</td>
+								<td ><div style="text-align:center; " id="ss_room3">{$online_now.room3}</div>	</td>
+								<td ><div style="text-align:center; " id="ss_room3">{$online_now.room7}</div>	</td>
+							</tr>
+						</table>
+						</div>
+						<div id="showdata2" style="width:49%; height:125px; background-color:#FCFCFC; float:right; padding:10px;">
+						<table class="table table-bordered">
+							<tr class="order_tr">
+								<td colspan="2" ><div style="text-align:center; ">最高在线</div>	</td>
+							</tr>
+							<tr class="order_tr">
+								<td ><div style="text-align:right; ">昨日最高在线:</div>	</td>
+								<td ><div style="text-align:left; padding-left:10px;">{$online_yes.day}&nbsp;&nbsp;<font color="#FF0000"><b>{$online_yes.sum1}</b></font></div>	</td>
+							</tr>
+							<tr class="order_tr">
+								<td ><div style="text-align:right; ">历史最高在线:</div>	</td>
+								<td ><div style="text-align:left; padding-left:10px;">{$online_his.day}&nbsp;&nbsp;<font color="#FF0000"><b>{$online_his.sum1}</b></font></div>	</td>
+							</tr>
+						</table>
+						</div>
+					</div>
+					
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+
+		<script type="text/javascript">
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: '实时在线'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: [{$showtime}]//这里应该输入时间
+        },
+		tooltip: {
+            pointFormat: '<span style="color:{series.color}">{series.name}: </span><b> {point.y:,.0f} </b><br/>',
+            shared: true,
+			crosshairs: [{
+                width: 2,
+                color: '#EBEBEB'
+            }, {
+                width: 2,
+                color: '#EBEBEB'
+            }]
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: false
+                },
+                enableMouseTracking: true
+            }
+        },
+        series: [{
+            name: '当日总在线',
+            data: [{$data1[1]}]
+        }, {
+            name: '当日初级房',
+            data: [{$data1[3]}],
+			visible: false
+        }, {
+            name: '当日中级房',
+            data: [{$data1[4]}],
+			visible: false
+        }, {
+            name: '当日高级房',
+            data: [{$data1[5]}],
+			visible: false
+        }, {
+            name: '当日土豪场',
+            data: [{$data1[10]}],
+			visible: false
+        }, {
+            name: '{$date99}日总在线',
+            data: [{$data1[2]}],
+        }, {
+            name: '{$date99}日初级房',
+            data: [{$data1[6]}],
+			visible: false
+        }, {
+            name: '{$date99}日中级房',
+            data: [{$data1[7]}],
+			visible: false
+        }, {
+            name: '{$date99}日高级房',
+            data: [{$data1[8]}],
+			visible: false
+        }, {
+            name: '{$date99}日土豪场',
+            data: [{$data1[9]}],
+			visible: false
+        }]
+    });
+});
+
+
+
+
+function getForm(){  
+	$.get("{$Think.const.DB_HOST}/index.php?m=Online&a=tongji1_ajax", function(result){
+		
+		ss_sum1 = result.split("|")[0];
+		ss_lobby = result.split("|")[1];
+		ss_room1 = result.split("|")[2];
+		ss_room2 = result.split("|")[3];
+		ss_room3 = result.split("|")[4];
+		data1 = result.split("|")[5];
+		
+		$("#ss_sum1").html(ss_sum1);
+		$("#ss_lobby").html(ss_lobby);
+		$("#ss_room1").html(ss_room1);
+		$("#ss_room2").html(ss_room2);
+		$("#ss_room3").html(ss_room3);
+		
+	}); 
+}  
+
+ 
+
+
+		</script>
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script>

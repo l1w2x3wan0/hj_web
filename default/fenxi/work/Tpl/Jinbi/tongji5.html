@@ -1,0 +1,191 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">金币段分布</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;"></div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <div class="form-group">
+
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="查询时间" value="{$beginTime}">
+                                        &nbsp;
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div id="container" style="min-width: 310px; height: 395px; padding-right:10px; margin: 0 auto"></div>
+                    </div>
+                </div>
+				<!-- 表格开始 -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							</div>
+							<div class="col-sm-8">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body" id="tabledau">
+						<div id="showtable" class="table-responsive">
+							<table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th ><div style="text-align:center">日期</div></th>
+									<th ><div style="text-align:center">{$tongji.y1_show}</div></th>
+                                    <th ><div style="text-align:center">{$tongji.y2_show}</div></th>
+									<th ><div style="text-align:center">{$tongji.y3_show}</div></th>
+									<th ><div style="text-align:center">{$tongji.y4_show}</div></th>
+									<th ><div style="text-align:center">{$tongji.y5_show}</div></th>
+									<th ><div style="text-align:center">{$tongji.y6_show}</div></th>
+									<th ><div style="text-align:center">{$tongji.y7_show}</div></th>
+									<th ><div style="text-align:center">{$tongji.y8_show}</div></th>
+									<th ><div style="text-align:center">{$tongji.y9_show}</div></th>
+									<th ><div style="text-align:center">{$tongji.y10_show}</div></th>
+									<th ><div style="text-align:center">{$tongji.y11_show}</div></th>
+									<th ><div style="text-align:center">{$tongji.y12_show}</div></th>
+									<th ><div style="text-align:center">{$tongji.y13_show}</div></th>
+									<th ><div style="text-align:center">{$tongji.y14_show}</div></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+										<tr>
+                                            <td><div style="text-align:center">{$beginTime}</div></td>
+											<td><div style="text-align:center">{$tongji.y1}</div></td>
+                                            <td><div style="text-align:center">{$tongji.y2}</div></td>
+											<td><div style="text-align:center">{$tongji.y3}</div></td>
+											<td><div style="text-align:center">{$tongji.y4}</div></td>
+											<td><div style="text-align:center">{$tongji.y5}</div></td>
+											<td><div style="text-align:center">{$tongji.y6}</div></td>
+											<td><div style="text-align:center">{$tongji.y7}</div></td>
+											<td><div style="text-align:center">{$tongji.y8}</div></td>
+											<td><div style="text-align:center">{$tongji.y9}</div></td>
+											<td><div style="text-align:center">{$tongji.y10}</div></td>
+											<td><div style="text-align:center">{$tongji.y11}</div></td>
+											<td><div style="text-align:center">{$tongji.y12}</div></td>
+											<td><div style="text-align:center">{$tongji.y13}</div></td>
+											<td><div style="text-align:center">{$tongji.y14}</div></td>
+                                        </tr>
+
+                                 </tbody>
+                            </table>
+						</div>
+                    </div>
+
+                </div>
+				<!-- 表格结束 -->
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+
+		<script type="text/javascript">
+$(function () {                                                                
+    
+	$('#container').highcharts({                                           
+        chart: {                                                           
+            type: 'bar'                                                    
+        },                                                                 
+        title: {                                                           
+            text: '{$beginTime} 金币段分布'                    
+        },                                                                 
+                                                            
+        xAxis: {                                                           
+            categories: ['{$tongji.y1_show}', '{$tongji.y2_show}', '{$tongji.y3_show}', '{$tongji.y4_show}', '{$tongji.y5_show}', '{$tongji.y6_show}', '{$tongji.y7_show}', '{$tongji.y8_show}', '{$tongji.y9_show}', '{$tongji.y10_show}', '{$tongji.y11_show}', '{$tongji.y12_show}', '{$tongji.y13_show}', '{$tongji.y14_show}'],
+            title: {                                                       
+                text: null                                                 
+            }                                                              
+        },                                                                 
+        yAxis: {                                                           
+            min: 0, 
+			title: {                                                       
+                text: '',                             
+                align: 'high'                                              
+            },                                                         
+            labels: {                                                      
+                overflow: 'justify'                                        
+            }                                                              
+        },                                                                 
+        tooltip: {
+                formatter: function() {
+                    var total = {$tongji.sumall};
+					bfb = this.y * 100 / total;
+					return ''+
+                        this.series.name +': '+ this.y + ' ('+toDecimal(bfb)+'%)';
+                }
+        },                                                               
+        plotOptions: {                                                     
+            bar: {                                                         
+                dataLabels: {                                              
+                    enabled: true                                          
+                }                                                          
+            }                                                              
+        },                                                                 
+        legend: {                                                          
+            layout: 'vertical',                                            
+            align: 'right',                                                
+            verticalAlign: 'top',                                          
+            x: -40,                                                        
+            y: 100,                                                        
+            floating: true,                                                
+            borderWidth: 1,                                                
+            backgroundColor: '#FFFFFF',                                    
+            shadow: true                                                   
+        },                                                                 
+        credits: {                                                         
+            enabled: false                                                 
+        },                                                                 
+        series: [{                                                         
+            name: '人数',                                             
+            data: [{$tongji.y1}, {$tongji.y2}, {$tongji.y3}, {$tongji.y4}, {$tongji.y5}, {$tongji.y6}, {$tongji.y7}, {$tongji.y8}, {$tongji.y9}, {$tongji.y10}, {$tongji.y11}, {$tongji.y12}, {$tongji.y13}, {$tongji.y14}]                                   
+        }]                                                                 
+    });                                                                    
+}); 
+
+//保留两位小数    
+//功能：将浮点数四舍五入，取小数点后2位          
+function toDecimal(x) {   
+            var f = parseFloat(x);              
+
+if (isNaN(f)) {   
+                return;              
+
+}              
+
+f = Math.round(x*100)/100;              
+
+return f;          
+
+}
+		</script>
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script>

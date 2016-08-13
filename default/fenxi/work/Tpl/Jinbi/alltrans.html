@@ -1,0 +1,68 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">转账记录</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+
+		<div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+
+								<tr>
+                                   <td><div style="text-align:center;">ID</div></td>
+								   <td><div style="text-align:center;">用户UID</div></td>
+								   <td><div style="text-align:center;">类型</div></td>
+								   <td><div style="text-align:center;">转账UID</div></td>
+								   <td><div style="text-align:center;">转账金币</div></td>
+								   <td><div style="text-align:center;">时间</div></td>
+                                </tr>
+								
+								<volist	name="list" id="vo">
+								<tr>
+                                   <td><div style="text-align:center;">{$vo.id}</div></td>
+								   <td><div style="text-align:center;"><a href="{:U('Other/userlist','id='.$vo['userid'].'&act=trans')}" target="_blank">{$vo.userid}({$vo.nickname})</a></div></td>
+								   <td><div style="text-align:center;">{$vo.type}</div></td>
+								   <td><div style="text-align:center;"><a href="{:U('Other/userlist','id='.$vo['touserid'].'&act=trans')}" target="_blank">{$vo.touserid}({$vo.othernickname})</a></div></td>
+								   <td><div style="text-align:center;">{$vo.transfergold}</div></td>
+								   
+								   <td><div style="text-align:center;">{$vo.operatortime}</div></td>
+								</tr>
+								</volist>	
+								
+                            </table>
+							<div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+
+}   
+</script>
+
+<include file = "public:footer"/>

@@ -1,0 +1,181 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">商城点击</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- 图表结束 -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							<a onclick="showtongji('idact');" href="javascript:;" data-toggle="tooltip" data-placement="bottom" id="textact" class="text01" title="非当日新增用户">老用户</a> | 
+							<a onclick="showtongji('idnew');" href="javascript:;" data-toggle="tooltip" data-placement="bottom" id="textnew" class="text02" title="当日新增用户">新增用户</a>
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <input type="hidden" name="flag" id="flag" value="idact" />
+									<div class="form-group">
+										<!--<input type="text" class="form-control input-sm" name="channel" id="channel" placeholder="输入渠道号" value="{$channel}">&nbsp;-->
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="开始时间" value="{$date11}">
+                                        -
+                                        <input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="endTime" id="endTime" placeholder="结束时间" value="{$date12}">
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>&nbsp;&nbsp;<a href="javascript:;" onclick="go_url();"><img src="__PUBLIC__/images/daochu.png" ></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body" id="iddau">
+                        <div class="table-responsive" style="width:100%;overflow:auto">
+                            <table class="table table-bordered" id="idact" >
+                                <thead>
+                                <tr class="order_tr">
+                                    <th rowspan="2" ><div style="text-align:center; padding-bottom:20px;">日期</div></th>
+                                    <volist	name="tongji1" id="vo" key="k">
+										 <if condition="$k eq 1">
+										 <volist name="vo.event" id="vo1" >
+										 
+									<th height="40" colspan="2" ><div style="text-align:center">{$vo1.meno}</div></th>
+										 
+										 </volist>
+										 </if>
+									</volist>
+								  </tr>
+								<tr class="order_tr">
+                                    <volist	name="tongji1" id="vo" key="k">
+										 
+										 <if condition="$k eq 1">
+										 <volist name="vo.event" id="vo1" >
+									<th height="40" ><div style="text-align:center">人数</div></th>
+									<th ><div style="text-align:center">次数</div></th>
+										 
+										 </volist>
+										 </if>
+									</volist>
+                                </tr>
+                                </thead>
+                                <tbody>
+										<volist	name="tongji1" id="vo">
+                                        <tr class="order_tr">
+                                            <td height="35" align="center">{$vo.data}</td>
+                                            <volist	name="vo.event" id="vo1">
+											<td align="center">{$vo1.num_old}</td>
+											<td align="center">{$vo1.clicked_old}</td>
+                                            </volist>
+                                        </tr>
+										</volist>
+                                </tbody>
+                            </table>
+							
+							<table class="table table-bordered" id="idnew" style="display:none;">
+                                <thead>
+                                <tr class="order_tr">
+                                    <th rowspan="2" ><div style="text-align:center; padding-bottom:20px;">日期</div></th>
+                                    <volist	name="tongji1" id="vo" key="k">
+										 <if condition="$k eq 1">
+										 <volist name="vo.event" id="vo1" >
+										 
+									<th height="40" colspan="2" ><div style="text-align:center">{$vo1.meno}</div></th>
+										 
+										 </volist>
+										 </if>
+									</volist>
+								  </tr>
+								<tr class="order_tr">
+                                    <volist	name="tongji1" id="vo" key="k">
+										 
+										 <if condition="$k eq 1">
+										 <volist name="vo.event" id="vo1" >
+									<th height="40" ><div style="text-align:center">人数</div></th>
+									<th ><div style="text-align:center">次数</div></th>
+										 
+										 </volist>
+										 </if>
+									</volist>
+                                </tr>
+                                </thead>
+                                <tbody>
+										<volist	name="tongji1" id="vo">
+                                        <tr class="order_tr">
+                                            <td height="35" align="center">{$vo.data}</td>
+                                            <volist	name="vo.event" id="vo1">
+											<td align="center">{$vo1.num_new}</td>
+											<td align="center">{$vo1.clicked_new}</td>
+                                            </volist>
+                                        </tr>
+										</volist>
+                                </tbody>
+                            </table>
+							
+							
+							
+							
+                            <div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+                </div>
+				<!-- 图表结束 -->
+				
+				
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+
+		<script type="text/javascript">
+tongjiid = 'idact';
+function showtongji(id){
+	show1 = "#"+id;
+	show2 = "#"+tongjiid;
+	$(show2).hide();
+	$(show1).show();
+	tongjiid = id;
+	$("#flag").val(id);
+	
+	if (id=="idact"){
+		$("#textact").attr("class","text01");
+		$("#textnew").attr("class","text02");
+		$("#textold").attr("class","text02");
+	}else if (id=="idnew"){
+		$("#textnew").attr("class","text01");
+		$("#textact").attr("class","text02");
+		$("#textold").attr("class","text02");
+	}else if (id=="idold"){
+		$("#textold").attr("class","text01");
+		$("#textact").attr("class","text02");
+		$("#textnew").attr("class","text02");
+	}
+}
+
+function go_url(){
+	flag = $("#flag").val();
+	beginTime = $("#beginTime").val();
+	endTime = $("#endTime").val();
+	url = "{:U($By_tpl.'/tongji2')}"+"&act=exceldo&flag="+flag+"&beginTime="+beginTime+"&endTime="+endTime;
+	window.open(url);
+}		
+		
+		$('[data-toggle="tooltip"]').tooltip();
+		</script>
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script>

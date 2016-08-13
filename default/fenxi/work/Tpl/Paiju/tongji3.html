@@ -1,0 +1,133 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">AI输赢</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;"></div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <div class="form-group">
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="开始时间" value="{$date11}">
+                                        -
+                                        <input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="endTime" id="endTime" placeholder="结束时间" value="{$date12}">&nbsp;<a onclick="selday('1');" href="javascript:;">今日</a>&nbsp;|&nbsp;<a onclick="selday('-1');" href="javascript:;">昨日</a>&nbsp;|&nbsp;<a onclick="selday('7');" href="javascript:;">近7日</a>&nbsp;|&nbsp;<a onclick="selday('30');" href="javascript:;">近30日</a>&nbsp;
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+					<div class="panel-body">
+						<div id="showdata3" style="width:100%; background-color:#FCFCFC; float:left; padding:10px;"></div>
+					</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+
+		<script type="text/javascript">
+
+function selday(id){
+	if (id=="1"){
+		$('#beginTime').val("{$seldate[0].date1}");
+		$('#endTime').val("{$seldate[0].date2}");
+	}else if (id=="-1"){
+		$('#beginTime').val("{$seldate[1].date1}");
+		$('#endTime').val("{$seldate[1].date2}");
+	}else if (id=="7"){
+		$('#beginTime').val("{$seldate[2].date1}");
+		$('#endTime').val("{$seldate[2].date2}");
+	}else if (id=="30"){
+		$('#beginTime').val("{$seldate[3].date1}");
+		$('#endTime').val("{$seldate[3].date2}");
+	}
+	document.form1.submit();
+}
+
+showid = 'container';
+function showdiv(id){
+	show1 = "#"+id;
+	show2 = "#"+showid;
+	$(show2).hide();
+	$(show1).show();
+	showid = id;
+	if (id=="showtable"){
+		$("#showpage1").show();
+		$("#log_table").attr("class","log_table_on");
+		$("#log_line").attr("class","log_line");
+	}else{
+		$("#showpage1").hide();
+		$("#log_table").attr("class","log_table");
+		$("#log_line").attr("class","log_line_on");
+	}
+}
+
+var page_max = {$pagesize};
+var tongji3={$tongji3};
+function getdata4(page){
+	showtable1 = "<table class=\"table table-bordered\"><tr class=\"order_tr\"><td colspan=\"5\" ><div style=\"text-align:center; font-weight:bold;\">AI输赢</div></td></tr>";
+	showtable1 = showtable1 + "<tr class=\"order_tr\"><td ><div style=\"text-align:center; \">日期</div></td><td><div style=\"text-align:center; \">总计</div></td><td ><div style=\"text-align:center;\">初级场</div></td><td><div style=\"text-align:center; \">中级场</div></td><td ><div style=\"text-align:center;\">高级场</div></td></tr>";
+	for (i=(page-1)*20; i<page*20; i++){
+		if (i<tongji3.length){
+			showi = tongji3.length - i - 1;
+			showtable1 = showtable1 + "<tr class=\"order_tr\"><td><div style=\"text-align:center\">"+tongji3[showi].data+"</div></td><td><div style=\"text-align:center;font-weight:bold; \" class=\"order_td_red\">"+tongji3[showi].sumall+"</div></td><td><div style=\"text-align:center; \" >"+tongji3[showi].count1+"</div></td><td><div style=\"text-align:center; \">"+tongji3[showi].count2+"</div></td><td><div style=\"text-align:center; \">"+tongji3[showi].count3+"</div></td></tr>";
+		}
+	}
+	prev = Number(page) - 1;
+	if (prev < 1) prev = 1;
+	next = Number(page) + 1;
+	if (next > page_max) next = page_max;
+	showtable1 = showtable1 + "<tr class=\"order_tr\"><td colspan=\"5\" ><div style=\"text-align:right; padding-right:10px;\"><a onclick=\"getdata4('"+prev+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_left.png\"></a> "+ page + "/" + page_max +" <a onclick=\"getdata4('"+next+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_right.png\"></a></div></td></tr>";
+	showtable1 = showtable1 + " </table>";
+	$("#showdata3").html(showtable1);
+}
+getdata4(1);
+
+var tongji5={$tongji4};
+function getdata3(page){
+	showtable1 = "<table class=\"table table-bordered\"><tr class=\"order_tr\"><td colspan=\"5\" ><div style=\"text-align:center;font-weight:bold;\">其它金币回收</div></td></tr><tr class=\"order_tr\"><td ><div style=\"text-align:center; \">日期</div></td><td><div style=\"text-align:center; \">总计</div></td><td ><div style=\"text-align:center; \">大喇叭回收</div></td><td ><div style=\"text-align:center; \">互动表情回收</div></td><td ><div style=\"text-align:center; \">礼物变卖回收</div></td></tr>";
+	for (i=(page-1)*10; i<page*10; i++){
+		if (i<tongji5.length){
+			showi = tongji5.length - i - 1;
+			showtable1 = showtable1 + "<tr class=\"order_tr\"><td><div style=\"text-align:center\">"+tongji5[showi].data+"</div></td><td><div style=\"text-align:center;font-weight:bold; \" class=\"order_td_red\">"+tongji5[showi].sumall+"</div></td><td><div style=\"text-align:center; \" >"+tongji5[showi].count1+"</div></td><td><div style=\"text-align:center; \">"+tongji5[showi].count2+"</div></td><td><div style=\"text-align:center; \">"+tongji5[showi].count3+"</div></td></tr>";
+		}
+	}
+	prev = Number(page) - 1;
+	if (prev < 1) prev = 1;
+	next = Number(page) + 1;
+	if (next > page_max) next = page_max;
+	showtable1 = showtable1 + "<tr class=\"order_tr\"><td colspan=\"5\" ><div style=\"text-align:right; padding-right:10px;\"><a onclick=\"getdata3('"+prev+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_left.png\"></a> "+ page + "/" + page_max +" <a onclick=\"getdata3('"+next+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_right.png\"></a></div></td></tr>";
+	showtable1 = showtable1 + " </table>";
+	$("#showdata4").html(showtable1);
+}
+
+
+
+
+		</script>
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script>

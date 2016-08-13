@@ -1,0 +1,215 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">玩家留存</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <div class="form-group">
+										<!--<input type="text" class="form-control input-sm" name="channel" placeholder="输入渠道号" value="{$channel}">&nbsp;-->
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="开始时间" value="{$date11}">
+                                        -
+                                        <input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="endTime" id="endTime" placeholder="结束时间" value="{$date12}">&nbsp;<a onclick="selday('1');" href="javascript:;">今日</a>&nbsp;|&nbsp;<a onclick="selday('-1');" href="javascript:;">昨日</a>&nbsp;|&nbsp;<a onclick="selday('7');" href="javascript:;">近7日</a>&nbsp;|&nbsp;<a onclick="selday('30');" href="javascript:;">近30日</a>&nbsp;
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body" id="idplay">
+                        <div id="container" style="min-width: 310px; height: 395px; padding-right:10px; margin: 0 auto"></div>
+						<div id="showtable" style="display:none;" class="table-responsive"></div>
+						<div class="table-responsive">
+							<div style="float:left; width:30%"><button onclick="showdiv('container')" id="log_line" type="button" class="log_line_on" ></button>&nbsp;&nbsp;<button onclick="showdiv('showtable')" id="log_table" type="button" class="log_table" ></button></div>
+							<div id="showpage1" style="float:right; width:70%; padding-right:50px; text-align:right; display:none;"></div>
+						</div>
+                    </div>
+                </div>
+				
+				<!-- 表格开始 -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							</div>
+							<div class="col-sm-8">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body" id="tabledau">
+						<div id="showtable2" class="table-responsive"></div>
+                    </div>
+                </div>
+				<!-- 表格结束 -->
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+
+		<script type="text/javascript">
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: '玩家留存'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: [{$data1[0]}]//这里应该输入时间
+        },
+        yAxis: {
+            title: {
+                text: '留存率(%)'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: false
+                },
+                enableMouseTracking: true
+            }
+        },
+        series: [{
+            name: '次日留存率(%)',
+            data: [{$data1[1]}]//这里应该输入到诊数据
+        }, {
+            name: '7日留存率(%)',
+            data: [{$data1[2]}],
+			visible: false
+        }, {
+            name: '30日留存率(%)',
+            data: [{$data1[3]}],
+			visible: false
+        }]
+    });
+});
+
+function selday(id){
+	if (id=="1"){
+		$('#beginTime').val("{$seldate[0].date1}");
+		$('#endTime').val("{$seldate[0].date2}");
+	}else if (id=="-1"){
+		$('#beginTime').val("{$seldate[1].date1}");
+		$('#endTime').val("{$seldate[1].date2}");
+	}else if (id=="7"){
+		$('#beginTime').val("{$seldate[2].date1}");
+		$('#endTime').val("{$seldate[2].date2}");
+	}else if (id=="30"){
+		$('#beginTime').val("{$seldate[3].date1}");
+		$('#endTime').val("{$seldate[3].date2}");
+	}
+	document.form1.submit();
+}
+
+var showid = 'container';
+function showdiv(id){
+	show1 = "#"+id;
+	show2 = "#"+showid;
+	$(show2).hide();
+	$(show1).show();
+	showid = id;
+	if (id=="showtable"){
+		$("#showpage1").show();
+		$("#log_table").attr("class","log_table_on");
+		$("#log_line").attr("class","log_line");
+	}else{
+		$("#showpage1").hide();
+		$("#log_table").attr("class","log_table");
+		$("#log_line").attr("class","log_line_on");
+	}
+}
+
+var tongjiid = 'idplay';
+function showtongji(id){
+	show1 = "#"+id;
+	show2 = "#"+tongjiid;
+	$(show2).hide();
+	$(show1).show();
+	tongjiid = id;
+	
+}
+
+var tongji={$tongji1};
+page = 1;
+page_max = {$pagesize};
+function getnum(page){
+	showtable1 = "<table class=\"table table-bordered\"><tr class=\"order_tr\"><td colspan=\"4\"><div style=\"text-align:center; \"><b>玩家留存</b></div></td></tr><tr class=\"order_tr\"><td ><div style=\"text-align:center; \">日期</div>	</td><td ><div style=\"text-align:center; \">次日留存率(%)</div></td><td ><div style=\"text-align:center; \">7日留存率(%)</div></td><td ><div style=\"text-align:center; \">30日留存率(%)</div></td></tr>";
+	for (i=(page-1)*10; i<page*10; i++){
+		if (i<tongji.length){
+			showi = tongji.length - i - 1;
+			showtable1 = showtable1 + "<tr class=\"order_tr\"><td><div style=\"text-align:center\">"+tongji[showi].data+"</div></td><td><div style=\"text-align:center; font-weight:bold;\" class=\"order_td_red\">"+tongji[showi].count1+"</div></td><td><div style=\"text-align:center; font-weight:bold;\" class=\"order_td_blue\">"+tongji[showi].count2+"</div></td><td><div style=\"text-align:center; font-weight:bold;\" class=\"order_td_blue\">"+tongji[showi].count3+"</div></td></tr>";
+		}
+	}
+	showtable1 = showtable1 + " </table>";
+	$("#showtable").html(showtable1);
+	
+	prev = Number(page) - 1;
+	if (prev < 1) prev = 1;
+	next = Number(page) + 1;
+	if (next > page_max) next = page_max;
+	showpage = "<a onclick=\"getnum('"+prev+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_left.png\"></a> "+ page + "/" + page_max +" <a onclick=\"getnum('"+next+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_right.png\"></a>";
+	$("#showpage1").html(showpage);
+}
+getnum(page);
+
+var tongji2={$tongji2};
+page2 = 1;
+function getnum2(page2){
+	showtable1 = "<table class=\"table table-bordered\"><tr class=\"order_tr\"><td colspan=\"11\"><div style=\"text-align:center; \"><b>自定义留存</b></div></td></tr><tr class=\"order_tr\"><td rowspan=\"2\"><div style=\"text-align:center;padding-top:20px; \">日期</div></td><td rowspan=\"2\"><div style=\"text-align:center;padding-top:20px; \">用户</div></td><td colspan=\"9\"><div style=\"text-align:center; \">第N日后保留用户%</div></td></tr><tr class=\"order_tr\"><td><div style=\"text-align:center; \">1日留存</div></td><td><div style=\"text-align:center; \">2日留存</div></td><td><div style=\"text-align:center; \">3日留存</div></td><td><div style=\"text-align:center; \">4日留存</div></td><td><div style=\"text-align:center; \">5日留存</div></td><td><div style=\"text-align:center; \">6日留存</div></td><td><div style=\"text-align:center; \">7日留存</div></td><td><div style=\"text-align:center; \">15日留存</div></td><td><div style=\"text-align:center; \">30日留存</div></td></tr>";
+
+	for (i=0; i<tongji2.length; i++){
+			showi = tongji2.length - i - 1;
+			showtable1 = showtable1 + "<tr class=\"order_tr\"><td><div style=\"text-align:center\">"+tongji2[showi].data+"</div></td><td><div style=\"text-align:center; font-weight:bold;\" class=\"order_td_blue\">"+tongji2[showi].count1+"</div></td>";
+			for (j=0; j<tongji2[i].show_day.length; j++){
+				showtable1 = showtable1 + "<td><div style=\"text-align:center; font-weight:bold;\" >"+tongji2[showi].show_day[j].bl+"</div></td>";
+			}
+			showtable1 = showtable1 + "</tr>";
+
+	}
+	prev = Number(page2) - 1;
+	if (prev < 1) prev = 1;
+	next = Number(page2) + 1;
+	if (next > page_max) next = page_max;
+	showtable1 = showtable1 + "<tr class=\"order_tr\"><td colspan=\"11\" ><div style=\"text-align:right; padding-right:10px;\"><a onclick=\"getnum2('"+prev+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_left.png\"></a> "+ page2 + "/" + page_max +" <a onclick=\"getnum2('"+next+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_right.png\"></a></div></td></tr>";
+	showtable1 = showtable1 + " </table>";
+	
+	$("#showtable2").html(showtable1);
+	
+
+}
+getnum2(page2);
+
+		</script>
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script>

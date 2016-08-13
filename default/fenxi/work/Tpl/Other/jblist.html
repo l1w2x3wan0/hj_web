@@ -1,0 +1,71 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">金币添加列表</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <if condition="$caozuo.add eq 1"><a class="btn btn-primary btn-sm" href="{:U('User/lanmu_add')}"><i class="fa fa-plus"></i> 添加栏目</a></if>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>用户UID</th>
+									<th>添加金币数</th>
+									<th>通知状态</th>
+									<th>栏目操作</th>
+									<th>栏目样式</th>
+									<th>栏目排序</th>
+                                    <th>创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <volist	name="list" id="vo">
+										<tr>
+                                            <td>{$vo.id}</td>
+                                            <td>{$vo.lanmu_name}</td>
+											<td>{$vo.lanmu_num}</td>
+											<td>{$vo.lanmu_m}</td>
+											<td>{$vo.lanmu_a}</td>
+											<td>{$vo.lanmu_css}</td>
+											<td>{$vo.lanmu_sort}</td>
+                                            <td>{$vo.addtime}</td>
+                                            <td><if condition="$caozuo.edit eq 1"><a href="{:U('User/lanmu_edit','id='.$vo['id'])}">修改栏目</a></if>&nbsp;<if condition="$caozuo.del eq 1"><a onclick="return confirm('您确定删除该纪录吗？')" href="{:U('User/lanmu_delete','id='.$vo['id'])}">删除栏目</a></if></td>
+                                        </tr>
+											<volist	name="vo.sub" id="vo1">
+											<tr>
+												<td>{$vo1.id}</td>
+												<td>&nbsp;&nbsp;&nbsp;&nbsp;{$vo1.lanmu_name}</td>
+												<td>{$vo1.lanmu_num}</td>
+												<td>{$vo1.lanmu_m}</td>
+												<td>{$vo1.lanmu_a}</td>
+												<td>{$vo1.lanmu_css}</td>
+												<td>{$vo1.lanmu_sort}</td>
+												<td>{$vo1.addtime}</td>
+												<td><if condition="$caozuo.edit eq 1"><a href="{:U('User/lanmu_edit','id='.$vo1['id'])}">修改栏目</a></if>&nbsp;<if condition="$caozuo.del eq 1"><a onclick="return confirm('您确定删除该纪录吗？')" href="{:U('User/lanmu_delete','id='.$vo1['id'])}">删除栏目</a></if></td>
+											</tr>
+											</volist>
+                                        </volist>
+                                 </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+<include file = "public:footer"/>

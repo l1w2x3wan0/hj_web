@@ -1,0 +1,165 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">房间配置</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading" style="padding:10px;">
+                       <div class="row">
+                            <div class="col-sm-10" style="padding-top:10px; color:#FF0000; font-weight:bold;">
+							PS：本项配置需重启房间方生效（房间类型 -- 0:普通房; 1:比赛房,2:私人房）
+							</div>
+                        </div>    
+    
+                    </div>
+                    
+					<div class="panel-body">
+						<form name="form1" action="" method="post">
+						
+						<volist	name="list" id="vo" key="k"> 
+						<div id="showdata{$k}" style="width:18%; background-color:#FCFCFC; float:left; padding:10px; margin-right:10px;">
+						<table class="table table-bordered" >
+							
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">房间名称</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="room_name{$vo.room_id}" id="room_name{$vo.room_id}" placeholder="排序" value="{$vo.room_name}"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">排序</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="displayorder{$vo.room_id}" id="displayorder{$vo.room_id}" placeholder="排序" value="{$vo.displayorder}"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">底注</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="cell_gold{$vo.room_id}" id="cell_gold{$vo.room_id}" placeholder="底注" value="{$vo.cell_gold}"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">锅底</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="guo_di{$vo.room_id}" id="guo_di{$vo.room_id}" placeholder="锅底" value="{$vo.guo_di}"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">最大下注</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="max_cell_gold{$vo.room_id}" id="max_cell_gold{$vo.room_id}" placeholder="最大下注" value="{$vo.max_cell_gold}"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">准入下限</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="lower_limit_gold{$vo.room_id}" id="lower_limit_gold{$vo.room_id}" placeholder="准入下限" value="{$vo.lower_limit_gold}"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">准入上限</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="high_limit_gold{$vo.room_id}" id="high_limit_gold{$vo.room_id}" placeholder="准入上限" value="{$vo.high_limit_gold}"></div></td>
+							</tr>
+		
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">可比轮数</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="min_cmp_round{$vo.room_id}" id="min_cmp_round{$vo.room_id}" placeholder="可比轮数" value="{$vo.min_cmp_round}"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">最大轮数</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="max_round{$vo.room_id}" id="max_round{$vo.room_id}" placeholder="最大轮数" value="{$vo['max_round']+1}"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">房间税收</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="tax_rate{$vo.room_id}" id="tax_rate{$vo.room_id}" placeholder="房间税收" value="{$vo['tax_rate']}"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">房间类型</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="room_type{$vo.room_id}" id="room_type{$vo.room_id}" placeholder="房间类型" value="{$vo.room_type}"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">图片地址</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="pitrue_url{$vo.room_id}" id="pitrue_url{$vo.room_id}" placeholder="图片地址" value="{$vo.pitrue_url}"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">响应时间</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="actionTime{$vo.room_id}" id="actionTime{$vo.room_id}" placeholder="响应时间" value="{$vo.actionTime}"></div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">在线人数</div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="online{$vo.room_id}" id="online{$vo.room_id}" placeholder="在线人数" value="{$vo.online}"></div></td>
+							</tr>
+							
+							<volist	name="vo.vmSteps" id="vo1" key="k1">
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;"><if condition="$k1 eq 1">筹码类型</if></div></td>
+								<td><div style="text-align:left;"><input type="text" class="form-control input-sm date" name="gold_code{$vo.room_id}{$vo1.code_id}" id="gold_code{$vo.room_id}{$vo1.code_id}" placeholder="筹码类型" value="{$vo1.gold_code}"></div></td>
+							</tr>
+							</volist>
+							
+						</table>
+						</div>
+						</volist> 
+						
+						<div style="width:97%; background-color:#FCFCFC; float:left; padding:10px; margin-top:10px;">
+						<table class="table-bordered"  style="width:100%; ">
+							<tr class="order_tr">
+								<td height="35" width="12%"><div style="text-align:right; font-weight:bold;padding:5px;">修改原因：</div></td>
+							    <td ><div style="text-align:left;padding:5px;"><input type="text" style="width:100%; height:25px; text-align:left;" name="remark" id="remark" placeholder="请输入修改原因" value=""> </div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="50" colspan="2" ><div style="text-align:center;">
+								  <input type="submit" name="Submit" style=" font-size:14px; font-weight:bold; width:200px; height:40px;" value="修 改 参 数" />&nbsp;&nbsp;<input onclick="reconfig();" type="button" name="Submit" style=" font-size:14px; font-weight:bold; width:200px; height:40px;" value="恢 复 默 认" />
+								</div></td>
+							</tr>
+						</table>
+						</div>
+						</form>
+					</div>
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+<script>
+function reconfig(){
+
+	$("#displayorder1").val(1);
+	$("#cell_gold1").val(100);
+	$("#lower_limit_gold1").val(500);
+	$("#high_limit_gold1").val(200000);
+	$("#min_cmp_round1").val(3);
+	$("#max_round1").val(10);
+	$("#tax_rate1").val(5);
+
+	$("#displayorder2").val(2);
+	$("#cell_gold2").val(1000);
+	$("#lower_limit_gold2").val(100000);
+	$("#high_limit_gold2").val(1000000);
+	$("#min_cmp_round2").val(3);
+	$("#max_round2").val(10);
+	$("#tax_rate2").val(5);
+	
+	$("#displayorder3").val(3);
+	$("#cell_gold3").val(10000);
+	$("#lower_limit_gold3").val(500000);
+	$("#high_limit_gold3").val(0);
+	$("#min_cmp_round3").val(3);
+	$("#max_round3").val(10);
+	$("#tax_rate3").val(5);
+}
+
+</script>
+		
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script> 

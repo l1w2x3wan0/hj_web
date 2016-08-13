@@ -1,0 +1,88 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">登陆奖励配置</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading" style="padding:10px;">
+                       <div class="row">
+                            <div class="col-sm-10" style="padding-top:10px; color:#FF0000; font-weight:bold;">
+							
+							</div>
+                        </div>    
+    
+                    </div>
+                    
+					<div class="panel-body">
+						<form name="form1" action="" method="post">
+						
+						<div style="width:97%; background-color:#FCFCFC; float:left; padding:10px; margin-bottom:10px;">
+						<table class="table-bordered"  style="width:100%; ">
+							<volist	name="list" id="vo" key="k"> 
+							<tr class="order_tr">
+								<td height="45" width="35%"><div style="text-align:right; font-weight:bold;padding:5px;">第{$vo.DayIndex}天签到金币数</div></td>
+								<td ><div class="col-sm-8"><input type="text" class="form-control" name="GoldNumber{$vo.DayIndex}" id="GoldNumber{$vo.DayIndex}" placeholder="签到金币数" value="{$vo.GoldNumber}"></div></td>
+							    
+							</tr>
+							</volist> 
+							
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">修改原因</div></td>
+								<td ><div class="col-sm-8"><input type="text" class="form-control" name="remark" id="remark" placeholder="请输入修改原因" value=""></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="50" colspan="2" ><div style="text-align:center;">
+								  <input type="submit" name="Submit" style=" font-size:14px; font-weight:bold; width:200px; height:40px;" value="修 改 参 数" />&nbsp;&nbsp;<input onclick="reconfig();" type="button" name="Submit" style=" font-size:14px; font-weight:bold; width:200px; height:40px;" value="恢 复 默 认" />
+								</div></td>
+							</tr>
+						</table>
+						</div>
+						
+						
+						</form>
+					</div>
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+<script>
+function reconfig(){
+
+	$("#GoldNumber1").val(1000);
+	$("#GoldNumber2").val(2000);
+	$("#GoldNumber3").val(5000);
+	$("#GoldNumber4").val(8000);
+	$("#GoldNumber5").val(10000);
+	$("#GoldNumber6").val(12000);
+	$("#GoldNumber7").val(15000);
+
+}
+
+</script>
+		
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script> 

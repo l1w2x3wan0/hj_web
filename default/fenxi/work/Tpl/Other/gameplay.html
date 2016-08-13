@@ -1,0 +1,79 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">玩牌详情</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+		
+		<div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+
+								<tr>
+                                   <td><div style="text-align:center;">GAMEID</div></td>
+								   <td><div style="text-align:center;">用户UID</div></td>
+								   <td><div style="text-align:center;">牌</div></td>
+								   <td><div style="text-align:center;">胜负</div></td>
+								   <td><div style="text-align:center;">局前金币数</div></td>
+                                   <td><div style="text-align:center;">当前金币数</div></td>
+								   <td><div style="text-align:center;">变动金币数</div></td>
+								   <td><div style="text-align:center;">税收金币数</div></td>
+								   <td><div style="text-align:center;">场次</div></td>
+								   <td><div style="text-align:center;">时间</div></td>
+                                </tr>
+								
+								<volist	name="info" id="vo">
+								<tr>
+                                   <td><div style="text-align:center; padding-top:10px;">{$vo.gameid}</div></td>
+								   <td><div style="text-align:center; padding-top:10px;">{$vo.user_id}</div></td>
+								   <td><div style="text-align:center;">{$vo.showcards} {$vo.cardstype}</div></td>
+								   <td><div style="text-align:center; padding-top:10px;"><if condition="$vo.iswin eq 0"><font color="#FF0000">赢</font><else />输</if></div></td>
+								   <td><div style="text-align:center; padding-top:10px;">{$vo.beforegold}</div></td>
+                                   <td><div style="text-align:center; padding-top:10px;">{$vo.aftergold}</div></td>
+								   <td><div style="text-align:center; padding-top:10px;">{$vo.changegold}</div></td>
+								   <td><div style="text-align:center; padding-top:10px;">{$vo.taxgold}</div></td>
+								   <td><div style="text-align:center; padding-top:10px;">
+								   <if condition="$vo.roomid eq 1">初级场
+								   <elseif condition="$vo.roomid eq 2"/>中级场
+								   <elseif condition="$vo.roomid eq 3"/>高级场
+								   <elseif condition="$vo.roomid eq 4"/>私人房
+								   <else />未知场								   </if>
+								   </div></td>
+								   <td><div style="text-align:center; padding-top:10px;">{$vo.date}</div></td>
+								</tr>
+								</volist>	
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+
+}   
+</script>
+
+<include file = "public:footer"/>

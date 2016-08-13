@@ -1,0 +1,66 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">历史修改记录列表</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        
+						<div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th ><div style="text-align:center">ID</div></th>
+									<th ><div style="text-align:center">修改类型</div></th>
+                                    <th ><div style="text-align:center">提交时间</div></th>
+									<th ><div style="text-align:center">提交者</div></th>
+                                    <th ><div style="text-align:center">备注</div></th>
+									<th ><div style="text-align:center">提交者IP</div></th>
+									<th ><div style="text-align:center">查看详细配置</div></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <volist	name="list" id="vo">
+										<tr>
+                                            <td><div style="text-align:center">{$vo.id}</div></td>
+                                            <td><div style="text-align:center">{$vo.cate}</div></td>
+											<td><div style="text-align:center">{$vo.addtime}</div></td>
+											<td><div style="text-align:center">{$vo.username}</div></td>
+											<td><div style="text-align:center">{$vo.remark}</div></td>
+											<td><div style="text-align:center">{$vo.userip}</div></td>
+                                            <td><div style="text-align:center"><a target="_blank" href="{:U($By_tpl.'/history_more','id='.$vo['id'])}">查看详细配置</a> </div></td>
+                                        </tr>
+                                        </volist>
+                                </tbody>
+                            </table>
+							
+							<div class="showpage">{$pageshow}</div>
+                                                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+<include file = "public:footer"/>

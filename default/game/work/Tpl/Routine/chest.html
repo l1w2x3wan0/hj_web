@@ -1,0 +1,103 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">在线宝箱配置</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading" style="padding:10px;">
+                       <div class="row">
+                            <div class="col-sm-10" style="padding-top:10px; color:#FF0000; font-weight:bold;">
+							
+							</div>
+                        </div>    
+    
+                    </div>
+                    
+					<div class="panel-body">
+						<form name="form1" action="" method="post">
+						
+						<div style="width:97%; background-color:#FCFCFC; float:left; padding:10px; margin-bottom:10px;">
+						<table class="table-bordered"  style="width:100%; ">
+							<volist	name="list" id="vo" key="k"> 
+							<tr class="order_tr">
+								<td height="45" width="15%"><div style="text-align:right; font-weight:bold;padding:5px;">间隔时间(单位：秒)</div></td>
+								<td width="35%"><div class="col-sm-8"><input type="text" class="form-control input-sm date" name="minute{$vo.conf_id}" id="minute{$vo.conf_id}" placeholder="间隔时间" value="{$vo.minute}"></div></td>
+							    <td width="15%"><div style="text-align:right; font-weight:bold;padding:5px;">领取金币数</div></td>
+								<td width="35%"><div class="col-sm-8"><input type="text" class="form-control input-sm date" name="coin{$vo.conf_id}" id="coin{$vo.conf_id}" placeholder="领取金币数" value="{$vo.coin}"></div></td>
+							</tr>
+							
+							</volist> 
+							
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">修改原因</div></td>
+								<td colspan="3"><div class="col-sm-8"><input type="text" class="form-control" name="remark" id="remark" placeholder="请输入修改原因" value=""></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="50" colspan="4" ><div style="text-align:center;">
+								  <input type="submit" name="Submit" style=" font-size:14px; font-weight:bold; width:200px; height:40px;" value="修 改 参 数" />&nbsp;&nbsp;<input onclick="reconfig();" type="button" name="Submit" style=" font-size:14px; font-weight:bold; width:200px; height:40px;" value="恢 复 默 认" />
+								</div></td>
+							</tr>
+						</table>
+						</div>
+						
+						
+						</form>
+					</div>
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+<script>
+function reconfig(){
+
+	$("#minute1").val(60);
+	$("#coin1").val(100);
+	
+	$("#minute2").val(300);
+	$("#coin2").val(150);
+	
+	$("#minute3").val(600);
+	$("#coin3").val(300);
+	
+	$("#minute4").val(1200);
+	$("#coin4").val(600);
+	
+	$("#minute5").val(1800);
+	$("#coin5").val(900);
+	
+	$("#minute6").val(3000);
+	$("#coin6").val(1500);
+	
+	$("#minute7").val(3600);
+	$("#coin7").val(1800);
+
+}
+
+</script>
+		
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script> 

@@ -1,0 +1,157 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">排行榜</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading" style="padding:10px;">
+                           <table class="table table-bordered" >
+							<form name="form1" action="" method="post">
+							<tr class="order_tr">
+								<td height="30" width="150"><div style="text-align:right;">当前刷新频率：</div></td>
+								<td><div style="text-align:left; color:#FF0000; font-weight:bold;">财富榜会每小时自动生成1次，昨日赢金榜、昨日充值榜每天0点20分会自动生成	</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30" width="150"><div style="text-align:right;">财富榜参数：</div></td>
+								<td><div style="text-align:left;">不上榜UID：{$can1}
+								  &nbsp;&nbsp;<a href="{:U($By_tpl.'/paihang','wei=1&act=can')}"><img src="__PUBLIC__/images/button05.png" /></a>&nbsp;&nbsp; <a href="{:U($By_tpl.'/paihang','wei=1&act=do')}"><img src="__PUBLIC__/images/button02.png" /></a>
+								</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30" width="150"><div style="text-align:right;">魅力榜参数：</div></td>
+								<td><div style="text-align:left;">不上榜UID：{$can2}
+								  &nbsp;&nbsp;<a href="{:U($By_tpl.'/paihang','wei=2&act=can')}"><img src="__PUBLIC__/images/button05.png" /></a>&nbsp;&nbsp; <a href="{:U($By_tpl.'/paihang','wei=2&act=do')}"><img src="__PUBLIC__/images/button06.png" /></a>
+								</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30" width="150"><div style="text-align:right;">钻石榜参数：</div></td>
+								<td><div style="text-align:left;">不上榜UID：{$can3}
+								  &nbsp;&nbsp;<a href="{:U($By_tpl.'/paihang','wei=3&act=can')}"><img src="__PUBLIC__/images/button05.png" /></a>&nbsp;&nbsp; <a href="{:U($By_tpl.'/paihang','wei=4&act=do')}"><img src="__PUBLIC__/images/button04.png" /></a>
+								</div></td>
+							</tr>
+							</form>
+							</table>
+    
+                    </div>
+                    
+					<div class="panel-body">
+						<div id="showdata1" style="width:32%; background-color:#FCFCFC; float:left; padding:10px;">
+						<table class="table table-bordered" >
+							<tr class="order_tr">
+								<td colspan="5" height="35"><div style="text-align:center;">财富榜</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:center;">排名</div></td>
+								<td><div style="text-align:center;">USER_ID</div></td>
+								<td><div style="text-align:center;">VIP</div></td>
+								<td><div style="text-align:center;">头像</div></td>
+								<td><div style="text-align:center;">金币</div></td>
+							</tr>
+							<volist	name="pai1" id="vo"> 
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:center; padding-top:20px;">{$vo.place}</div></td>
+								<td><div style="text-align:center; padding-top:20px;">{$vo.uid}</div></td>
+								<td><div style="text-align:center; padding-top:20px;">VIP{$vo.vip_type}</div></td>
+								<td><div style="text-align:center;"><img src="{$vo.tx}" width="50" /></div></td>
+								<td><div style="text-align:center; padding-top:20px;">{$vo.total}</div></td>
+							</tr>
+							</volist> 
+						</table>
+						</div>
+						<div id="showdata2" style="width:32%; background-color:#FCFCFC; float:left; padding:10px; margin-left:15px;">
+						<table class="table table-bordered" >
+							<tr class="order_tr">
+								<td colspan="5" height="35"><div style="text-align:center;">魅力榜</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:center;">排名</div></td>
+								<td><div style="text-align:center;">USER_ID</div></td>
+								<td><div style="text-align:center;">VIP</div></td>
+								<td><div style="text-align:center;">头像</div></td>
+								<td><div style="text-align:center;">魅力值</div></td>
+							</tr>
+							<volist	name="pai2" id="vo"> 
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:center; padding-top:20px;">{$vo.place}</div></td>
+								<td><div style="text-align:center; padding-top:20px;">{$vo.uid}</div></td>
+								<td><div style="text-align:center; padding-top:20px;">VIP{$vo.vip_type}</div></td>
+								<td><div style="text-align:center;"><img src="{$vo.tx}" width="50" /></div></td>
+								<td><div style="text-align:center; padding-top:20px;">{$vo.total}</div></td>
+							</tr>
+							</volist>  
+						</table>
+						</div>
+						<div id="showdata3" style="width:32%; background-color:#FCFCFC; float:left; padding:10px; margin-left:15px;">
+						<table class="table table-bordered" >
+							<tr class="order_tr">
+								<td colspan="5" height="35"><div style="text-align:center;">钻石榜</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:center;">排名</div></td>
+								<td><div style="text-align:center;">USER_ID</div></td>
+								<td><div style="text-align:center;">VIP</div></td>
+								<td><div style="text-align:center;">头像</div></td>
+								<td><div style="text-align:center;">钻石</div></td>
+							</tr>
+							<volist	name="pai3" id="vo"> 
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:center; padding-top:20px;">{$vo.place}</div></td>
+								<td><div style="text-align:center; padding-top:20px;">{$vo.uid}</div></td>
+								<td><div style="text-align:center; padding-top:20px;">VIP{$vo.vip_type}</div></td>
+								<td><div style="text-align:center;"><img src="{$vo.tx}" width="50" /></div></td>
+								<td><div style="text-align:center; padding-top:20px;">{$vo.total}</div></td>
+							</tr>
+							</volist> 
+						</table>
+						</div>
+					</div>
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+<script>
+function selday(id){
+	if (id=="1"){
+		$('#beginTime').val("{$seldate[0].date1}");
+		$('#endTime').val("{$seldate[0].date2}");
+	}else if (id=="-1"){
+		$('#beginTime').val("{$seldate[1].date1}");
+		$('#endTime').val("{$seldate[1].date2}");
+	}else if (id=="7"){
+		$('#beginTime').val("{$seldate[2].date1}");
+		$('#endTime').val("{$seldate[2].date2}");
+	}else if (id=="30"){
+		$('#beginTime').val("{$seldate[3].date1}");
+		$('#endTime').val("{$seldate[3].date2}");
+	}
+	document.form1.submit();
+}
+
+
+</script>
+		
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script>

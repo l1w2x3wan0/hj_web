@@ -1,0 +1,79 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">新增玩家&nbsp;&nbsp;<a href="index.php?m=Yun&a=tongji51" target="_blank">版本账号分析</a>&nbsp;&nbsp;<a href="index.php?m=Yun&a=tongji52" target="_blank">渠道账号分析</a>&nbsp;&nbsp;<a href="index.php?m=Yun&a=tongji53" target="_blank">小号账户数量分析</a></h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">设备 | 账户：<font color="#FF0000"><b>{$alltotal2}</b></font> | <font color="#FF0000"><b>{$alltotal1}</b></font></div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <div class="form-group">
+										<input type="text" class="form-control input-sm" name="version" placeholder="输入版本" value="{$version}">&nbsp;
+										<input type="text" class="form-control input-sm" name="channel" placeholder="输入渠道号" value="{$channel}">&nbsp;
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="开始时间" value="{$date11}">
+                                        -
+                                        <input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="endTime" id="endTime" placeholder="结束时间" value="{$date12}">&nbsp;<a onclick="selday('1');" href="javascript:;">今日</a>&nbsp;|&nbsp;<a onclick="selday('-1');" href="javascript:;">昨日</a>&nbsp;|&nbsp;<a onclick="selday('7');" href="javascript:;">近7日</a>&nbsp;|&nbsp;<a onclick="selday('30');" href="javascript:;">近30日</a>&nbsp;
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+					<div class="panel-body">
+						<div id="showdata2" style="width:98%; height:465px; background-color:#FCFCFC; float:right; padding:10px;"></div>
+					</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+
+		<script type="text/javascript">
+
+
+var tongji2={$tongji2};
+page2 = 1;
+page2_max = {$pagesize2};
+function getdata2(page2){
+	showtable1 = "<table class=\"table table-bordered\"><tr class=\"order_tr\"><td colspan=\"3\" ><div style=\"text-align:center;\">渠道账号分析</div></td></tr><tr class=\"order_tr\"><td ><div style=\"text-align:center; \">渠道号</div></td><td ><div style=\"text-align:center; \">新增激活(台)</div></td><td ><div style=\"text-align:center; \">百分比</div></td></tr>";
+	for (i=(page2-1)*10; i<page2*10; i++){
+		if (i<tongji2.length){
+			showtable1 = showtable1 + "<tr class=\"order_tr\"><td><div style=\"text-align:center\">"+tongji2[i].channel+"</div></td><td><div style=\"text-align:center; \" >"+tongji2[i].count1+"</div></td><td><div style=\"text-align:center; \">"+tongji2[i].bl+"</div></td></tr>";
+		}
+	}
+	prev = Number(page2) - 1;
+	if (prev < 1) prev = 1;
+	next = Number(page2) + 1;
+	if (next > page2_max) next = page2_max;
+	showtable1 = showtable1 + "<tr class=\"order_tr\"><td colspan=\"3\" ><div style=\"text-align:right; padding-right:10px;\"><a onclick=\"getdata2('"+prev+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_left.png\"></a> "+ page2 + "/" + page2_max +" <a onclick=\"getdata2('"+next+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_right.png\"></a></div></td></tr>";
+	showtable1 = showtable1 + " </table>";
+	$("#showdata2").html(showtable1);
+}
+getdata2(page2);
+
+		</script>
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script>

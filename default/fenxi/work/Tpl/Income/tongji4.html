@@ -1,0 +1,98 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">新增付费趋势</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <input type="hidden" name="flag" value="" />
+									<div class="form-group">
+										<input type="text" class="form-control input-sm" name="channel" placeholder="输入渠道号" value="{$channel}">&nbsp;
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="开始时间" value="{$date11}">
+                                        -
+                                        <input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="endTime" id="endTime" placeholder="结束时间" value="{$date12}">&nbsp;<a onclick="selday('1');" href="javascript:;">今日</a>&nbsp;|&nbsp;<a onclick="selday('-1');" href="javascript:;">昨日</a>&nbsp;|&nbsp;<a onclick="selday('7');" href="javascript:;">近7日</a>&nbsp;|&nbsp;<a onclick="selday('30');" href="javascript:;">近30日</a>&nbsp;
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body" id="iddau" >
+                        <table class="table table-bordered">
+                                <tr>
+                                    <td rowspan="2"><div style="text-align:center; padding-top:15px;">日期</div></td>
+                                    <td rowspan="2"><div style="text-align:center; padding-top:15px;">新增用户</div></td>
+									<td colspan="2"><div style="text-align:center">新增当天</div></td>
+									<volist	name="list" key="k" id="vo">
+										<if condition="$k eq 1">
+										<volist	name="vo.sub"  id="vo1">
+									<td colspan="2"><div style="text-align:center">{$vo1[num]}天</div></td>
+										</volist> 
+										</if> 
+									</volist>  
+                                </tr>
+								<tr>
+                                    <td><div style="text-align:center">付费人数</div></td>
+									<td><div style="text-align:center">付费金额</div></td>
+									<volist	name="list" key="k" id="vo">
+										<if condition="$k eq 1">
+										<volist	name="vo.sub" id="vo1">
+									<td><div style="text-align:center">付费人数</div></td>
+									<td><div style="text-align:center">付费金额</div></td>
+										</volist> 
+										</if>
+									</volist>  
+                                </tr>
+
+										<volist	name="list" id="vo">
+										<tr>
+                                            <td><div style="text-align:center">{$vo.date}</div></td>
+                                            <td><div style="text-align:center">{$vo.user_add}</div></td>
+											<td><div style="text-align:center">{$vo.user_pay_num}</div></td>
+											<td><div style="text-align:center">{$vo.user_pay_money}</div></td>
+											<volist	name="vo.sub" id="vo1">
+											<td><div style="text-align:center">{$vo1.user_pay_num}</div></td>
+											<td><div style="text-align:center">{$vo1.user_pay_money}</div></td>
+											</volist> 
+                                        </tr>
+                                        </volist>
+
+                            </table>
+							<div class="showpage">{$pageshow}</div>
+                    </div>
+					
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script>

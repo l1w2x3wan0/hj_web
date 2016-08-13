@@ -1,0 +1,199 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">抽奖配置</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading" style="padding:10px;">
+                       <div class="row">
+                            <div class="col-sm-10" style="padding-top:10px; color:#FF0000; font-weight:bold;">
+							<volist	name="ver" id="vo1"><a href="{:U($By_tpl.'/choujiang','vernow='.$vo1['version'])}">{$vo1.showname}</a>&nbsp;&nbsp;</volist>  
+							</div>
+                        </div>    
+    
+                    </div>
+                    
+					<div class="panel-body">
+						<form name="form1" action="" method="post">
+						
+						<div style="width:97%; background-color:#FCFCFC; float:left; padding:10px; margin-bottom:10px;">
+						<table class="table-bordered"  style="width:100%; ">
+							<tr class="order_tr">
+								<td height="35" width="10%"><div style="text-align:center; font-weight:bold;padding:5px;">物品ID</div></td>
+								<td width="16%"><div style="text-align:center; font-weight:bold;padding:5px;">奖励类型<br>(1:金币2:话费3:车4:飞机5:奖券)</div></td>
+								<td width="10%"><div style="text-align:center; font-weight:bold;padding:5px;">数值</div></td>
+								<td width="10%"><div style="text-align:center; font-weight:bold;padding:5px;" id="ratesum1">免费概率(合计{$sum[0]})</div></td>
+								<td width="10%"><div style="text-align:center; font-weight:bold;padding:5px;" id="ratesum2">金币概率(合计{$sum[1]})</div></td>
+								<td width="10%"><div style="text-align:center; font-weight:bold;padding:5px;" id="ratesum2">钻石概率(合计{$sum[2]})</div></td>
+								<td width="10%"><div style="text-align:center; font-weight:bold;padding:5px;">说明</div></div></td>
+								<td width="10%"><div style="text-align:center; font-weight:bold;padding:5px;">抽奖版本</div></td>
+								
+							</tr>
+							<volist	name="list" id="vo" key="k" mod="2"> 
+							<tr <eq name="mod" value="1">bgcolor="#FFFBEC"</eq> class="order_tr">
+								
+								<td height="30" ><div style="text-align:center; ">{$vo.goodsid}</div></td>
+								
+								<td ><div style="text-align:center; "><input type="text" style="width:150px; height:25px; text-align:center;font-weight:bold;" name="awardtype{$vo.goodsid}" id="awardtype{$vo.goodsid}" placeholder="奖励类型" value="{$vo['awardtype']}"></div></td>
+								<td ><div style="text-align:center; "><input type="text" style="width:150px; height:25px; text-align:center;font-weight:bold;" name="awardnum{$vo.goodsid}" id="awardnum{$vo.goodsid}" placeholder="数值" value="{$vo['awardnum']}"></div></td>
+								<td ><div style="text-align:center; " ><input type="text" onblur="sumall('1');" style="width:150px; height:25px; text-align:center;font-weight:bold;" name="freerate{$vo.goodsid}" id="freerate{$vo.goodsid}" placeholder="免费概率" value="{$vo['freerate']}"></div></td>
+								<td ><div style="text-align:center; " ><input type="text" onblur="sumall('2');" style="width:150px; height:25px; text-align:center;font-weight:bold;" name="goldrate{$vo.goodsid}" id="goldrate{$vo.goodsid}" placeholder="金币概率" value="{$vo['goldrate']}"></div></td>
+								<td ><div style="text-align:center; " ><input type="text" onblur="sumall('3');" style="width:150px; height:25px; text-align:center;font-weight:bold;" name="diamondrate{$vo.goodsid}" id="diamondrate{$vo.goodsid}" placeholder="钻石概率" value="{$vo['diamondrate']}"></div></td>
+								<td ><div style="text-align:center; " ><input type="text" style="width:150px; height:25px; text-align:center;font-weight:bold;" name="memo{$vo.goodsid}" id="memo{$vo.goodsid}" placeholder="说明" value="{$vo.memo}"></div></td>
+								<td ><div style="text-align:center; ">{$vo.version}</div></td>
+								
+							</tr>
+							
+							</volist> 
+							
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">修改原因</div></td>
+								<td colspan="7"><div class="col-sm-8"><input type="text" class="form-control" name="remark" id="remark" placeholder="请输入修改原因" value=""></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="50" colspan="8" ><div style="text-align:center;">
+								  <input type="submit" name="Submit" style=" font-size:14px; font-weight:bold; width:200px; height:40px;" value="修 改 参 数" />
+								</div></td>
+							</tr>
+						</table>
+						</div>
+						
+						</form>
+					</div>
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+<script>
+function reconfig(){
+
+	$("#value1000").val(1);
+	$("#reward1000").val(1000);
+	$("#name1000").val("上传头像");
+	$("#explain1000").val("在个人信息面板上传头像");
+	
+	$("#value1001").val(1);
+	$("#reward1001").val(3000);
+	$("#name1001").val("大家听我说");
+	$("#explain1001").val("发送喇叭达1次");
+	
+	$("#value1200").val(1);
+	$("#reward1200").val(3000);
+	$("#name1200").val("通杀");
+	$("#explain1200").val("玩牌时，获得豹子1次");
+	
+	$("#value1201").val(1);
+	$("#reward1201").val(3000);
+	$("#name1201").val("百无禁忌");
+	$("#explain1201").val("玩牌时，获得顺金1次");
+	
+	$("#value1202").val(1000);
+	$("#reward1202").val(12000);
+	$("#name1202").val("百夫长");
+	$("#explain1202").val("初级场胜利达到1000场");
+	
+	$("#value1203").val(1000);
+	$("#reward1203").val(40000);
+	$("#name1203").val("千人斩");
+	$("#explain1203").val("中级场胜利达到1000场");
+	
+	$("#value1204").val(1000);
+	$("#reward1204").val(200000);
+	$("#name1204").val("万人敌");
+	$("#explain1204").val("高级场胜利达到1000场");
+	
+	$("#value1205").val(10000);
+	$("#reward1205").val(150000);
+	$("#name1205").val("常胜将军");
+	$("#explain1205").val("胜利达到10000场");
+	
+	$("#value1100").val(1);
+	$("#reward1100").val(50);
+	$("#name1100").val("首胜");
+	$("#explain1100").val("任意场赢1局");
+	
+	$("#value1101").val(5);
+	$("#reward1101").val(250);
+	$("#name1101").val("小胜");
+	$("#explain1101").val("任意场赢5局");
+	
+	$("#value1102").val(15);
+	$("#reward1102").val(750);
+	$("#name1102").val("好运连连");
+	$("#explain1102").val("任意场赢15局");
+	
+	$("#value1103").val(30);
+	$("#reward1103").val(1500);
+	$("#name1103").val("天官赐福");
+	$("#explain1103").val("任意场赢30局");
+	
+	$("#value1104").val(10);
+	$("#reward1104").val(100);
+	$("#name1104").val("过把瘾");
+	$("#explain1104").val("任意场对战10局");
+	
+	$("#value1105").val(50);
+	$("#reward1105").val(500);
+	$("#name1105").val("每日消遣");
+	$("#explain1105").val("任意场对战50局");
+	
+	$("#value1106").val(90);
+	$("#reward1106").val(900);
+	$("#name1106").val("大师玩家");
+	$("#explain1106").val("任意场对战90局");
+	
+	$("#value1107").val(120);
+	$("#reward1107").val(1200);
+	$("#name1107").val("职业玩家");
+	$("#explain1107").val("任意场对战120局");
+	
+}
+
+function sumall(flag){
+	var arr = {$arr};
+	sumall0 = 0;
+	if (flag == "1"){
+		for (k=0; k<arr.length; k++){
+			show = "#freerate"+arr[k].goodsid;
+			sumall0 = sumall0 + Number($(show).val());
+		}
+		showtext = "免费概率(合计"+sumall0+")";
+		showid = "#ratesum1";
+	}else{
+		for (k=0; k<arr.length; k++){
+			show = "#goldrate"+arr[k].goodsid;
+			sumall0 = sumall0 + Number($(show).val());
+		}
+		showtext = "金币概率(合计"+sumall0+")";
+		showid = "#ratesum2";
+	}
+	$(showid).html(showtext);
+}
+</script>
+		
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script> 

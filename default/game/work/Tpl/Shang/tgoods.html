@@ -1,0 +1,92 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">大厅商品列表</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        
+						<div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							<if condition="$caozuo.add eq 1"><a class="btn btn-primary btn-sm" href="{:U($By_tpl.'/tgoods_add')}"><i class="fa fa-plus"></i> 添加商品</a></if>
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <div class="form-group">
+
+										<input type="text" class="form-control input-sm date" name="RoomID" id="RoomID" placeholder="房间ID" value="{$RoomID}">&nbsp;<input type="text" class="form-control input-sm date" name="ChannelID" id="ChannelID" placeholder="渠道ID" value="{$ChannelID}">&nbsp;
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th ><div style="text-align:center">商品ID</div></th>
+                                    <th ><div style="text-align:center">商品名称</div></th>
+									<th ><div style="text-align:center">房间</div></th>
+									<th ><div style="text-align:center">获取金币</div></th>
+                                    <th ><div style="text-align:center">赠送金币</div></th>
+                                    <th ><div style="text-align:center">获取钻石</div></th>
+                                    <th ><div style="text-align:center">赠送钻石</div></th>
+									<th ><div style="text-align:center">赠送奖券</div></th>
+									<th ><div style="text-align:center">商品价格(分)</div></th>
+									<th ><div style="text-align:center">兑换钻石</div></th>
+									<th ><div style="text-align:center">排序</div></th>
+									<th ><div style="text-align:center">首充赠送</div></th>
+									<th ><div style="text-align:center">短信充值</div></th>
+									<th ><div style="text-align:center">首充商品</div></th>
+									<th ><div style="text-align:center">充值商品</div></th>
+									<th ><div style="text-align:center">是否有效</div></th>
+									<th ><div style="text-align:center">是否显示</div></th>
+                                    <th ><div style="text-align:center">操作</div></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <volist	name="list" id="vo">
+										<tr>
+                                            <td><div style="text-align:center">{$vo.GoodsID}</div></td>
+                                            <td><div style="text-align:center">{$vo.GoodsName}</div></td>
+											<td><div style="text-align:center">{$vo.RoomID}</div></td>
+                                            <td><div style="text-align:center">{$vo.GoldNum}</div></td>
+                                            <td><div style="text-align:center">{$vo.GiveGoldNum}</div></td>
+     										<td><div style="text-align:center">{$vo.Diamond}</div></td>
+											<td><div style="text-align:center">{$vo.GiveDiamond}</div></td>
+											<td><div style="text-align:center">{$vo.Ticket}</div></td>
+											<td><div style="text-align:center">{$vo.GoodsPrice}</div></td>
+											<td><div style="text-align:center">{$vo.GoodsValue}</div></td>
+											<td><div style="text-align:center">{$vo.DisplayOrder}</div></td>
+											<td><div style="text-align:center">{$vo.IsFirstPayGive}</div></td>
+											<td><div style="text-align:center">{$vo.IsEnableSms}</div></td>
+											<td><div style="text-align:center">{$vo.IsFirstPay}</div></td>
+											<td><div style="text-align:center">{$vo.IsPayed}</div></td>
+											<td><div style="text-align:center">{$vo.Enable}</div></td>
+											<td><div style="text-align:center">{$vo.MallDisplay}</div></td>
+                                            <td><div style="text-align:center"><if condition="$caozuo.edit eq 1"><a href="{:U($By_tpl.'/tgoods_update','GoodsID='.$vo['GoodsID'])}">编辑</a></if><if condition="$caozuo.del eq 1"> | <a onclick="return confirm('您确定删除该纪录吗？')" href="{:U($By_tpl.'/tgoods_delete','GoodsID='.$vo['GoodsID'])}">删除</a></if></div></td>
+                                        </tr>
+                                        </volist>
+                                </tbody>
+                            </table>
+							
+							<div class="showpage">{$pageshow}</div>
+                                                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+<include file = "public:footer"/>

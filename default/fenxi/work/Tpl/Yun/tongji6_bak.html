@@ -1,0 +1,403 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">活跃玩家</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							<a onclick="showtongji('iddau');" href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="当日有开启过游戏的玩家数，其中当日新增玩家带来的活跃以区别的颜色显示"><b>DAU</b></a> | 
+							<a onclick="showtongji('idwau');" href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="当日的最近一周（含当日的倒推7日）活跃玩家，将进行过游戏的玩家按照帐户进行排重"><b>WAU</b></a> | 
+							<a onclick="showtongji('idmau');" href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="当日的最近一月（含当日的倒退30日）活跃玩家，将进行过游戏的玩家按照帐户进行排重"><b>MAU</b></a> | 
+							<a onclick="showtongji('idavg');" href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="DAU/MAU可体现玩家的总体粘度，衡量这30天内每日活跃玩家的交叉重合情况。此比例越趋近于1，代表月活跃中有更多玩家多日活跃；比例越趋近0，则代表大量玩家只在一日中活跃。当比例小于0.1时，游戏的自传播性将很差。DAU/MAU×30也用于大致衡量玩家平均每月活跃天数"><b>DAU/MAU</b></a></div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <input type="hidden" name="flag" value="" />
+									<div class="form-group">
+										<input type="text" class="form-control input-sm" name="channel" placeholder="输入渠道号" value="{$channel}">&nbsp;
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="开始时间" value="{$date11}">
+                                        -
+                                        <input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="endTime" id="endTime" placeholder="结束时间" value="{$date12}">&nbsp;<a onclick="selday('1');" href="javascript:;">今日</a>&nbsp;|&nbsp;<a onclick="selday('-1');" href="javascript:;">昨日</a>&nbsp;|&nbsp;<a onclick="selday('7');" href="javascript:;">近7日</a>&nbsp;|&nbsp;<a onclick="selday('30');" href="javascript:;">近30日</a>&nbsp;
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body" id="iddau">
+                        <div id="container" style="min-width: 82%; height: 395px; padding-right:10px; margin: 0 auto"></div>
+						<div id="showtable" style="display:none;" class="table-responsive"></div>
+						<div class="table-responsive">
+							<div style="float:left; width:30%"><button onclick="showdiv('container','1')" id="log_line" type="button" class="log_line_on" ></button>&nbsp;&nbsp;<button onclick="showdiv('showtable','1')" id="log_table" type="button" class="log_table" ></button></div>
+							<div id="showpage1" style="float:right; width:70%; padding-right:50px; text-align:right; display:none;"></div>
+						</div>
+                    </div>
+					
+					<div class="panel-body" id="idwau" style="display:none;">
+                        <div id="container2" style="min-width: 82%; height: 395px; padding-right:10px; margin: 0 auto"></div>
+						<div id="showtable2" style="display:none;" class="table-responsive"></div>
+						<div class="table-responsive">
+							<div style="float:left; width:30%"><button onclick="showdiv('container2','2')" id="log_line2" type="button" class="log_line_on" ></button>&nbsp;&nbsp;<button onclick="showdiv('showtable2','2')" id="log_table2" type="button" class="log_table" ></button></div>
+							<div id="showpage2" style="float:right; width:70%; padding-right:50px; text-align:right; display:none;"></div>
+						</div>
+                    </div>
+					
+					<div class="panel-body" id="idmau" style="display:none;">
+                        <div id="container3" style="min-width: 82%; height: 395px; padding-right:10px; margin: 0 auto"></div>
+						<div id="showtable3" style="display:none;" class="table-responsive"></div>
+						<div class="table-responsive">
+							<div style="float:left; width:30%"><button onclick="showdiv('container3','3')" id="log_line3" type="button" class="log_line_on" ></button>&nbsp;&nbsp;<button onclick="showdiv('showtable3','3')" id="log_table3" type="button" class="log_table" ></button></div>
+							<div id="showpage3" style="float:right; width:70%; padding-right:50px; text-align:right; display:none;"></div>
+						</div>
+                    </div>
+					
+					<div class="panel-body" id="idavg" style="display:none;">
+                        <div id="container4" style="min-width: 82%; height: 395px; padding-right:10px; margin: 0 auto"></div>
+						<div id="showtable4" style="display:none;" class="table-responsive"></div>
+						<div class="table-responsive">
+							<div style="float:left; width:30%"><button onclick="showdiv('container4','4')" id="log_line4" type="button" class="log_line_on" ></button>&nbsp;&nbsp;<button onclick="showdiv('showtable4','4')" id="log_table4" type="button" class="log_table" ></button></div>
+							<div id="showpage4" style="float:right; width:70%; padding-right:50px; text-align:right; display:none;"></div>
+						</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+
+		<script type="text/javascript">
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: '活跃玩家DAU'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: [{$data1[0]}]//这里应该输入时间
+        },
+        yAxis: {
+            title: {
+                text: '人数统计/(人)'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: false
+                },
+                enableMouseTracking: true
+            }
+        },
+        series: [{
+            name: '新玩家',
+            data: [{$data1[1]}]//这里应该输入到诊数据
+        }, {
+            name: '老玩家',
+            data: [{$data1[2]}]//这里应该输入未到诊数据
+        }]
+    });
+	
+	$('#container2').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: '活跃玩家WAU'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: [{$data2[0]}]//这里应该输入时间
+        },
+        yAxis: {
+            title: {
+                text: '人数统计/(人)'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: false
+                },
+                enableMouseTracking: true
+            }
+        },
+        series: [{
+            name: '7日登陆玩家',
+            data: [{$data2[1]}]//这里应该输入到诊数据
+        }]
+    });
+	
+	$('#container3').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: '活跃玩家MAU'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: [{$data3[0]}]//这里应该输入时间
+        },
+        yAxis: {
+            title: {
+                text: '人数统计/(人)'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: false
+                },
+                enableMouseTracking: true
+            }
+        },
+        series: [{
+            name: '30日登陆玩家',
+            data: [{$data3[1]}]//这里应该输入到诊数据
+        }]
+    });
+	
+	$('#container4').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: '活跃玩家DAU/MAU'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: [{$data4[0]}]//这里应该输入时间
+        },
+        yAxis: {
+            title: {
+                text: 'DAU/MAU(%)'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: false
+                },
+                enableMouseTracking: true
+            }
+        },
+        series: [{
+            name: 'DAU/MAU',
+            data: [{$data4[1]}]//这里应该输入到诊数据
+        }]
+    });
+});
+
+function selday(id){
+	if (id=="1"){
+		$('#beginTime').val("{$seldate[0].date1}");
+		$('#endTime').val("{$seldate[0].date2}");
+	}else if (id=="-1"){
+		$('#beginTime').val("{$seldate[1].date1}");
+		$('#endTime').val("{$seldate[1].date2}");
+	}else if (id=="7"){
+		$('#beginTime').val("{$seldate[2].date1}");
+		$('#endTime').val("{$seldate[2].date2}");
+	}else if (id=="30"){
+		$('#beginTime').val("{$seldate[3].date1}");
+		$('#endTime').val("{$seldate[3].date2}");
+	}
+	document.form1.submit();
+}
+
+var showid = 'container';
+function showdiv(id,flag){
+	show1 = "#"+id;
+	show2 = "#"+showid;
+	$(show2).hide();
+	$(show1).show();
+	if (id=="container"){
+		$("#showtable").hide();
+	}
+	if (id=="container2"){
+		$("#showtable2").hide();
+	}
+	if (id=="container3"){
+		$("#showtable3").hide();
+	}
+	if (id=="container4"){
+		$("#showtable4").hide();
+	}
+	showid = id;
+	if (flag=="1"){
+		tempid = "showtable";
+		temp1 = "#showpage1";
+		temp2 = "#log_table";
+		temp3 = "#log_line";
+	}else if (flag=="2"){
+		tempid = "showtable2";
+		temp1 = "#showpage2";
+		temp2 = "#log_table2";
+		temp3 = "#log_line2";
+	}else if (flag=="3"){
+		tempid = "showtable3";
+		temp1 = "#showpage3";
+		temp2 = "#log_table3";
+		temp3 = "#log_line3";
+	}else if (flag=="4"){
+		tempid = "showtable4";
+		temp1 = "#showpage4";
+		temp2 = "#log_table4";
+		temp3 = "#log_line4";
+	}
+
+	if (id==tempid){
+		$(temp1).show();
+		$(temp2).attr("class","log_table_on");
+		$(temp3).attr("class","log_line");
+	}else{
+		$(temp1).hide();
+		$(temp2).attr("class","log_table");
+		$(temp3).attr("class","log_line_on");
+	}
+}
+
+tongjiid = 'iddau';
+function showtongji(id){
+	show1 = "#"+id;
+	show2 = "#"+tongjiid;
+	$(show2).hide();
+	$(show1).show();
+	tongjiid = id;
+	
+	if (id=="iddau"){
+		showid = 'container';
+	}else if (id=="idwau"){
+		showid = 'container2';
+	}else if (id=="idmau"){
+		showid = 'container3';
+	}else if (id=="idavg"){
+		showid = 'container4';
+	}
+}
+
+var tongji1={$tongji1};
+page_max = {$pagesize};
+function getnum(page1){
+	showtable1 = "<table class=\"table table-bordered\"><tr class=\"order_tr\"><td ><div style=\"text-align:center; \">日期</div>	</td><td ><div style=\"text-align:center; \">新玩家(账户)</div></td><td ><div style=\"text-align:center; \">老玩家(账户)</div></td><td ><div style=\"text-align:center; \">总计(账户)</div></td></tr>";
+	for (i=(page1-1)*10; i<page1*10; i++){
+		if (i<tongji1.length){
+			showi = tongji1.length - i - 1;
+			showtable1 = showtable1 + "<tr class=\"order_tr\"><td><div style=\"text-align:center\">"+tongji1[showi].data+"</div></td><td><div style=\"text-align:center; font-weight:bold;\" class=\"order_td_blue\">"+tongji1[showi].count1+"</div></td><td><div style=\"text-align:center; font-weight:bold;\">"+tongji1[showi].count2+"</div></td><td><div style=\"text-align:center; font-weight:bold;\" class=\"order_td_red\">"+tongji1[showi].count3+"</div></td></tr>";
+		}
+	}
+	showtable1 = showtable1 + " </table>";
+	$("#showtable").html(showtable1);
+	
+	prev = Number(page1) - 1;
+	if (prev < 1) prev = 1;
+	next = Number(page1) + 1;
+	if (next > page_max) next = page_max;
+	showpage = "<a onclick=\"getnum('"+prev+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_left.png\"></a> "+ page1 + "/" + page_max +" <a onclick=\"getnum('"+next+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_right.png\"></a>";
+	$("#showpage1").html(showpage);
+}
+getnum(1);
+
+var tongji2={$tongji2};
+page2 = 1;
+function getnum2(page2){
+	showtable1 = "<table class=\"table table-bordered\"><tr class=\"order_tr\"><td ><div style=\"text-align:center; \">日期</div>	</td><td ><div style=\"text-align:center; \">WAU(账户)</div></td></tr>";
+	for (i=(page2-1)*10; i<page2*10; i++){
+		if (i<tongji2.length){
+			showi = tongji2.length - i - 1;
+			showtable1 = showtable1 + "<tr class=\"order_tr\"><td><div style=\"text-align:center\">"+tongji2[showi].data+"</div></td><td><div style=\"text-align:center; font-weight:bold;\" class=\"order_td_blue\">"+tongji2[showi].count1+"</div></td></tr>";
+		}
+	}
+	showtable1 = showtable1 + " </table>";
+	$("#showtable2").html(showtable1);
+	
+	prev = Number(page2) - 1;
+	if (prev < 1) prev = 1;
+	next = Number(page2) + 1;
+	if (next > page_max) next = page_max;
+	showpage = "<a onclick=\"getnum2('"+prev+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_left.png\"></a> "+ page2 + "/" + page_max +" <a onclick=\"getnum2('"+next+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_right.png\"></a>";
+	$("#showpage2").html(showpage);
+}
+getnum2(page2);
+
+var tongji3={$tongji3};
+page3 = 1;
+function getnum3(page3){
+	showtable1 = "<table class=\"table table-bordered\"><tr class=\"order_tr\"><td ><div style=\"text-align:center; \">日期</div>	</td><td ><div style=\"text-align:center; \">MAU(账户)</div></td></tr>";
+	for (i=(page3-1)*10; i<page3*10; i++){
+		if (i<tongji3.length){
+			showi = tongji3.length - i - 1;
+			showtable1 = showtable1 + "<tr class=\"order_tr\"><td><div style=\"text-align:center\">"+tongji3[showi].data+"</div></td><td><div style=\"text-align:center; font-weight:bold;\" class=\"order_td_blue\">"+tongji3[showi].count1+"</div></td></tr>";
+		}
+	}
+	showtable1 = showtable1 + " </table>";
+	$("#showtable3").html(showtable1);
+	
+	prev = Number(page3) - 1;
+	if (prev < 1) prev = 1;
+	next = Number(page3) + 1;
+	if (next > page_max) next = page_max;
+	showpage = "<a onclick=\"getnum3('"+prev+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_left.png\"></a> "+ page3 + "/" + page_max +" <a onclick=\"getnum3('"+next+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_right.png\"></a>";
+	$("#showpage3").html(showpage);
+}
+getnum3(page3);
+
+var tongji4={$tongji4};
+page4 = 1;
+function getnum4(page4){
+	showtable1 = "<table class=\"table table-bordered\"><tr class=\"order_tr\"><td ><div style=\"text-align:center; \">日期</div>	</td><td ><div style=\"text-align:center; \">DAU/MAU</div></td></tr>";
+	for (i=(page4-1)*10; i<page4*10; i++){
+		if (i<tongji4.length){
+			showi = tongji4.length - i - 1;
+			showtable1 = showtable1 + "<tr class=\"order_tr\"><td><div style=\"text-align:center\">"+tongji4[showi].data+"</div></td><td><div style=\"text-align:center; font-weight:bold;\" class=\"order_td_blue\">"+tongji4[showi].count1+"</div></td></tr>";
+		}
+	}
+	showtable1 = showtable1 + " </table>";
+	$("#showtable4").html(showtable1);
+	
+	prev = Number(page4) - 1;
+	if (prev < 1) prev = 1;
+	next = Number(page4) + 1;
+	if (next > page_max) next = page_max;
+	showpage = "<a onclick=\"getnum4('"+prev+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_left.png\"></a> "+ page4 + "/" + page_max +" <a onclick=\"getnum4('"+next+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_right.png\"></a>";
+	$("#showpage4").html(showpage);
+}
+getnum4(page4);
+
+$('[data-toggle="tooltip"]').tooltip();
+		</script>
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script>

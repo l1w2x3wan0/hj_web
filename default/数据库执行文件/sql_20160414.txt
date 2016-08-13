@@ -1,0 +1,1 @@
+﻿insert  into `dynamic_config`(`key_name`,`key_value`,`remark`) values ('ONLINE_SWITCH','1','用户在线判断开关(1开启0关闭)');

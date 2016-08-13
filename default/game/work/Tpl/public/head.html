@@ -1,0 +1,61 @@
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta content="点加互动" name="description">
+    <meta content="" name="author">
+    <meta content="webkit" name="renderer">	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">	<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <title>阿里版 - 游戏管理后台 </title>
+	
+	<link href="{$Think.const.CSS_PATH}order.css" rel="stylesheet">
+    <link href="{$Think.const.CSS_PATH}bootstrap.min.css" rel="stylesheet">
+    <link href="{$Think.const.CSS_PATH}metisMenu.min.css" rel="stylesheet">
+    <link href="{$Think.const.CSS_PATH}dataTables.bootstrap.css" rel="stylesheet">
+    <link href="{$Think.const.CSS_PATH}dataTables.responsive.css" rel="stylesheet">
+    <link href="{$Think.const.CSS_PATH}sb-admin-2.css" rel="stylesheet">
+    <link href="{$Think.const.CSS_PATH}font-awesome.min.css" rel="stylesheet">
+
+
+    <script src="{$Think.const.JS_PATH}jquery.min.js" type="text/javascript"></script>
+    <script src="{$Think.const.JS_PATH}bootstrap.min.js" type="text/javascript"></script>
+    <script src="{$Think.const.JS_PATH}metisMenu.min.js" type="text/javascript"></script>
+    <script src="{$Think.const.JS_PATH}jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="{$Think.const.JS_PATH}dataTables.bootstrap.min.js" type="text/javascript"></script>
+    <script src="{$Think.const.JS_PATH}sb-admin-2.js" type="text/javascript"></script>
+	<script src="__PUBLIC__/My97DatePicker/WdatePicker.js" type="text/javascript"></script> 
+
+
+
+</head>
+<body>
+
+<nav style="margin-bottom: 0" role="navigation" class="navbar navbar-default navbar-static-top">
+    <div class="navbar-header">
+        <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="#" class="navbar-brand">阿里版 - 游戏管理后台</a>
+    </div>
+	<div id="shenhe_info" style="float:left;color:#FF0000; font-weight:bold; padding-top:15px; padding-left:50px;">{$shenhe_msg}</div>
+    <ul class="nav navbar-top-links navbar-right">
+		<li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-user">
+                <li><a href="#"><i class="fa fa-user fa-fw"></i> <?php echo $_SESSION['username'];?></a>
+                </li>
+                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                </li>
+                <li class="divider"></li>
+                <li><a href="{:U('Login/logout')}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                </li>
+            </ul>
+            <!-- /.dropdown-user -->
+        </li>
+        <!-- /.dropdown -->
+    </ul>
+	
+	<include file = "public:left"/>
+</nav>	

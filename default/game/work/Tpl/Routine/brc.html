@@ -1,0 +1,128 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">百人场配置</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading" style="padding:10px;">
+                       <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							<if condition="$caozuo.pub eq 1"><a class="btn btn-primary btn-sm" href="javascript:;" onclick="notice_service();"><i class="fa fa-plus"></i> 通知服务器</a></if>
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <div class="form-group">
+
+										
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>    
+    
+                    </div>
+                    
+					<div class="panel-body">
+						<form name="form1" action="" method="post">
+						
+						<div style="width:97%; background-color:#FCFCFC; float:left; padding:10px; margin-bottom:10px;">
+						<table class="table-bordered"  style="width:100%; ">
+							 
+							<tr class="order_tr">
+								<volist	name="show_meno" id="vo" key="k" mod="2">
+								
+								<td height="45" width="15%"><div style="text-align:right; font-weight:bold;padding:5px;">{$vo.keymeno}</div></td>
+								<td width="35%"><div class="col-sm-8"><input type="text" class="form-control input-sm date" name="{$vo.keyname}" id="{$vo.keyname}" placeholder="{$vo.keymeno}" value="{$vo.keyvalue}"></div></td>
+								
+								<eq name="mod" value="1"></tr><tr class="order_tr"></eq>
+							    </volist>
+								
+							</tr>
+							
+							 
+							
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">修改原因</div></td>
+								<td colspan="3"><div class="col-sm-8"><input type="text" class="form-control" name="remark" id="remark" placeholder="请输入修改原因" value=""></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="50" colspan="4" ><div style="text-align:center;">
+								  <input type="submit" name="Submit" style=" font-size:14px; font-weight:bold; width:200px; height:40px;" value="修 改 参 数" />&nbsp;&nbsp;<input onclick="reconfig();" type="button" name="Submit" style=" font-size:14px; font-weight:bold; width:200px; height:40px;" value="恢 复 默 认" />
+								</div></td>
+							</tr>
+						</table>
+						</div>
+						
+						
+						</form>
+					</div>
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+<script>
+function reconfig(){
+
+	$("#minute1").val(60);
+	$("#coin1").val(100);
+	
+	$("#minute2").val(300);
+	$("#coin2").val(150);
+	
+	$("#minute3").val(600);
+	$("#coin3").val(300);
+	
+	$("#minute4").val(1200);
+	$("#coin4").val(600);
+	
+	$("#minute5").val(1800);
+	$("#coin5").val(900);
+	
+	$("#minute6").val(3000);
+	$("#coin6").val(1500);
+	
+	$("#minute7").val(3600);
+	$("#coin7").val(1800);
+
+}
+
+function notice_service(){
+		url = "{:U($By_tpl.'/notice_brc')}";
+		$.get(url, function(result){
+
+			if (result == "1"){
+				alert("通知服务器成功");
+			}else{
+				alert("通知服务器失败，请再试一次");
+			}
+		});
+		location.reload();
+}
+</script>
+		
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script> 

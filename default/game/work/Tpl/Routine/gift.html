@@ -1,0 +1,174 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">礼物配置</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading" style="padding:10px;">
+                       <div class="row">
+                            <div class="col-sm-10" style="padding-top:10px; color:#FF0000; font-weight:bold;">
+							
+							</div>
+                        </div>    
+    
+                    </div>
+                    
+					<div class="panel-body">
+						<form name="form1" action="" method="post">
+						
+						<div style="width:97%; background-color:#FCFCFC; float:left; padding:10px; margin-bottom:10px;">
+						<table class="table-bordered"  style="width:100%; ">
+							<tr class="order_tr">
+								<td height="35" width="10%"><div style="text-align:center; font-weight:bold;padding:5px;">ID</div></td>
+								<td width="18%"><div style="text-align:center; font-weight:bold;padding:5px;">名称</div></td>
+								<td width="18%"><div style="text-align:center; font-weight:bold;padding:5px;">使用金币数</div></td>
+								<td width="18%"><div style="text-align:center; font-weight:bold;padding:5px;">卖出金币数</div></td>
+								<td width="18%"><div style="text-align:center; font-weight:bold;padding:5px;">魅力值</div></div></td>
+								<td width="18%"><div style="text-align:center; font-weight:bold;padding:5px;">是否能卖(1是0否)</div></td>
+								
+							</tr>
+							<volist	name="list" id="vo" key="k" mod="2"> 
+							<tr <eq name="mod" value="1">bgcolor="#FFFBEC"</eq> class="order_tr">
+								
+								<td height="30" ><div style="text-align:center; ">{$vo.id}</div></td>
+								<td ><div style="text-align:center; "><input type="text" style="width:150px; height:25px; text-align:center;font-weight:bold;" name="name{$vo.id}" id="name{$vo.id}" placeholder="名称" value="{$vo['name']}"></div></td>
+								<td ><div style="text-align:center; "><input type="text" style="width:150px; height:25px; text-align:center;font-weight:bold;" name="buygold{$vo.id}" id="buygold{$vo.id}" placeholder="使用金币数" value="{$vo['buygold']}"></div></td>
+								<td ><div style="text-align:center; "><input type="text" style="width:150px; height:25px; text-align:center;font-weight:bold;" name="sellgold{$vo.id}" id="sellgold{$vo.id}" placeholder="卖出金币数" value="{$vo['sellgold']}"></div></td>
+								<td ><div style="text-align:center; " ><input type="text" style="width:150px; height:25px; text-align:center;font-weight:bold;" name="charm{$vo.id}" id="charm{$vo.id}" placeholder="魅力值" value="{$vo['charm']}"></div></td>
+								<td ><div style="text-align:center; " ><input type="text" style="width:150px; height:25px; text-align:center;font-weight:bold;" name="cansell{$vo.id}" id="cansell{$vo.id}" placeholder="是否能卖" value="{$vo.cansell}"></div></td>
+								
+							</tr>
+							
+							</volist> 
+							
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">修改原因</div></td>
+								<td colspan="5"><div class="col-sm-8"><input type="text" class="form-control" name="remark" id="remark" placeholder="请输入修改原因" value=""></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="50" colspan="6" ><div style="text-align:center;">
+								  <input type="submit" name="Submit" style=" font-size:14px; font-weight:bold; width:200px; height:40px;" value="修 改 参 数" />&nbsp;&nbsp;
+								</div></td>
+							</tr>
+						</table>
+						</div>
+						
+						</form>
+					</div>
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+<script>
+function reconfig(){
+
+	$("#value1000").val(1);
+	$("#reward1000").val(1000);
+	$("#name1000").val("上传头像");
+	$("#explain1000").val("在个人信息面板上传头像");
+	
+	$("#value1001").val(1);
+	$("#reward1001").val(3000);
+	$("#name1001").val("大家听我说");
+	$("#explain1001").val("发送喇叭达1次");
+	
+	$("#value1200").val(1);
+	$("#reward1200").val(3000);
+	$("#name1200").val("通杀");
+	$("#explain1200").val("玩牌时，获得豹子1次");
+	
+	$("#value1201").val(1);
+	$("#reward1201").val(3000);
+	$("#name1201").val("百无禁忌");
+	$("#explain1201").val("玩牌时，获得顺金1次");
+	
+	$("#value1202").val(1000);
+	$("#reward1202").val(12000);
+	$("#name1202").val("百夫长");
+	$("#explain1202").val("初级场胜利达到1000场");
+	
+	$("#value1203").val(1000);
+	$("#reward1203").val(40000);
+	$("#name1203").val("千人斩");
+	$("#explain1203").val("中级场胜利达到1000场");
+	
+	$("#value1204").val(1000);
+	$("#reward1204").val(200000);
+	$("#name1204").val("万人敌");
+	$("#explain1204").val("高级场胜利达到1000场");
+	
+	$("#value1205").val(10000);
+	$("#reward1205").val(150000);
+	$("#name1205").val("常胜将军");
+	$("#explain1205").val("胜利达到10000场");
+	
+	$("#value1100").val(1);
+	$("#reward1100").val(50);
+	$("#name1100").val("首胜");
+	$("#explain1100").val("任意场赢1局");
+	
+	$("#value1101").val(5);
+	$("#reward1101").val(250);
+	$("#name1101").val("小胜");
+	$("#explain1101").val("任意场赢5局");
+	
+	$("#value1102").val(15);
+	$("#reward1102").val(750);
+	$("#name1102").val("好运连连");
+	$("#explain1102").val("任意场赢15局");
+	
+	$("#value1103").val(30);
+	$("#reward1103").val(1500);
+	$("#name1103").val("天官赐福");
+	$("#explain1103").val("任意场赢30局");
+	
+	$("#value1104").val(10);
+	$("#reward1104").val(100);
+	$("#name1104").val("过把瘾");
+	$("#explain1104").val("任意场对战10局");
+	
+	$("#value1105").val(50);
+	$("#reward1105").val(500);
+	$("#name1105").val("每日消遣");
+	$("#explain1105").val("任意场对战50局");
+	
+	$("#value1106").val(90);
+	$("#reward1106").val(900);
+	$("#name1106").val("大师玩家");
+	$("#explain1106").val("任意场对战90局");
+	
+	$("#value1107").val(120);
+	$("#reward1107").val(1200);
+	$("#name1107").val("职业玩家");
+	$("#explain1107").val("任意场对战120局");
+	
+}
+
+</script>
+		
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script> 

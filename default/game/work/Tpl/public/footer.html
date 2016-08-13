@@ -1,0 +1,13 @@
+<script>
+function huo_shenhemsg() {  
+    $.get("{:U('Routine/shenhemsg')}", function(result){
+		$("#shenhe_info").html(result);
+	});
+	
+  	<!--setTimeout("huo_shenhemsg();", 60000);  -->
+}  
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">金币变化记录</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+				
+		<div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+				<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							<a href="{:U($By_tpl.'/goldchange','type=1')}"><b>金币实时变化记录</b></a>&nbsp;&nbsp;<a href="{:U($By_tpl.'/goldchange','type=2')}"><b>大金额金币变化记录</b></a>&nbsp;&nbsp;<a href="{:U($By_tpl.'/goldchange','type=3')}"><b><font color="#FF0000">金币变化记录</font></b></a>
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+									<div class="form-group">
+										<input type="text" class="form-control input-sm" name="user_id" placeholder="输入USERID" value="{$user_id}">
+                                        
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+									<th>用户UID</th>
+									<th>金币变动&nbsp;<a href="{:U($By_tpl.'/goldchange','type=3&sortscate=1&sortsflag=1')}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/goldchange','type=3&sortscate=1&sortsflag=2')}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+									<th>变动时间&nbsp;<a href="{:U($By_tpl.'/goldchange','type=3&sortscate=3&sortsflag=1')}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/goldchange','type=3&sortscate=3&sortsflag=2')}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <volist	name="list" id="vo">
+										<tr>
+                                            <td>{$vo.id}</td>
+											<td>{$vo.user_id}</td>
+											<td>{$vo.goldchange}</td>
+											<td>{$vo.changetime}</td>
+                                        </tr>
+
+                                        </volist>
+                                 </tbody>
+                            </table>
+							<div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+
+}   
+</script>
+
+<include file = "public:footer"/>

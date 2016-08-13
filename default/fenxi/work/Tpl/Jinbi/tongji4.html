@@ -1,0 +1,80 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">金币top100</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+
+		<div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th width="5%"><div style="text-align:center">ID</div></th>
+                                    <th width="10%"><div style="text-align:center">用户UID</div></th>
+									<th width="10%"><div style="text-align:center">总财富&nbsp;</div></th>
+									<th width="10%"><div style="text-align:center">金币数&nbsp;<a href="{:U($By_tpl.'/tongji4')}&sortscate=1&sortsflag=1"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/tongji4')}&sortscate=1&sortsflag=2"><img src="__PUBLIC__/images/red.gif" ></a></div></th>
+									<th width="10%"><div style="text-align:center">存款&nbsp;<a href="{:U($By_tpl.'/tongji4')}&sortscate=8&sortsflag=1"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/tongji4')}&sortscate=8&sortsflag=2"><img src="__PUBLIC__/images/red.gif" ></a></div></th>
+									<th width="10%"><div style="text-align:center">注册渠道&nbsp;<a href="{:U($By_tpl.'/tongji4')}&sortscate=2&sortsflag=1"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/tongji4')}&sortscate=2&sortsflag=2"><img src="__PUBLIC__/images/red.gif" ></a></div></th>
+									<th width="10%"><div style="text-align:center">充值总额&nbsp;<a href="{:U($By_tpl.'/tongji4')}&sortscate=3&sortsflag=1"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/tongji4')}&sortscate=3&sortsflag=2"><img src="__PUBLIC__/images/red.gif" ></a></div></th>
+									<th width="10%"><div style="text-align:center">总局数&nbsp;<a href="{:U($By_tpl.'/tongji4')}&sortscate=4&sortsflag=1"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/tongji4')}&sortscate=4&sortsflag=2"><img src="__PUBLIC__/images/red.gif" ></a></div></th>
+									
+									<th width="15%"><div style="text-align:center">注册时间&nbsp;<a href="{:U($By_tpl.'/tongji4')}&sortscate=6&sortsflag=1"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/tongji4')}&sortscate=6&sortsflag=2"><img src="__PUBLIC__/images/red.gif" ></a></div></th>
+									<th><div style="text-align:center">最近登录时间&nbsp;<a href="{:U($By_tpl.'/tongji4')}&sortscate=7&sortsflag=1"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/tongji4')}&sortscate=7&sortsflag=2"><img src="__PUBLIC__/images/red.gif" ></a></div></th>
+									
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <volist	name="list" id="vo">
+										<tr>
+                                            <td><div style="text-align:center">{$vo.id}</div></td>
+                                            <td><div style="text-align:center">{$vo.user_id}</div></td>
+											<td><div style="text-align:center">{$vo.sum01}</div></td>
+											<td><div style="text-align:center">{$vo.gold}</div></td>
+											<td><div style="text-align:center">{$vo.deposit}</div></td>
+											<td><div style="text-align:center">{$vo.channel}</div></td>
+											<td><div style="text-align:center">{$vo.total_pay_num}</div></td>
+											<td><div style="text-align:center">{$vo.pay_count}</div></td>
+											
+											<td><div style="text-align:center">{$vo.register_date}</div></td>
+											<td><div style="text-align:center">{$vo.last_login_date}</div></td>
+                                        </tr>
+
+                                        </volist>
+                                 </tbody>
+                            </table>
+							<div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+
+}   
+</script>
+
+<include file = "public:footer"/>

@@ -1,0 +1,171 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">老虎机详情</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <div class="form-group">
+										<input type="text" class="form-control input-sm date" name="user_id" id="user_id" placeholder="输入USERID" value="{$user_id}">&nbsp;
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="开始时间" value="{$date11}">
+                                        -
+                                        <input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="endTime" id="endTime" placeholder="结束时间" value="{$date12}">&nbsp;<a onclick="selday('1');" href="javascript:;">今日</a>&nbsp;|&nbsp;<a onclick="selday('-1');" href="javascript:;">昨日</a>&nbsp;|&nbsp;<a onclick="selday('7');" href="javascript:;">近7日</a>&nbsp;|&nbsp;<a onclick="selday('30');" href="javascript:;">近30日</a>&nbsp;
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>&nbsp;&nbsp;<a href="{:U($By_tpl.'/exceldo')}&beginTime={$date11}&endTime={$date12}&user_id={$user_id}" target="_blank"><img src="__PUBLIC__/images/daochu.png" ></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+					<div class="panel-body">
+                        <div class="table-responsive" style="width:100%;overflow:auto">
+                            <table class="table table-bordered" id="idall" >
+                                <thead>
+								<tr class="order_tr">
+									<th ><div style="text-align:center">USERID</div></th>
+									<th ><div style="text-align:center">类别</div></th>
+									<th ><div style="text-align:center">牌</div></th>
+									<th ><div style="text-align:center">牌型</div></th>
+									<th ><div style="text-align:center">投注金币数</div></th>
+									<th ><div style="text-align:center">系统结算</div></th>
+									<th ><div style="text-align:center">当前金币数</div></th>
+									<th ><div style="text-align:center">添加时间</div></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+										<tr class="order_tr">
+                                            <td height="50" align="center" ></td>
+											<td align="center" ></td>
+											<td align="center" ></td>
+											<td align="center" ></td>
+											<td align="center" style="padding-top:20px; font-weight:bold; color:#FF0000">{$sum[0]}</td>
+											<td align="center" style="padding-top:20px; font-weight:bold; color:#FF0000">{$sum[1]}</td>
+											<td align="center" ></td>
+											<td align="center" ></td>
+                                        </tr>
+										<volist	name="info" id="vo">
+                                        <tr class="order_tr">
+                                            <td height="35" align="center" style="padding-top:20px;">{$vo.user_id}</td>
+											<td align="center" style="padding-top:20px;">{$vo.type}</td>
+											<td align="center">{$vo.showcards}</td>
+											<td align="center" style="padding-top:20px;">{$vo.cardtype}</td>
+											<td align="center" style="padding-top:20px;">{$vo.goldnum}</td>
+											<td align="center" style="padding-top:20px;">{$vo.xtjs}</td>
+											<td align="center" style="padding-top:20px;">{$vo.curgold}</td>
+											<td align="center" style="padding-top:20px;">{$vo.disdate}</td>
+                                        </tr>
+										</volist>
+                                </tbody>
+                            </table>
+							
+							<div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+<script>
+function selday(id){
+	if (id=="1"){
+		$('#beginTime').val("{$seldate[0].date1}");
+		$('#endTime').val("{$seldate[0].date2}");
+	}else if (id=="-1"){
+		$('#beginTime').val("{$seldate[1].date1}");
+		$('#endTime').val("{$seldate[1].date2}");
+	}else if (id=="7"){
+		$('#beginTime').val("{$seldate[2].date1}");
+		$('#endTime').val("{$seldate[2].date2}");
+	}else if (id=="30"){
+		$('#beginTime').val("{$seldate[3].date1}");
+		$('#endTime').val("{$seldate[3].date2}");
+	}
+	document.form1.submit();
+}
+
+tongjiid = 'idall';
+function showtongji(id){
+	show1 = "#"+id;
+	show2 = "#"+tongjiid;
+	$(show2).hide();
+	$(show1).show();
+	tongjiid = id;
+	
+	if (id=="idall"){
+		$("#textall").attr("class","text01");
+		$("#textnew").attr("class","text02");
+		$("#textold").attr("class","text02");
+		$("#textall2").attr("class","text02");
+		$("#textnew2").attr("class","text02");
+		$("#textold2").attr("class","text02");
+	}else if (id=="idall2"){
+		$("#textall2").attr("class","text01");
+		$("#textnew").attr("class","text02");
+		$("#textold").attr("class","text02");
+		$("#textall").attr("class","text02");
+		$("#textnew2").attr("class","text02");
+		$("#textold2").attr("class","text02");
+	}else if (id=="idnew"){
+		$("#textnew").attr("class","text01");
+		$("#textall").attr("class","text02");
+		$("#textold").attr("class","text02");
+		$("#textall2").attr("class","text02");
+		$("#textnew2").attr("class","text02");
+		$("#textold2").attr("class","text02");
+	}else if (id=="idnew2"){
+		$("#textnew2").attr("class","text01");
+		$("#textall").attr("class","text02");
+		$("#textold").attr("class","text02");
+		$("#textall2").attr("class","text02");
+		$("#textnew").attr("class","text02");
+		$("#textold2").attr("class","text02");
+	}else if (id=="idold"){
+		$("#textold").attr("class","text01");
+		$("#textall").attr("class","text02");
+		$("#textnew").attr("class","text02");
+		$("#textall2").attr("class","text02");
+		$("#textnew2").attr("class","text02");
+		$("#textold2").attr("class","text02");
+	}else if (id=="idold2"){
+		$("#textold2").attr("class","text01");
+		$("#textall").attr("class","text02");
+		$("#textnew").attr("class","text02");
+		$("#textall2").attr("class","text02");
+		$("#textnew2").attr("class","text02");
+		$("#textold").attr("class","text02");
+	}
+	
+}
+
+</script>
+		
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script>

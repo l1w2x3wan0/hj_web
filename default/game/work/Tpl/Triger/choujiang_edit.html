@@ -1,0 +1,103 @@
+<include file = "public:head"/>
+ <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">编辑抽奖</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <form class="form-horizontal" method="POST" action="" id="editGoodsForm">
+                           <input type="hidden" name="id" value="{$info.id}">
+
+                            <div class="form-group">
+                                <label for="goods_name" class="col-sm-2 control-label">物品ID</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="goodsid" name="goodsid" placeholder="物品ID" value="{$info.goodsid}">
+                                </div>
+                            </div>
+							
+							
+							<div class="form-group">
+                                <label class="col-sm-2 control-label">开关</label>
+                                <div class="col-sm-10">
+                                                                            <label class="radio-inline">
+                                            <input type="radio" name="ison" value="1" <if condition="$info.ison eq 1">checked</if>> 启动
+                                        </label>
+                                                                            <label class="radio-inline">
+                                            <input type="radio" name="ison" value="0" <if condition="$info.ison eq 0">checked</if>> 关闭
+                                        </label>
+                                                                    </div>
+                            </div>
+							
+							<div class="form-group">
+                                <label for="goods_id" class="col-sm-2 control-label">奖励类型</label>
+                                <div class="col-sm-4">
+                                    <select name="awardtype" id="awardtype" style="height:30px;">
+										<option value="1" <if condition="$info.awardtype eq 1">selected</if>>金币</option>
+										<option value="2" <if condition="$info.awardtype eq 2">selected</if>>话费</option>
+										<option value="3" <if condition="$info.awardtype eq 3">selected</if>>礼物车</option>
+										<option value="4" <if condition="$info.awardtype eq 4">selected</if>>礼物飞机</option>
+									</select>
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="goods_name" class="col-sm-2 control-label">数值</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="awardnum" name="awardnum" placeholder="数值" value="{$info.awardnum}">
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="goods_name" class="col-sm-2 control-label">概率</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="rate" name="rate" placeholder="概率" value="{$info.rate}">
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="goods_id" class="col-sm-2 control-label">说明</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="memo" name="memo" placeholder="说明" value="memo">
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="goods_id" class="col-sm-2 control-label">修改原因</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="remark" name="remark" placeholder="修改原因">
+                                </div>
+                            </div>
+							
+							
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" id="editGoodsSubmit" class="btn btn-primary">提 交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+
+
+<include file = "public:footer"/>
+

@@ -1,0 +1,118 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">会员封号</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+		<if condition="$caozuo.add eq 1">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <form class="form-horizontal" method="POST" action="" id="addUserForm">
+
+							<div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">用户UID</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="user_id" name="user_id" placeholder="用户UID">
+                                </div>
+                            </div>
+							<if condition="$caozuo.pub eq 1">
+							<div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">操作</label>
+                                <div class="col-sm-4">
+                                    封号&nbsp;<input type="radio" name="enable" value="0" checked="checked" />&nbsp;&nbsp;
+                               	 	解封&nbsp;<input type="radio" name="enable" value="1" />
+                                </div>
+                            </div>
+							<else />
+							<input type="hidden" name="paygiveflag" value="1" />
+							</if>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" id="addUserSubmit" class="btn btn-primary">提 交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+		</if>
+		
+		<div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>用户UID</th>
+									<th>昵称</th>
+									<th>金币</th>
+									<th>存款</th>
+									<th>钻石</th>
+									<th>花</th>
+									<th>鸡蛋</th>
+									<th>汽车</th>
+									<th>房子</th>
+									<th>飞机</th>
+									<th>操作者</th>
+									<th>添加时间</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <volist	name="list" id="vo">
+										<tr>
+                                            <td>{$vo.id}</td>
+                                            <td>{$vo.user_id}</td>
+											<td>{$vo.nickname}</td>
+											<td>{$vo.gold}</td>
+											<td>{$vo.deposit}</td>
+											<td>{$vo.diamond}</td>
+											<td>{$vo.flower}</td>
+											<td>{$vo.aggs}</td>
+											<td>{$vo.car}</td>
+											<td>{$vo.villa}</td>
+											<td>{$vo.yacht}</td>
+											<td>{$vo.czr}</td>
+											<td>{$vo.addtime}</td>
+                                        </tr>
+
+                                        </volist>
+                                 </tbody>
+                            </table>
+							<div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+
+}   
+</script>
+
+<include file = "public:footer"/>

@@ -1,0 +1,1 @@
+<?php	return array ( 0 => 'id', 1 => 'data', 2 => 'tongji', 3 => 'addtime', 4 => 'flag', '_autoinc' => true, '_pk' => 'id', '_type' => array ( 'id' => 'int(11)', 'data' => 'date', 'tongji' => 'text', 'addtime' => 'int(7)', 'flag' => 'tinyint(3)', ), );?>

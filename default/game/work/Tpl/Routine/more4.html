@@ -1,0 +1,153 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">房间配置</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading" style="padding:10px;">
+                       <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							<if condition="$caozuo.pub eq 1"><if condition="$flag eq 0"><button type="button" id="Goodson" class="btn btn-primary">审核通过</button>&nbsp;<button type="button" id="Goodsoff" class="btn btn-primary">审核取消</button></if></if>
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    
+                                </form>
+                            </div>
+                        </div>    
+    
+                    </div>
+                    
+					<div class="panel-body">
+						<form name="form1" action="" method="post">
+						
+						<volist	name="list" id="vo" key="k"> 
+						<div id="showdata{$k}" style="width:18%; background-color:#FCFCFC; float:left; padding:10px; margin-right:10px;">
+						<table class="table table-bordered" >
+							
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">房间名称</div></td>
+								<td><div style="text-align:left;">{$vo.show8}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">排序</div></td>
+								<td><div style="text-align:left;">{$vo.show1}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">底注</div></td>
+								<td><div style="text-align:left;">{$vo.show2}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">最大下注</div></td>
+								<td><div style="text-align:left;">{$vo.show9}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">准入下限</div></td>
+								<td><div style="text-align:left;">{$vo.show3}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">准入上限</div></td>
+								<td><div style="text-align:left;">{$vo.show4}</div></td>
+							</tr>
+		
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">可比轮数</div></td>
+								<td><div style="text-align:left;">{$vo.show5}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">最大轮数</div></td>
+								<td><div style="text-align:left;">{$vo.show6}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">房间税收</div></td>
+								<td><div style="text-align:left;">{$vo.show7}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">房间类型</div></td>
+								<td><div style="text-align:left;">{$vo.show10}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">图片地址</div></td>
+								<td><div style="text-align:left;">{$vo.show11}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">响应时间</div></td>
+								<td><div style="text-align:left;">{$vo.show12}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">在线人数</div></td>
+								<td><div style="text-align:left;">{$vo.show13}</div></td>
+							</tr>
+							
+							<volist	name="vo.show14" id="vo1" key="k1">
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;"><if condition="$k1 eq 1">筹码类型</if></div></td>
+								<td><div style="text-align:left;">{$vo1.show}</div></td>
+							</tr>
+							</volist>
+							
+							
+						</table>
+						</div>
+						</volist> 
+						
+						
+						<div style="width:97%; background-color:#FCFCFC; float:left; padding:10px; margin-top:10px;">
+						<table class="table-bordered"  style="width:100%; ">
+							<tr class="order_tr">
+								<td height="35" width="12%"><div style="text-align:right; font-weight:bold;padding:5px;">修改原因：</div></td>
+							    <td ><div style="text-align:left;padding:5px;">{$info.remark} </div></td>
+							</tr>
+							
+						</table>
+						</div>
+						</form>
+					</div>
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+	<script>
+	$('#Goodson').click(function() {
+
+		$.get("{:U($By_tpl.'/shenhe_more','act=on&id='.$id)}", function(result){
+			if (result == "1"){alert("审核完成");} else {alert("审核失败");}
+			location.reload();
+		});
+	});
+	
+	$('#Goodsoff').click(function() {
+
+		$.get("{:U($By_tpl.'/shenhe_more','act=off&id='.$id)}", function(result){
+			if (result == "1"){alert("审核完成");} else {alert("审核失败");}
+			location.reload();
+		});
+	});
+	
+	</script>
+		
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script> 

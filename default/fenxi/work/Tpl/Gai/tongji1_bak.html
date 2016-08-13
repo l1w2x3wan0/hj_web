@@ -1,0 +1,203 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">日报表</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- 日报开始 -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							<a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title=""><b>运营日报</b></a>
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <input type="hidden" name="flag" value="" />
+									<div class="form-group">
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="日报时间" value="{$beginTime}">
+                                        
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table-bordered" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <td height="40"></td>
+                                    <td><div style="text-align:center; font-weight:bold; ">{$beginTime}</div></td>
+                                    <td><div style="text-align:center; font-weight:bold; line-height:20px;">环比上日<br>{$hbr}</div></td>
+                                    <td><div style="text-align:center; font-weight:bold; line-height:20px;">同比上周<br>{$tbz}</div></td>
+									<td width="2" bgcolor="#666666"></td>
+                                    <volist	name="zrq" id="v1">
+									<td><div style="text-align:center; font-weight:bold;">{$v1.date}</div></td>
+									</volist>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <volist	name="showlanmu" id="v2">    
+										<if condition="$v2.flag eq 0">
+										<tr>
+                                          <td height="25" colspan="12" bgcolor="#CCCCCC"><div style="text-align:left; padding-left:15px;">{$v2.name}</div></td>
+                                        </tr>
+										<else />
+										<tr>
+                                            <td height="35"><div style="text-align:center;">{$v2.name}</div></td>
+                                            
+											<td><div style="text-align:center;">{$v2.today}</div></td>
+                                            <td><div style="text-align:center; color:<if condition="$v2.hbr_flag eq 1">#FF0000<else />#33CC00</if>">
+											<if condition="$v2.hbr_flag neq 9">
+											<if condition="$v2.hbr_flag eq 2"><img src="__PUBLIC__/images/green.gif"></if>
+											<if condition="$v2.hbr_flag eq 1"><img src="__PUBLIC__/images/red.gif"></if>
+											<if condition="$v2.hbr_flag eq 0">--</if>
+											&nbsp;{$v2.hbr}&nbsp;%
+											</if>
+											</div></td>
+                                            <td><div style="text-align:center; color:<if condition="$v2.tbz_flag eq 1">#FF0000<else />#33CC00</if>">
+											<if condition="$v2.tbz_flag neq 9">
+											<if condition="$v2.tbz_flag eq 2"><img src="__PUBLIC__/images/green.gif"></if>
+											<if condition="$v2.tbz_flag eq 1"><img src="__PUBLIC__/images/red.gif"></if>
+											<if condition="$v2.tbz_flag eq 0">--</if>
+											&nbsp;{$v2.tbz}&nbsp;%
+											</if>
+											</div></td>
+											<th width="2" bgcolor="#666666"></th>
+											<volist	name="zrq" id="v1">
+   												<volist	name="v2.day" id="v3">
+													<eq name="v1.date" value="$v3.date">
+											<td><div style="text-align:center;">{$v3[show]}</div></td>
+													</eq>
+												</volist>
+											</volist>
+                                        </tr>
+										</if>
+                                    </volist>   
+                                </tbody>
+                            </table>
+                         </div>
+                    </div>
+					
+					
+					
+
+                </div>
+            	<!-- 日报结束 -->
+				<!-- 渠道开始 -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" >
+							<a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title=""><b>渠道日报</b></a>
+							</div>
+							<div class="col-sm-8">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table-bordered" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <td height="40"><div style="text-align:center; font-weight:bold; ">渠道名称</div></td>
+                                    <td><div style="text-align:center; font-weight:bold; line-height:20px;"><font color="color:#95DDFF">设备激活(台)</font><br>{$beginTime}</div></td>
+                                    <td><div style="text-align:center; font-weight:bold; line-height:20px;">环比上日<br>{$hbr}</div></td>
+                                    <td><div style="text-align:center; font-weight:bold; line-height:20px;">同比上周<br>{$tbz}</div></td>
+									<td width="2" bgcolor="#666666"></td>
+									<td><div style="text-align:center; font-weight:bold; line-height:20px;"><font color="color:#95DDFF">新增用户(个)</font><br>{$beginTime}</div></td>
+                                    <td><div style="text-align:center; font-weight:bold; line-height:20px;">环比上日<br>{$hbr}</div></td>
+                                    <td><div style="text-align:center; font-weight:bold; line-height:20px;">同比上周<br>{$tbz}</div></td>
+									<td width="2" bgcolor="#666666"></td>
+									<td><div style="text-align:center; font-weight:bold; line-height:20px;"><font color="color:#95DDFF">收入(元)</font><br>{$beginTime}</div></td>
+                                    <td><div style="text-align:center; font-weight:bold; line-height:20px;">环比上日<br>{$hbr}</div></td>
+                                    <td><div style="text-align:center; font-weight:bold; line-height:20px;">同比上周<br>{$tbz}</div></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <volist	name="tongji2" id="vo2">    
+								<tr>
+                                    <td height="35"><div style="text-align:center;">{$vo2.channel}</div></td>
+                                    <td><div style="text-align:center;">{$vo2.c11}</div></td>
+                                    <td><div style="text-align:center; color:<if condition="$vo2.hbr_flag1 eq 1">#FF0000<else />#33CC00</if>">
+									<if condition="$vo2.hbr_flag1 eq 2"><img src="__PUBLIC__/images/green.gif"></if>
+									<if condition="$vo2.hbr_flag1 eq 1"><img src="__PUBLIC__/images/red.gif"></if>
+									<if condition="$vo2.hbr_flag1 eq 0">--</if>
+									&nbsp;{$vo2.hbr1}&nbsp;%
+									</div></td>
+                                    <td><div style="text-align:center; color:<if condition="$vo2.tbz_flag1 eq 1">#FF0000<else />#33CC00</if>">
+									<if condition="$vo2.tbz_flag1 eq 2"><img src="__PUBLIC__/images/green.gif"></if>
+									<if condition="$vo2.tbz_flag1 eq 1"><img src="__PUBLIC__/images/red.gif"></if>
+									<if condition="$vo2.tbz_flag1 eq 0">--</if>
+									&nbsp;{$vo2.tbz1}&nbsp;%
+									</div></td>
+									<td width="2" bgcolor="#666666"></td>
+									<td><div style="text-align:center;">{$vo2.c12}</div></td>
+                                    <td><div style="text-align:center; color:<if condition="$vo2.hbr_flag2 eq 1">#FF0000<else />#33CC00</if>">
+									<if condition="$vo2.hbr_flag2 eq 2"><img src="__PUBLIC__/images/green.gif"></if>
+									<if condition="$vo2.hbr_flag2 eq 1"><img src="__PUBLIC__/images/red.gif"></if>
+									<if condition="$vo2.hbr_flag2 eq 0">--</if>
+									&nbsp;{$vo2.hbr2}&nbsp;%
+									</div></td>
+                                    <td><div style="text-align:center; color:<if condition="$vo2.tbz_flag2 eq 1">#FF0000<else />#33CC00</if>">
+									<if condition="$vo2.tbz_flag2 eq 2"><img src="__PUBLIC__/images/green.gif"></if>
+									<if condition="$vo2.tbz_flag2 eq 1"><img src="__PUBLIC__/images/red.gif"></if>
+									<if condition="$vo2.tbz_flag2 eq 0">--</if>
+									&nbsp;{$vo2.tbz2}&nbsp;%
+									</div></td>
+									<td width="2" bgcolor="#666666"></td>
+									<td><div style="text-align:center; ">{$vo2.s1}</div></td>
+                                    <td><div style="text-align:center; color:<if condition="$vo2.hbr_flag3 eq 1">#FF0000<else />#33CC00</if>">
+									<if condition="$vo2.hbr_flag3 eq 2"><img src="__PUBLIC__/images/green.gif"></if>
+									<if condition="$vo2.hbr_flag3 eq 1"><img src="__PUBLIC__/images/red.gif"></if>
+									<if condition="$vo2.hbr_flag3 eq 0">--</if>
+									&nbsp;{$vo2.hbr3}&nbsp;%
+									</div></td>
+                                    <td><div style="text-align:center; color:<if condition="$vo2.tbz_flag3 eq 1">#FF0000<else />#33CC00</if>">
+									<if condition="$vo2.tbz_flag3 eq 2"><img src="__PUBLIC__/images/green.gif"></if>
+									<if condition="$vo2.tbz_flag3 eq 1"><img src="__PUBLIC__/images/red.gif"></if>
+									<if condition="$vo2.tbz_flag3 eq 0">--</if>
+									&nbsp;{$vo2.tbz3}&nbsp;%
+									</div></td>
+                                 </tr>
+								 </volist>
+                                </tbody>
+                            </table>
+                         </div>
+                    </div>
+                </div>
+            	<!-- 渠道结束 -->
+			</div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+    <script type="text/javascript">
+        //jQuery(function () {
+            // 时间设置
+            //jQuery('.date').datetimepicker({
+                //timeFormat: "HH:mm:ss",
+                //dateFormat: "yy-mm-dd"
+            //});
+        //});
+    </script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>

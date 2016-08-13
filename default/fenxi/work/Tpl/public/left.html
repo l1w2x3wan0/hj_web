@@ -1,0 +1,32 @@
+<div role="navigation" class="navbar-default sidebar">
+        <div class="sidebar-nav navbar-collapse">
+            <ul id="side-menu" class="nav">
+                <li class="sidebar-search">
+                    <div class="input-group custom-search-form">
+                        <input type="text" placeholder="Search..." class="form-control">
+                                <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-tiny-pad">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                    </div>
+                    <!-- /input-group -->
+                </li>
+				
+				<volist	name="show_lanmu" id="sl">
+                <li <eq name="sl.id" value="$left_css">class="active"</eq>>
+                    <a href="#"><i class="fa {$sl.lanmu_css} fa-fw"></i>{$sl.lanmu_name}<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse <eq name="sl.id" value="$left_css">in</eq>">
+                        <volist	name="sl.sub" id="slsub">
+						<li>
+                            <a href="{$slsub.url}">{$slsub.lanmu_name}</a>
+                        </li>
+						</volist>
+                    </ul>
+                </li>
+				</volist>
+                
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>

@@ -1,0 +1,90 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">添加栏目</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <form class="form-horizontal" method="POST" action="" id="addUserForm">
+
+                            <div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">栏目层级</label>
+                                <div class="col-sm-4">
+                                    <select name="lanmu_num" style="height:30px;">
+										<option value="0">顶级</option>
+										<volist name="lanmu" id="vo">
+										<option value="{$vo.id}">{$vo.lanmu_name}</option>
+										</volist>
+									</select>
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">栏目名称</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="lanmu_name" name="lanmu_name" placeholder="栏目名称">
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">栏目方法</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="lanmu_m" name="lanmu_m" placeholder="栏目方法" >
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">栏目操作</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="lanmu_a" name="lanmu_a" placeholder="栏目操作" >
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">栏目样式</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="lanmu_css" name="lanmu_css" placeholder="栏目样式" >
+                                </div>
+                            </div>
+							<div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">栏目排序</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="lanmu_sort" name="lanmu_sort" value="0" placeholder="栏目排序" >
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" id="addUserSubmit" class="btn btn-primary">提 交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+	    
+</script>
+
+<include file = "public:footer"/>

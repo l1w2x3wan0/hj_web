@@ -1,0 +1,70 @@
+﻿.order_tr th,td{font-size:12px;}
+.order_td_red{color:#ff0000;}
+.order_td_blue{color:#88AEFF;}
+.showpage{padding-left:10px;padding-top:10px;height:40px;text-align:left;}
+.showpage a,span{padding-left:5px;}
+.order_tr th{valign:middle}
+.order_td{border:1px solid #ddd;}
+.order_show td{font-size:12px;padding-top:25px;border:1px solid #ddd;}
+.text01, .text01:focus, .text01:hover{color:#ff0000; font-weight:bold;}
+.text02{font-weight:bold;}
+
+.table-my {
+    margin-bottom: 20px;
+    max-width: 100%;
+    width: 100%;
+}
+.table-my tr td{
+	border: 1px solid #ddd;
+	line-height: 1.42857;
+    padding: 8px;
+    vertical-align: top;
+}
+a.pic_but {
+  display: block;
+  text-decoration: none;
+  height: 22px;
+  width: 27px;
+  line-height: 22px;
+  background: url(../images/button_bg.png);
+  padding: 0 10px;
+  margin-top: 8px;
+  color: #616D73;
+  border: 1px solid #9FA3A8;
+  cursor: pointer;
+  border-radius: 3px;
+}
+a.pic_but.l {
+  margin: 8px 10px 0 0;
+}
+a.pic_but {
+  height: 24px;
+  padding: 0 5px;
+}
+a.pic_but font.pic_icon {
+  background: url(../images/icon_pic.png) no-repeat left center;
+  width: 15px;
+}
+a.pic_but font {
+  height: 24px;
+  display: block;
+  text-indent: -9999em;
+}
+a:hover.pic_but font.table_icon, a.hover.pic_but font.table_icon {
+  background: url(../images/icon_table_hover.png) no-repeat left center;
+}
+a.pic_but font.table_icon {
+  background: url(../images/icon_table.png) no-repeat left center;
+  width: 15px;
+}
+a:hover.pic_but, a.hover.pic_but {
+  background: #727A85;
+  border-color: #596066;
+  box-shadow: 0 1px 3px #616A71 inset;
+  padding: 0 5px;
+}
+
+.log_line_on{background: url(../images/log_line_on.png) no-repeat 0 0; width:27px; height:26px; border:0;}
+.log_line{background: url(../images/log_line.png) no-repeat 0 0; width:27px; height:26px; border:0;}
+.log_table{background: url(../images/log_table.png) no-repeat 0 0; width:27px; height:26px; border:0;}
+.log_table_on{background: url(../images/log_table_on.png) no-repeat 0 0; width:27px; height:26px; border:0;}

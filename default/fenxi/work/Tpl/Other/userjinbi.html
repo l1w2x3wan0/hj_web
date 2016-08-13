@@ -1,0 +1,115 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">金币日志</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+		
+		<div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+						<div class="row">
+                            <div class="col-sm-8">
+								<table>
+									<tr>
+										<td height="25" width="8%"><a href="{:U($By_tpl.'/userlist','act=jinbi&module=1&id='.$id)}">注册账号</a></td>
+										<td width="8%"><a href="{:U($By_tpl.'/userlist','act=jinbi&module=2&id='.$id)}">每日登入</a></td>
+										<td width="8%"><a href="{:U($By_tpl.'/userlist','act=jinbi&module=3&id='.$id)}">游戏</a></td>
+										<td width="8%"><a href="{:U($By_tpl.'/userlist','act=jinbi&module=4&id='.$id)}">破产</a></td>
+										<td width="8%"><a href="{:U($By_tpl.'/userlist','act=jinbi&module=5&id='.$id)}">充值</a></td>
+										<td width="8%"><a href="{:U($By_tpl.'/userlist','act=jinbi&module=6&id='.$id)}">在线宝箱</a></td>
+										<td width="8%"><a href="{:U($By_tpl.'/userlist','act=jinbi&module=7&id='.$id)}">任务赠送</a></td>
+										<td width="8%"><a href="{:U($By_tpl.'/userlist','act=jinbi&module=8&id='.$id)}">AI申请</a></td>
+										<td width="8%"><a href="{:U($By_tpl.'/userlist','act=jinbi&module=9&id='.$id)}">后台操作</a></td>
+										<td width="8%"><a href="{:U($By_tpl.'/userlist','act=jinbi&module=10&id='.$id)}">大喇叭</a></td>
+										<td width="8%"><a href="{:U($By_tpl.'/userlist','act=jinbi&module=11&id='.$id)}">道具发送</a></td>
+										<td width="8%"><a href="{:U($By_tpl.'/userlist','act=jinbi&module=12&id='.$id)}">机器人金币变动</a></td>
+									</tr>
+									<tr>
+										<td height="25"><a href="{:U($By_tpl.'/userlist','act=jinbi&module=13&id='.$id)}">赠送礼物</a></td>
+										<td><a href="{:U($By_tpl.'/userlist','act=jinbi&module=14&id='.$id)}">变卖礼物</a></td>
+										<td><a href="{:U($By_tpl.'/userlist','act=jinbi&module=15&id='.$id)}">老虎机买</a></td>
+										<td><a href="{:U($By_tpl.'/userlist','act=jinbi&module=16&id='.$id)}">绑定账号</a></td>
+										<td><a href="{:U($By_tpl.'/userlist','act=jinbi&module=17&id='.$id)}">T人金币数</a></td>
+										<td><a href="{:U($By_tpl.'/userlist','act=jinbi&module=18&id='.$id)}">时时彩</a></td>
+										<td><a href="{:U($By_tpl.'/userlist','act=jinbi&module=19&id='.$id)}">转账</a></td>
+										<td><a href="{:U($By_tpl.'/userlist','act=jinbi&module=20&id='.$id)}">抽奖</a></td>
+										<td><a href="{:U($By_tpl.'/userlist','act=jinbi&module=21&id='.$id)}">存取款日志</a></td>
+										<td><a href="{:U($By_tpl.'/userlist','act=jinbi&module=22&id='.$id)}">创建私人房</a></td>
+										<td><a href="{:U($By_tpl.'/userlist','act=jinbi&module=23&id='.$id)}">钻石兑换金币</a></td>
+										<td><a href="{:U($By_tpl.'/userlist','act=jinbi&module=24&id='.$id)}">AI用户推广奖励</a></td>
+									</tr>
+
+								</table>
+							</div>
+							<div class="col-sm-4">
+                                <form name="form1" class="form-inline pull-right" method="get" action="">
+									<input type="hidden" name="m" value="Other">
+									<input type="hidden" name="a" value="userlist">
+									<input type="hidden" name="act" value="jinbi">
+									<input type="hidden" name="id" value="{$id}">
+                                    <div class="form-group">
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="date11" id="date11" placeholder="选择月份的某一天" value="{$date11}">
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+					<div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+
+								<tr>
+                                   <td><div style="text-align:center;">ID</div></td>
+								   <td><div style="text-align:center;">用户UID</div></td>
+								   <td><div style="text-align:center;">变化后金币</div></td>
+                                   <td><div style="text-align:center;">变化前金币</div></td>
+								   <td><div style="text-align:center;">变动金币数</div></td>
+								   <td><div style="text-align:center;">场景</div></td>
+								   <td><div style="text-align:center;">时间</div></td>
+                                </tr>
+								<volist	name="info" id="vo">
+								<tr>
+                                   <td><div style="text-align:center;">{$vo.id}</div></td>
+								   <td><div style="text-align:center;">{$vo.user_id}</div></td>
+                                   <td><div style="text-align:center;">{$vo.aftergold}</div></td>
+								   <td><div style="text-align:center;">{$vo.beforegold}</div></td>
+								   <td><div style="text-align:center;">{$vo.changegold}</div></td>
+								   <td><div style="text-align:center;">{$vo.memo}</div></td>
+								   <td><div style="text-align:center;">{$vo.date}</div></td>
+								</tr>
+								</volist>	
+                            </table>
+							<div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+
+}   
+</script>
+
+<include file = "public:footer"/>

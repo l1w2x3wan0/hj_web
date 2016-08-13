@@ -1,0 +1,74 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">{$uid}回复详情</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                
+            </div>
+        </div>
+		
+		<div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+
+                                <tbody>
+                                        <volist	name="list" id="vo">
+										<tr>
+											<td><div <if condition="$vo.showflag eq 1">style="padding-left:200px;"</if>>{$vo.showuid}&nbsp;<font color="#<if condition="$vo.showflag eq 1">669900<else />CC9900</if>"><b>{$vo.message}</b></font>&nbsp;&nbsp;&nbsp;&nbsp;{$vo.addtime}</div></td>
+                                        </tr>
+
+                                        </volist>
+										<tr>
+										  <td><div style="padding-left:200px;"><input type="text" name="recall" id="recall" style="width:300px;" placeholder="客服回复" />&nbsp;<input type="submit" name="recalldo" id="recalldo" value="回复" /></div></td>
+                                        </tr>
+                                 </tbody>
+                            </table>
+							<div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+$("#recalldo").click(function(){
+  recall = $("#recall").val();
+  uid = "{$uid}";
+  if (recall != ""){
+	  url = "{:U($By_tpl.'/Usersperklist')}"+"&act=recalldo&uid="+uid+"&recall="+recall;
+	  $.get(url, function(result){
+			if (result == "1"){
+				location.reload();
+			}else{
+				alert("回复失败，请重试");
+			}
+	  });
+  }
+});
+</script>
+
+<include file = "public:footer"/>

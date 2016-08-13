@@ -1,0 +1,72 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">奖券top100</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+
+		<div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th width="5%"><div style="text-align:center">ID</div></th>
+                                    <th width="15%"><div style="text-align:center">用户UID</div></th>
+									<th width="15%"><div style="text-align:center">昵称</div></th>
+									<th width="15%"><div style="text-align:center">奖券&nbsp;<a href="{:U($By_tpl.'/gift')}&sortscate=1&sortsflag=1"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/gift')}&sortscate=1&sortsflag=2"><img src="__PUBLIC__/images/red.gif" ></a></div></th>
+									
+									<th width="15%"><div style="text-align:center">注册时间&nbsp;</div></th>
+									<th><div style="text-align:center">最近登录时间&nbsp;</div></th>
+									
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <volist	name="list" id="vo">
+										<tr>
+                                            <td><div style="text-align:center">{$vo.id}</div></td>
+                                            <td><div style="text-align:center">{$vo.user_id}</div></td>
+											<td><div style="text-align:center">{$vo.nickname}</div></td>
+											<td><div style="text-align:center">{$vo.ticket}</div></td>
+																						
+											<td><div style="text-align:center">{$vo.register_date}</div></td>
+											<td><div style="text-align:center">{$vo.last_login_date}</div></td>
+                                        </tr>
+
+                                        </volist>
+                                 </tbody>
+                            </table>
+							<div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+
+}   
+</script>
+
+<include file = "public:footer"/>

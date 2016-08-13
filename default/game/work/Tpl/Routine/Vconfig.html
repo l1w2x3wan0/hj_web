@@ -1,0 +1,220 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">VIP配置</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading" style="padding:10px;">
+                       <div class="row">
+                            <div class="col-sm-10" style="padding-top:10px; color:#FF0000; font-weight:bold;">
+							
+							</div>
+                        </div>    
+    
+                    </div>
+                    
+					<div class="panel-body">
+						<form name="form1" action="" method="post">
+						
+						<div style="width:97%; background-color:#FCFCFC; float:left; padding:10px; margin-bottom:10px;">
+						<table class="table-bordered"  style="width:100%; ">
+							<tr class="order_tr">
+								<td height="35" width="6%"><div style="text-align:center; font-weight:bold;padding:5px;">VIP等级</div></td>
+								<td width="9%"><div style="text-align:center; font-weight:bold;padding:5px;">支付金额<br>(单位:元)</div></td>
+								<td width="9%"><div style="text-align:center; font-weight:bold;padding:5px;">保险箱额度</div></td>
+								<td width="9%"><div style="text-align:center; font-weight:bold;padding:5px;">好友上限</div></td>
+								<td width="9%"><div style="text-align:center; font-weight:bold;padding:5px;">签到加赠</div></td>
+								<td width="9%"><div style="text-align:center; font-weight:bold;padding:5px;">转账手续费<br>(-1是不能转)</div></div></td>
+								<td width="9%"><div style="text-align:center; font-weight:bold;padding:5px;">单笔转账限额<br>(0是不能转)</div></td>
+								<td width="9%"><div style="text-align:center; font-weight:bold;padding:5px;">免费抽奖次数</div></td>
+								<td width="12%"><div style="text-align:center; font-weight:bold;padding:5px;">售卖最大<br>单笔金币</div></td>
+								<td width="9%"><div style="text-align:center; font-weight:bold;padding:5px;">允许同时<br>在售笔数</div></td>
+							</tr>
+							<volist	name="list" id="vo" key="k" mod="2"> 
+							<tr <eq name="mod" value="1">bgcolor="#FFFBEC"</eq> class="order_tr">
+								
+								<td height="35" ><div style="text-align:center; ">VIP{$vo.viplevel}</div></td>
+								
+								<td ><div style="text-align:center; ">{$vo.viplevel}:<input type="text" style="width:100px; height:25px; text-align:center;font-weight:bold;" name="paycount{$vo.viplevel}" id="paycount{$vo.viplevel}" placeholder="支付金额" value="{$vo['paycount'] / 100}"></div></td>
+								<td ><div style="text-align:center; ">{$vo.viplevel}:<input type="text" style="width:100px; height:25px; text-align:center;font-weight:bold;" name="maxsavegold{$vo.viplevel}" id="maxsavegold{$vo.viplevel}" placeholder="保险箱额度" value="{$vo['maxsavegold']}"></div></td>
+								<td ><div style="text-align:center; ">{$vo.viplevel}:<input type="text" style="width:100px; height:25px; text-align:center;font-weight:bold;" name="maxfriendnum{$vo.viplevel}" id="maxfriendnum{$vo.viplevel}" placeholder="好友上限" value="{$vo['maxfriendnum']}"></div></td>
+								<td ><div style="text-align:center; " >{$vo.viplevel}:<input type="text" style="width:100px; height:25px; text-align:center;font-weight:bold;" name="logingivegold{$vo.viplevel}" id="logingivegold{$vo.viplevel}" placeholder="签到加赠" value="{$vo['logingivegold']}"></div></td>
+								<td ><div style="text-align:center; " >{$vo.viplevel}:<input type="text" style="width:100px; height:25px; text-align:center;font-weight:bold;" name="transfergoldrate{$vo.viplevel}" id="transfergoldrate{$vo.viplevel}" placeholder="转账手续费" value="{$vo.transfergoldrate}"></div></td>
+								<td ><div style="text-align:center; " >{$vo.viplevel}:<input type="text" style="width:100px; height:25px; text-align:center;font-weight:bold;" name="maxtransfergold{$vo.viplevel}" id="maxtransfergold{$vo.viplevel}" placeholder="单笔转账限额" value="{$vo.maxtransfergold}"></div></td>
+								<td ><div style="text-align:center; " >{$vo.viplevel}:<input type="text" style="width:100px; height:25px; text-align:center;font-weight:bold;" name="raffleticketnum{$vo.viplevel}" id="raffleticketnum{$vo.viplevel}" placeholder="免费抽奖次数" value="{$vo.raffleticketnum}"></div></td>
+								<td ><div style="text-align:center; " >{$vo.viplevel}:<input type="text" style="width:100px; height:25px; text-align:center;font-weight:bold;" name="maxsellgold{$vo.viplevel}" id="maxsellgold{$vo.viplevel}" placeholder="售卖最大单笔金币" value="{$vo.maxsellgold}">&nbsp;<input type="checkbox" style="width:15px; height:15px;" name="maxsellflag{$vo.viplevel}" id="maxsellflag{$vo.viplevel}" value="1" <if condition="$vo.maxsellflag eq 1">checked="checked"</if>  />
+								</div></td>
+								<td ><div style="text-align:center; " >{$vo.viplevel}:<input type="text" style="width:100px; height:25px; text-align:center;font-weight:bold;" name="maxsellnum{$vo.viplevel}" id="maxsellnum{$vo.viplevel}" placeholder="允许同时在售笔数" value="{$vo.maxsellnum}"></div></td>
+
+								
+							</tr>
+							
+							</volist> 
+							
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">修改原因</div></td>
+								<td colspan="9"><div class="col-sm-8"><input type="text" class="form-control" name="remark" id="remark" placeholder="请输入修改原因" value=""></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="50" colspan="10" ><div style="text-align:center;">
+								  <input type="submit" name="Submit" style=" font-size:14px; font-weight:bold; width:200px; height:40px;" value="修 改 参 数" />&nbsp;&nbsp;<input onclick="reconfig();" type="button" name="Submit" style=" font-size:14px; font-weight:bold; width:200px; height:40px;" value="恢 复 默 认" />
+								</div></td>
+							</tr>
+						</table>
+						</div>
+						</form>
+					</div>
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+<script>
+function reconfig(){
+
+	$("#paycount0").val(0);
+	$("#maxsavegold0").val(200000);
+	$("#maxfriendnum0").val(5);
+	$("#logingivegold0").val(0);
+	$("#raffleticketnum0").val(1);
+	$("#maxtransfergold0").val(0);
+	$("#maxsellgold0").val(0);
+	$("#maxsellnum0").val(0);
+	
+	$("#paycount1").val(10);
+	$("#maxsavegold1").val(1000000);
+	$("#maxfriendnum1").val(10);
+	$("#logingivegold1").val(5000);
+	$("#raffleticketnum1").val(2);
+	$("#maxtransfergold1").val(0);
+	$("#maxsellgold1").val(0);
+	$("#maxsellnum1").val(0);
+	
+	$("#paycount2").val(20);
+	$("#maxsavegold2").val(3000000);
+	$("#maxfriendnum2").val(20);
+	$("#logingivegold2").val(10000);
+	$("#raffleticketnum2").val(3);
+	$("#maxtransfergold2").val(0);
+	$("#maxsellgold2").val(100000);
+	$("#maxsellnum2").val(10);
+	
+	$("#paycount3").val(50);
+	$("#maxsavegold3").val(5000000);
+	$("#maxfriendnum3").val(30);
+	$("#logingivegold3").val(20000);
+	$("#raffleticketnum3").val(4);
+	$("#maxtransfergold3").val(200000);
+	$("#maxsellgold3").val(100000);
+	$("#maxsellnum3").val(15);
+	
+	$("#paycount4").val(300);
+	$("#maxsavegold4").val(10000000);
+	$("#maxfriendnum4").val(40);
+	$("#logingivegold4").val(30000);
+	$("#raffleticketnum4").val(5);
+	$("#maxtransfergold4").val(500000);
+	$("#maxsellgold4").val(500000);
+	$("#maxsellnum4").val(20);
+	
+	$("#paycount5").val(600);
+	$("#maxsavegold5").val(20000000);
+	$("#maxfriendnum5").val(50);
+	$("#logingivegold5").val(50000);
+	$("#raffleticketnum5").val(6);
+	$("#maxtransfergold5").val(1000000);
+	$("#maxsellgold5").val(500000);
+	$("#maxsellnum5").val(25);
+	
+	$("#paycount6").val(1500);
+	$("#maxsavegold6").val(50000000);
+	$("#maxfriendnum6").val(60);
+	$("#logingivegold6").val(100000);
+	$("#raffleticketnum6").val(7);
+	$("#maxtransfergold6").val(3000000);
+	$("#maxsellgold6").val(500000);
+	$("#maxsellnum6").val(30);
+	
+	$("#paycount7").val(5000);
+	$("#maxsavegold7").val(100000000);
+	$("#maxfriendnum7").val(80);
+	$("#logingivegold7").val(200000);
+	$("#raffleticketnum7").val(8);
+	$("#maxtransfergold7").val(10000000);
+	$("#maxsellgold7").val(1000000);
+	$("#maxsellnum7").val(35);
+	
+	$("#paycount8").val(10000);
+	$("#maxsavegold8").val(200000000);
+	$("#maxfriendnum8").val(100);
+	$("#logingivegold8").val(500000);
+	$("#raffleticketnum8").val(9);
+	$("#maxtransfergold8").val(50000000);
+	$("#maxsellgold8").val(1000000);
+	$("#maxsellnum8").val(40);
+	
+	$("#paycount9").val(20000);
+	$("#maxsavegold9").val(500000000);
+	$("#maxfriendnum9").val(120);
+	$("#logingivegold9").val(800000);
+	$("#raffleticketnum9").val(10);
+	$("#maxtransfergold9").val(100000000);
+	$("#maxsellgold9").val(5000000);
+	$("#maxsellnum9").val(45);
+	
+	$("#paycount10").val(40000);
+	$("#maxsavegold10").val(1000000000);
+	$("#maxfriendnum10").val(140);
+	$("#logingivegold10").val(1000000);
+	$("#raffleticketnum10").val(11);
+	$("#maxtransfergold10").val(200000000);
+	$("#maxsellgold10").val(5000000);
+	$("#maxsellnum10").val(50);
+	
+	$("#paycount11").val(80000);
+	$("#maxsavegold11").val(1500000000);
+	$("#maxfriendnum11").val(160);
+	$("#logingivegold11").val(1200000);
+	$("#raffleticketnum11").val(12);
+	$("#maxtransfergold11").val(500000000);
+	$("#maxsellgold11").val(10000000);
+	$("#maxsellnum11").val(55);
+	
+	$("#paycount12").val(120000);
+	$("#maxsavegold12").val(2000000000);
+	$("#maxfriendnum12").val(200);
+	$("#logingivegold12").val(2000000);
+	$("#raffleticketnum12").val(13);
+	$("#maxtransfergold12").val(1000000000);
+	$("#maxsellgold12").val(20000000);
+	$("#maxsellnum12").val(60);
+
+}
+
+</script>
+		
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script> 

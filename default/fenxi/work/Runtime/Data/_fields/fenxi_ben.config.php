@@ -1,0 +1,1 @@
+<?php	return array ( 0 => 'id', 1 => 'config_name', 2 => 'config_value', 3 => 'config_meno', '_autoinc' => true, '_pk' => 'id', '_type' => array ( 'id' => 'int(7)', 'config_name' => 'varchar(50)', 'config_value' => 'varchar(255)', 'config_meno' => 'varchar(50)', ), );?>

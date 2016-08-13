@@ -1,0 +1,83 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+
+        <div class="row">
+            <div class="col-lg-12">
+			
+				<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">异常数据统计
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <div class="form-group">
+										<input type="text" class="form-control input-sm date" id="user_id" name="user_id" placeholder="用户USER_ID" value="{$user_id}">&nbsp;&nbsp;<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="查询日期" value="{$date12}">
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+		
+		<div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+
+								<tr>
+                                   <td><div style="text-align:center;">ID</div></td>
+								   <td><div style="text-align:center;">用户UID</div></td>
+								   <td><div style="text-align:center;">变化后金币</div></td>
+                                   <td><div style="text-align:center;">变化前金币</div></td>
+								   <td><div style="text-align:center;">变动金币数</div></td>
+								   <td><div style="text-align:center;">场景</div></td>
+								   <td><div style="text-align:center;">房间</div></td>
+								   <td><div style="text-align:center;">说明</div></td>
+								   <td><div style="text-align:center;">时间</div></td>
+                                </tr>
+								<volist	name="list" id="vo">
+								<tr>
+                                   <td><div style="text-align:center;">{$vo.id}</div></td>
+								   <td><div style="text-align:center;">{$vo.user_id}</div></td>
+                                   <td><div style="text-align:center;">{$vo.aftergold}</div></td>
+								   <td><div style="text-align:center;">{$vo.beforegold}</div></td>
+								   <td><div style="text-align:center;">{$vo.changegold}</div></td>
+								   <td><div style="text-align:center;">{$vo.module}</div></td>
+								   <td><div style="text-align:center;">{$vo.room}</div></td>
+								   <td><div style="text-align:center;">{$vo.memo}</div></td>
+								   <td><div style="text-align:center;">{$vo.date}</div></td>
+								</tr>
+								</volist>	
+                            </table>
+							<div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+
+}   
+</script>
+
+<include file = "public:footer"/>

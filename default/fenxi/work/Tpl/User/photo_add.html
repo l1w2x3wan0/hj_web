@@ -1,0 +1,137 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">添加管理员</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <form class="form-horizontal" method="POST" action="" id="addUserForm"  enctype="multipart/form-data">
+							<input type="hidden" name="permissions" value="all">
+                            <div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">图片上传</label>
+                                <div class="col-sm-4">
+                                    <input type="file"  name="photo[]">
+									<input type="file"  name="photo[]">
+									<input type="file"  name="photo[]">
+									<input type="file"  name="photo[]">
+									<input type="file"  name="photo[]">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" id="addUserSubmit" class="btn btn-primary">提 交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+	    function build_html(status,info,operation){
+		if(status === 1){
+            var html = [
+                '<div class="modal-header">',
+                    '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>',
+                    '<h4 class="modal-title" id="gridSystemModalLabel">' + operation + '</h4>',
+                '</div>',
+                '<div class="modal-body">',
+                    '<div class="container-fluid">',
+                        '<div class="row">',
+                            '<div class="col-md-2">',
+                                '<button type="button" class="btn btn-success btn-circle">',
+                                    '<i class="fa fa-check"></i>',
+                                '</button>',
+                            '</div>',
+                            '<div class="col-md-8"> 成功 </div>',
+                        '</div>',
+                    '</div>',
+                '</div>',
+            ].join('');
+		}
+		else{
+            var html = [
+                '<div class="modal-header">',
+                    '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>',
+                    '<h4 class="modal-title" id="gridSystemModalLabel">' + operation + '</h4>',
+                '</div>',
+                '<div class="modal-body">',
+                    '<div class="container-fluid">',
+                        '<div class="row">',
+                            '<div class="col-md-2">',
+                                '<button type="button" class="btn btn-danger btn-circle">',
+                                    '<i class="fa fa-times"></i>',
+                                '</button>',
+                            '</div>',
+                            '<div class="col-md-8"> ' + info + ' </div>',
+                        '</div>',
+                    '</div>',
+                '</div>',
+            ].join('');
+		}
+		return html;
+	}
+    // ajax form拦截提交事件 
+	$('#addUserSubmit').click(function(){
+		var options = {
+			dataType: 'json',
+			timeout: 3000,
+			success: function (data) {
+				var html = build_html(data.status,data.info,data.operation);
+				$('.modal-content').html(html);
+                $('#postTip').modal('show');
+
+				setTimeout( function(){
+                    if(data.status === 1)  //成功
+                    {
+                        var url = data.url;
+                        var hostname = window.location.hostname;
+                        var re = url.indexOf(hostname);
+                        if(re != -1)
+                        {
+                            window.location = url;
+                        }
+                        else{
+                            window.location = '{:U('Game/Game')}';
+                        }
+                    }
+                },3000);
+
+			},
+			error: function(){
+				var html = build_html(0, '服务器端异常', '操作');
+				$('.modal-content').html(html);
+                $('#postTip').modal('show');
+				//setTimeout("location.reload()",2000);
+			}
+		};
+		$('#addUserForm').ajaxForm(options);
+
+	});
+ });
+</script>
+
+<include file = "public:footer"/>

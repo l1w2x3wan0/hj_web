@@ -1,0 +1,58 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">添加渠道限制用户&nbsp;
+				<a href="{:U('Other/channel')}" data-toggle="tooltip" data-placement="bottom" title=""><b>返回渠道列表</b></a>&nbsp;
+				<a href="{:U('Other/limituser')}" data-toggle="tooltip" data-placement="bottom" title=""><b>渠道限制用户列表</b></a>&nbsp;</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <form class="form-horizontal" method="POST" action="" id="addUserForm">
+
+                            
+							<div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">限制用户USER_ID</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="user_id" name="user_id" placeholder="限制用户USER_ID">
+                                </div>
+                            </div>
+							
+
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" id="addUserSubmit" class="btn btn-primary">提 交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+	    
+</script>
+
+<include file = "public:footer"/>

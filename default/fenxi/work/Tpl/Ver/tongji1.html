@@ -1,0 +1,370 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">版本分布&nbsp;&nbsp;&nbsp;&nbsp; <a href="index.php?m=Ver&a=addversion">新增版本</a> (当前统计版本：{$version_now})</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- 图表结束 -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							<a onclick="showtongji('dau');" href="javascript:;" data-toggle="tooltip" data-placement="bottom" id="textdau" class="text01" title="第一次启动应用的用户（以设备号为判断标准）">新增用户</a> | 
+							<a onclick="showtongji('wau');" href="javascript:;" data-toggle="tooltip" data-placement="bottom" id="textwau" class="text02" title="启动过应用的用户（去重），启动过一次的用户即视为活跃用户，包括新用户与老用户">活跃用户</a> | 
+							<a onclick="showtongji('mau');" href="javascript:;" data-toggle="tooltip" data-placement="bottom" id="textmau" class="text02" title="打开应用视为启动。完全退出或后台运行超过30s后再次进入应用视为一次新的启动">启动次数</a>
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <input type="hidden" name="flag" value="" />
+									<div class="form-group">
+										<input type="text" class="form-control input-sm" name="channel" id="channel" placeholder="输入渠道号" value="{$channel}">&nbsp;
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="开始时间" value="{$date11}">
+                                        -
+                                        <input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="endTime" id="endTime" placeholder="结束时间" value="{$date12}">&nbsp;<a onclick="selday('1');" href="javascript:;">今日</a>&nbsp;|&nbsp;<a onclick="selday('-1');" href="javascript:;">昨日</a>&nbsp;|&nbsp;<a onclick="selday('7');" href="javascript:;">近7日</a>&nbsp;|&nbsp;<a onclick="selday('30');" href="javascript:;">近30日</a>&nbsp;
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body" id="iddau">
+                        <div id="container" style="min-width: 82%; height: 395px; padding-right:10px; margin: 0 auto"></div>
+                    </div>
+					
+					<div class="panel-body" id="idwau" style="display:none;">
+                        <div id="container2" style="min-width: 82%; height: 395px; padding-right:10px; margin: 0 auto"></div>
+                    </div>
+					
+					<div class="panel-body" id="idmau" style="display:none;">
+                        <div id="container3" style="min-width: 82%; height: 395px; padding-right:10px; margin: 0 auto"></div>
+                    </div>
+					
+
+                </div>
+				<!-- 图表结束 -->
+				
+				<!-- 表格开始 -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							</div>
+							<div class="col-sm-8">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body" id="tabledau">
+						<div id="showtable" class="table-responsive"></div>
+                    </div>
+					
+					<div class="panel-body" id="tablewau" style="display:none;">
+						<div id="showtable2" class="table-responsive"></div>
+                    </div>
+					
+					<div class="panel-body" id="tablemau" style="display:none;">
+						<div id="showtable3" class="table-responsive"></div>
+                    </div>
+					
+
+                </div>
+				<!-- 表格结束 -->
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+
+		<script type="text/javascript">
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: '新增用户'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: [{$data1[0]}]//这里应该输入时间
+        },
+        yAxis: {
+            title: {
+                text: '人数统计/(人)'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: false
+                },
+                enableMouseTracking: true
+            }
+        },
+        series: [{$data1[1]}]
+
+    });
+	
+	$('#container2').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: '活跃用户'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: [{$data2[0]}]//这里应该输入时间
+        },
+        yAxis: {
+            title: {
+                text: '人数统计/(人)'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: false
+                },
+                enableMouseTracking: true
+            }
+        },
+        series: [{$data2[1]}]
+    });
+	
+	$('#container3').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: '启动次数'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: [{$data3[0]}]//这里应该输入时间
+        },
+        yAxis: {
+            title: {
+                text: '人数统计/(人)'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: false
+                },
+                enableMouseTracking: true
+            }
+        },
+        series: [{$data3[1]}]
+    });
+});
+
+function selday(id){
+	if (id=="1"){
+		$('#beginTime').val("{$seldate[0].date1}");
+		$('#endTime').val("{$seldate[0].date2}");
+	}else if (id=="-1"){
+		$('#beginTime').val("{$seldate[1].date1}");
+		$('#endTime').val("{$seldate[1].date2}");
+	}else if (id=="7"){
+		$('#beginTime').val("{$seldate[2].date1}");
+		$('#endTime').val("{$seldate[2].date2}");
+	}else if (id=="30"){
+		$('#beginTime').val("{$seldate[3].date1}");
+		$('#endTime').val("{$seldate[3].date2}");
+	}
+	document.form1.submit();
+}
+
+var showid = 'container';
+function showdiv(id,flag){
+	show1 = "#"+id;
+	show2 = "#"+showid;
+	$(show2).hide();
+	$(show1).show();
+	if (id=="container"){
+		$("#showtable").hide();
+	}
+	if (id=="container2"){
+		$("#showtable2").hide();
+	}
+	if (id=="container3"){
+		$("#showtable3").hide();
+	}
+	if (id=="container4"){
+		$("#showtable4").hide();
+	}
+	showid = id;
+	if (flag=="1"){
+		tempid = "showtable";
+		temp1 = "#showpage1";
+		temp2 = "#log_table";
+		temp3 = "#log_line";
+	}else if (flag=="2"){
+		tempid = "showtable2";
+		temp1 = "#showpage2";
+		temp2 = "#log_table2";
+		temp3 = "#log_line2";
+	}else if (flag=="3"){
+		tempid = "showtable3";
+		temp1 = "#showpage3";
+		temp2 = "#log_table3";
+		temp3 = "#log_line3";
+	}else if (flag=="4"){
+		tempid = "showtable4";
+		temp1 = "#showpage4";
+		temp2 = "#log_table4";
+		temp3 = "#log_line4";
+	}
+
+	if (id==tempid){
+		$(temp1).show();
+		$(temp2).attr("class","log_table_on");
+		$(temp3).attr("class","log_line");
+	}else{
+		$(temp1).hide();
+		$(temp2).attr("class","log_table");
+		$(temp3).attr("class","log_line_on");
+	}
+}
+
+tongjiid = 'dau';
+function showtongji(id){
+	show1 = "#id"+id;
+	show2 = "#id"+tongjiid;
+	$(show2).hide();
+	$(show1).show();
+	
+	show3 = "#table"+id;
+	show4 = "#table"+tongjiid;
+	$(show4).hide();
+	$(show3).show();
+		
+	show5 = "#text"+id;
+	show6 = "#text"+tongjiid;
+	$(show5).attr("class","text01");
+	$(show6).attr("class","text02");
+	
+	tongjiid = id;
+}
+
+var tongji1={$tongji1};
+page_max = {$pagesize};
+function getnum(page1){
+	showtable1 = "<table class=\"table table-bordered\"><tr class=\"order_tr\"><td ><div style=\"text-align:center; \">日期</div></td>";
+	td = 1;
+	for (i=0; i<tongji1[0].str.length; i++){
+		showtable1 = showtable1 + "<td ><div style=\"text-align:center; \">"+tongji1[0].str[i].version+"</div></td>";
+		td = td + 1;
+	}
+	showtable1 = showtable1 + "</tr>";
+	
+	for (i=(page1-1)*10; i<page1*10; i++){
+		if (i<tongji1.length){
+			showi = tongji1.length - i - 1;
+			showtable1 = showtable1 + "<tr class=\"order_tr\"><td><div style=\"text-align:center\">"+tongji1[showi].data+"</div></td>";
+			for (j=0; j<tongji1[showi].str.length; j++){
+				showtable1 = showtable1 + "<td ><div style=\"text-align:center; \">"+tongji1[showi].str[j].count1+"</div></td>";
+			}
+			showtable1 = showtable1 + "</tr>";
+		}
+	}
+	prev = Number(page1) - 1;
+	if (prev < 1) prev = 1;
+	next = Number(page1) + 1;
+	if (next > page_max) next = page_max;
+	showtable1 = showtable1 + "<tr class=\"order_tr\"><td colspan=\""+td+"\" ><div style=\"text-align:right; padding-right:10px;\"><a onclick=\"getnum('"+prev+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_left.png\"></a> "+ page1 + "/" + page_max +" <a onclick=\"getnum('"+next+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_right.png\"></a></div></td></tr>";
+	showtable1 = showtable1 + " </table>";
+	$("#showtable").html(showtable1);
+
+}
+getnum(1);
+
+function getnum2(page1){
+	showtable1 = "<table class=\"table table-bordered\"><tr class=\"order_tr\"><td ><div style=\"text-align:center; \">日期</div></td>";
+	td = 1;
+	for (i=0; i<tongji1[0].str.length; i++){
+		showtable1 = showtable1 + "<td ><div style=\"text-align:center; \">"+tongji1[0].str[i].version+"</div></td>";
+		td = td + 1;
+	}
+	showtable1 = showtable1 + "</tr>";
+	
+	for (i=(page1-1)*10; i<page1*10; i++){
+		if (i<tongji1.length){
+			showi = tongji1.length - i - 1;
+			showtable1 = showtable1 + "<tr class=\"order_tr\"><td><div style=\"text-align:center\">"+tongji1[showi].data+"</div></td>";
+			for (j=0; j<tongji1[showi].str.length; j++){
+				showtable1 = showtable1 + "<td ><div style=\"text-align:center; \">"+tongji1[showi].str[j].count2+"</div></td>";
+			}
+			showtable1 = showtable1 + "</tr>";
+		}
+	}
+	prev = Number(page1) - 1;
+	if (prev < 1) prev = 1;
+	next = Number(page1) + 1;
+	if (next > page_max) next = page_max;
+	showtable1 = showtable1 + "<tr class=\"order_tr\"><td colspan=\""+td+"\" ><div style=\"text-align:right; padding-right:10px;\"><a onclick=\"getnum2('"+prev+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_left.png\"></a> "+ page1 + "/" + page_max +" <a onclick=\"getnum2('"+next+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_right.png\"></a></div></td></tr>";
+	showtable1 = showtable1 + " </table>";
+	$("#showtable2").html(showtable1);
+
+}
+getnum2(1);
+
+function getnum3(page1){
+	showtable1 = "<table class=\"table table-bordered\"><tr class=\"order_tr\"><td ><div style=\"text-align:center; \">日期</div></td>";
+	td = 1;
+	for (i=0; i<tongji1[0].str.length; i++){
+		showtable1 = showtable1 + "<td ><div style=\"text-align:center; \">"+tongji1[0].str[i].version+"</div></td>";
+		td = td + 1;
+	}
+	showtable1 = showtable1 + "</tr>";
+	
+	for (i=(page1-1)*10; i<page1*10; i++){
+		if (i<tongji1.length){
+			showi = tongji1.length - i - 1;
+			showtable1 = showtable1 + "<tr class=\"order_tr\"><td><div style=\"text-align:center\">"+tongji1[showi].data+"</div></td>";
+			for (j=0; j<tongji1[showi].str.length; j++){
+				showtable1 = showtable1 + "<td ><div style=\"text-align:center; \">"+tongji1[showi].str[j].count3+"</div></td>";
+			}
+			showtable1 = showtable1 + "</tr>";
+		}
+	}
+	prev = Number(page1) - 1;
+	if (prev < 1) prev = 1;
+	next = Number(page1) + 1;
+	if (next > page_max) next = page_max;
+	showtable1 = showtable1 + "<tr class=\"order_tr\"><td colspan=\""+td+"\" ><div style=\"text-align:right; padding-right:10px;\"><a onclick=\"getnum3('"+prev+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_left.png\"></a> "+ page1 + "/" + page_max +" <a onclick=\"getnum3('"+next+"');\" href=\"javascript:;\"><img src=\"__PUBLIC__/images/page_right.png\"></a></div></td></tr>";
+	showtable1 = showtable1 + " </table>";
+	$("#showtable3").html(showtable1);
+
+}
+getnum3(1);
+
+$('[data-toggle="tooltip"]').tooltip();
+		</script>
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script>

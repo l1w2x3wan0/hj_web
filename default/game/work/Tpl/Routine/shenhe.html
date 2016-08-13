@@ -1,0 +1,107 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">审核基本配置</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        
+						<div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th ><div style="text-align:center">ID</div></th>
+									<th ><div style="text-align:center">状态</div></th>
+									<th ><div style="text-align:center">修改类型</div></th>
+                                    <th ><div style="text-align:center">提交时间</div></th>
+									<th ><div style="text-align:center">提交者</div></th>
+                                    <th ><div style="text-align:center">备注</div></th>
+									<th ><div style="text-align:center">提交者IP</div></th>
+									<th ><div style="text-align:center">查看配置详情</div></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <volist	name="list" id="vo">
+										<tr>
+                                            <td><div style="text-align:center">{$vo.id}</div></td>
+											<td><div style="text-align:center">{$vo.flagshow}</div></td>
+                                            <td><div style="text-align:center">{$vo.showcate}</div></td>
+											<td><div style="text-align:center">{$vo.addtime}</div></td>
+											<td><div style="text-align:center">{$vo.username}</div></td>
+											<td><div style="text-align:center">{$vo.remark}</div></td>
+											<td><div style="text-align:center">{$vo.userip}</div></td>
+                                            <td><div style="text-align:center"><if condition="$caozuo.edit eq 1"><a href="{:U($By_tpl.'/shenhe_more','id='.$vo['id'])}" target="_blank">查看配置详情</a></if> <if condition="$caozuo.pub eq 1"><if condition="$vo.flag eq 0"> | <a onclick="shenheon('{$vo.id}');" href="javascript:;">审核通过</a> | <a onclick="shenheoff('{$vo.id}');" href="javascript:;">审核取消</a></if><if condition="$vo.notice eq 0"><if condition="($vo.cate neq 4) and ($vo.cate neq 11) and ($vo.cate neq 12) and ($vo.cate neq 13) and ($vo.cate neq 14) and ($vo.cate neq 15) and ($vo.cate neq 16) and ($vo.cate neq 17) and ($vo.cate neq 18) and ($vo.cate neq 19) and ($vo.cate neq 20) and ($vo.cate neq 21) and ($vo.cate neq 22) and ($vo.cate neq 23) and ($vo.cate neq 24) and ($vo.cate neq 25) and ($vo.cate neq 26) and ($vo.cate neq 26) and ($vo.cate neq 28)"> | <a onclick="notice_service('{$vo.id}','{$vo.flag}','{$vo.cate}');" href="javascript:;">通知服务器</a></if></if></if></div></td>
+                                        </tr>
+                                        </volist>
+                                </tbody>
+                            </table>
+							
+							<div class="showpage">{$pageshow}</div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+	<script>
+	function shenheon(id){
+		url = "{:U($By_tpl.'/shenhe_more','act=on')}" + "&id="+ id;
+		if (confirm('您确定审核通过该纪录吗？')){
+			$.get(url, function(result){
+				if (result == "1"){alert("审核完成");} else {alert("审核失败");}
+				location.reload();
+			});
+		}
+	}
+	
+	function shenheoff(id){
+		url = "{:U($By_tpl.'/shenhe_more','act=off')}" + "&id="+ id;
+		if (confirm('您确定审核取消该纪录吗？')){
+			$.get(url, function(result){
+				if (result == "1"){alert("审核完成");} else {alert("审核失败");}
+				location.reload();
+			});
+		}
+	}
+	
+	function notice_service(id,flag,cate){
+		
+		if (flag == "0"){
+			alert("请先审核");
+		}else{
+		
+			url = "{:U($By_tpl.'/notice')}" + "&id="+ id + "&flag="+ cate;
+			$.get(url, function(result){
+	
+				if (result == "1"){
+					alert("通知服务器成功");
+				}else{
+					alert("通知服务器失败，请再试一次");
+				}
+				location.reload();
+			});
+		}
+	}
+	</script>
+
+<include file = "public:footer"/>

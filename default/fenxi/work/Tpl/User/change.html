@@ -1,0 +1,47 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">用户列表</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>用户名</th>
+                                    <th>角色</th>
+                                    <th>状态</th>
+                                    <th>创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+										<tr>
+                                            <td>{$user.id}</td>
+                                            <td>{$user.username}</td>
+                                            <td>{$user.jsname}</td>
+                                            <td>{$user.status}</td>
+                                            <td>{$user.created_at}</td>
+                                            <td><if condition="$caozuo.edit eq 1"><a href="{:U('User/change_pwd','id='.$user['id'])}">修改密码</a></if></td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                                                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+<include file = "public:footer"/>

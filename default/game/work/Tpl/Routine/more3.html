@@ -1,0 +1,299 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">发牌参数配置</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading" style="padding:10px;">
+                       <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							<if condition="$caozuo.pub eq 1"><if condition="$flag eq 0"><button type="button" id="Goodson" class="btn btn-primary">审核通过</button>&nbsp;<button type="button" id="Goodsoff" class="btn btn-primary">审核取消</button></if>&nbsp;<if condition="$notice eq 0"><button type="button" id="Goodsnotice" class="btn btn-primary">通知服务器</button></if></if>
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    
+                                </form>
+                            </div>
+                        </div>    
+    
+                    </div>
+                    
+					<div class="panel-body">
+						<form name="form1" action="" method="post">
+						
+						<div id="showdata1" style="width:32%; background-color:#FCFCFC; float:left; padding:10px; margin-right:10px;">
+						<table class="table table-bordered" >
+							
+							<tr class="order_tr">
+								<td colspan="2" height="35"><div style="text-align:center;">房间<b>1</b>参数</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">去掉最小注数</div></td>
+								<td><div style="text-align:left;">{$info.delminnum1}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">去掉最大牌概率</div></td>
+								<td><div style="text-align:left;">{$info.delmax1rate1}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">去掉第二大牌概率</div></td>
+								<td><div style="text-align:left;">{$info.delmax2rate1}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">去掉第三大牌概率</div></td>
+								<td><div style="text-align:left;">{$info.delmax3rate1}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">玩牌局数1小于</div></td>
+								<td><div style="text-align:left;">{$info.playcount11}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">从第几注开始随机</div></td>
+								<td><div style="text-align:left;">{$info.startpos11}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">玩牌局数2小于</div></td>
+								<td><div style="text-align:left;">{$info.playcount21}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">从第几注开始随机</div></td>
+								<td><div style="text-align:left;">{$info.startpos21}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">玩牌局数3小于</div></td>
+								<td><div style="text-align:left;">{$info.playcount31}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">从第几注开始随机</div></td>
+								<td><div style="text-align:left;">{$info.startpos31}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">玩牌局数4小于</div></td>
+								<td><div style="text-align:left;">{$info.playcount41}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">从第几注开始随机</div></td>
+								<td><div style="text-align:left;">{$info.startpos41}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">玩牌局数5小于</div></td>
+								<td><div style="text-align:left;">{$info.playcount51}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">从第几注开始随机</div></td>
+								<td><div style="text-align:left;">{$info.startpos51}</div></td>
+							</tr>
+							
+						</table>
+						</div>
+						
+						<div id="showdata2" style="width:32%; background-color:#FCFCFC; float:left; padding:10px; margin-right:10px;">
+						<table class="table table-bordered" >
+							
+							<tr class="order_tr">
+								<td colspan="2" height="35"><div style="text-align:center;">房间<b>2</b>参数</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">去掉最小注数</div></td>
+								<td><div style="text-align:left;">{$info.delminnum2}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">去掉最大牌概率</div></td>
+								<td><div style="text-align:left;">{$info.delmax1rate2}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">去掉第二大牌概率</div></td>
+								<td><div style="text-align:left;">{$info.delmax2rate2}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">去掉第三大牌概率</div></td>
+								<td><div style="text-align:left;">{$info.delmax3rate2}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">玩牌局数1小于</div></td>
+								<td><div style="text-align:left;">{$info.playcount12}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">从第几注开始随机</div></td>
+								<td><div style="text-align:left;">{$info.startpos12}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">玩牌局数2小于</div></td>
+								<td><div style="text-align:left;">{$info.playcount22}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">从第几注开始随机</div></td>
+								<td><div style="text-align:left;">{$info.startpos22}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">玩牌局数3小于</div></td>
+								<td><div style="text-align:left;">{$info.playcount32}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">从第几注开始随机</div></td>
+								<td><div style="text-align:left;">{$info.startpos32}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">玩牌局数4小于</div></td>
+								<td><div style="text-align:left;">{$info.playcount42}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">从第几注开始随机</div></td>
+								<td><div style="text-align:left;">{$info.startpos42}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">玩牌局数5小于</div></td>
+								<td><div style="text-align:left;">{$info.playcount52}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">从第几注开始随机</div></td>
+								<td><div style="text-align:left;">{$info.startpos52}</div></td>
+							</tr>
+							
+						</table>
+						</div>
+						
+						<div id="showdata3" style="width:32%; background-color:#FCFCFC; float:left; padding:10px; margin-right:10px;">
+						<table class="table table-bordered" >
+							
+							<tr class="order_tr">
+								<td colspan="2" height="35"><div style="text-align:center;">房间<b>3</b>参数</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">去掉最小注数</div></td>
+								<td><div style="text-align:left;">{$info.delminnum3}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">去掉最大牌概率</div></td>
+								<td><div style="text-align:left;">{$info.delmax1rate3}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">去掉第二大牌概率</div></td>
+								<td><div style="text-align:left;">{$info.delmax2rate3}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">去掉第三大牌概率</div></td>
+								<td><div style="text-align:left;">{$info.delmax3rate3}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">玩牌局数1小于</div></td>
+								<td><div style="text-align:left;">{$info.playcount13}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">从第几注开始随机</div></td>
+								<td><div style="text-align:left;">{$info.startpos13}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">玩牌局数2小于</div></td>
+								<td><div style="text-align:left;">{$info.playcount23}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">从第几注开始随机</div></td>
+								<td><div style="text-align:left;">{$info.startpos23}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">玩牌局数3小于</div></td>
+								<td><div style="text-align:left;">{$info.playcount33}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">从第几注开始随机</div></td>
+								<td><div style="text-align:left;">{$info.startpos33}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">玩牌局数4小于</div></td>
+								<td><div style="text-align:left;">{$info.playcount43}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">从第几注开始随机</div></td>
+								<td><div style="text-align:left;">{$info.startpos43}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">玩牌局数5小于</div></td>
+								<td><div style="text-align:left;">{$info.playcount53}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="30"><div style="text-align:right; padding-top:5px;">从第几注开始随机</div></td>
+								<td><div style="text-align:left;">{$info.startpos53}</div></td>
+							</tr>
+							
+						</table>
+						</div>
+						
+						
+						<div style="width:97%; background-color:#FCFCFC; float:left; padding:10px; margin-top:10px;">
+						<table class="table-bordered"  style="width:100%; ">
+							<tr class="order_tr">
+								<td height="35" width="12%"><div style="text-align:right; font-weight:bold;padding:5px;">修改原因：</div></td>
+							    <td ><div style="text-align:left;padding:5px;">{$info.remark} </div></td>
+							</tr>
+							
+						</table>
+						</div>
+						</form>
+					</div>
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+<script>
+	$('#Goodson').click(function() {
+
+		$.get("{:U($By_tpl.'/shenhe_more','act=on&id='.$id)}", function(result){
+			if (result == "1"){alert("审核完成");} else {alert("审核失败");}
+			location.reload();
+		});
+	});
+	
+	$('#Goodsoff').click(function() {
+
+		$.get("{:U($By_tpl.'/shenhe_more','act=off&id='.$id)}", function(result){
+			if (result == "1"){alert("审核完成");} else {alert("审核失败");}
+			location.reload();
+		});
+	});
+	
+	$('#Goodsnotice').click(function() {
+		flag = "{$flag}";
+		if (flag == "0"){
+			alert("请先审核");
+		}else{
+		
+			url = "{:U($By_tpl.'/notice','flag='.$cate.'&id='.$id)}";
+			$.get(url, function(result){
+	
+				if (result == "1"){
+					alert("通知服务器成功");
+				}else{
+					alert("通知服务器失败，请再试一次");
+				}
+				location.reload();
+			});
+		}
+	});
+</script>
+		
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script> 

@@ -1,0 +1,138 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">实时在线</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <div class="form-group">
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="开始时间" value="{$date11}">
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body" id="idplay">
+                        <div id="container" style="min-width: 310px; height: 395px; padding-right:10px; margin: 0 auto"></div>
+                   </div>
+				   
+				   
+					
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+
+		<script type="text/javascript">
+$(function(){
+    	 $('#container').highcharts({
+    		 chart: {
+                 zoomType: 'xy'
+             },
+             title: {
+                 text: '某城市的月平均温度和降雨量'
+             },
+             xAxis: [{
+                 categories: ['一月', '二月', '三月', '四月', '五月', '六月','七月', '八月', '九月', '十月', '十一月', '十二月']
+             }],
+             yAxis: [{ // 主Y轴
+                 labels: {
+                     format: '{value}°C',
+                     style: {
+                         color: '#89A54E',
+                         fontSize: '12px'
+                     }
+                 },
+                 title: {
+                     text: '温度',
+                     style: {
+                         color: '#89A54E',
+                         fontSize: '12px'
+                     }
+                 }
+             }, { // 次Y轴
+                 title: {
+                     text: '降雨量',
+                     style: {
+                         color: '#4572A7'
+                     }
+                 },
+                 labels: {
+                     format: '{value} mm',
+                     style: {
+                         color: '#4572A7'
+                     }
+                 },
+                 opposite: true
+             }],
+             tooltip: {
+                 shared: true
+             },
+             legend: {
+                 layout: 'vertical',
+                 align: 'left',
+                 x: 120,
+                 verticalAlign: 'top',
+                 y: 20,
+                 floating: true,
+                 backgroundColor: '#FFFFFF'
+             },
+             series: [{
+                 name: '降雨量',
+                 color: '#4572A7',
+                 type: 'column',
+                 yAxis: 1,
+                 data: [9.9, 51.5, 16.4, 129.2, 44.0, 76.0, 35.6, 148.5, 116.4, 104.1, 95.6, 154.4],
+                 tooltip: {
+                     valueSuffix: ' mm'
+                 }
+     
+             }, {
+                 name: '温度',
+                 color: '#89A54E',
+                 type: 'spline',
+                 data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 35.2, 26.5, 13.3, 18.3, 13.9, 2.6],
+                 tooltip: {
+                     valueSuffix: '°C'
+                 }
+             }]
+         });
+     });
+</script>
+
+ 
+
+
+		</script>
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script>

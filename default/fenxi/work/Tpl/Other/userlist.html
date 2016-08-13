@@ -1,0 +1,113 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">玩家详情</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <form class="form-horizontal" method="POST" action="" id="addUserForm">
+
+							<div class="form-group">
+                                <div class="col-sm-4" style="width:130px;">
+                                    <select name="cate_id" class="input-sm"><option value="1" <if condition="$cate_id eq 1">selected</if>>用户UID</option><option value="2" <if condition="$cate_id eq 2">selected</if>>用户昵称</option><option value="3" <if condition="$cate_id eq 3">selected</if>>游戏0局用户</option><option value="4" <if condition="$cate_id eq 4">selected</if>>游戏1-2局用户</option><option value="5" <if condition="$cate_id eq 5">selected</if>>注册渠道</option><option value="6" <if condition="$cate_id eq 6">selected</if>>注册IP</option><option value="7" <if condition="$cate_id eq 7">selected</if>>手机号</option><option value="8" <if condition="$cate_id eq 8">selected</if>>IMEI</option><option value="9" <if condition="$cate_id eq 9">selected</if>>IMSI</option></select>
+                                </div>
+								<div class="col-sm-4" style="width:200px;">
+                                    <input type="text" class="form-control" id="keywords" name="keywords" placeholder="" value="{$keywords}">
+                                </div>
+								<div class="col-sm-4">
+                                    <button type="submit" id="addUserSubmit" class="btn btn-primary">搜 索</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>用户UID</th>
+									<th>用户昵称</th>
+									<th>今日充值</th>
+									<th>当前金币&nbsp;<a href="{:U($By_tpl.'/userlist')}&sortscate=1&sortsflag=1&cate_id={$cate_id}&keywords={$keywords}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userlist')}&sortscate=1&sortsflag=2&cate_id={$cate_id}&keywords={$keywords}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+									<th>汽车&nbsp;<a href="{:U($By_tpl.'/userlist')}&sortscate=6&sortsflag=1&cate_id={$cate_id}&keywords={$keywords}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userlist')}&sortscate=6&sortsflag=2&cate_id={$cate_id}&keywords={$keywords}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+									<th>房子&nbsp;<a href="{:U($By_tpl.'/userlist')}&sortscate=7&sortsflag=1&cate_id={$cate_id}&keywords={$keywords}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userlist')}&sortscate=7&sortsflag=2&cate_id={$cate_id}&keywords={$keywords}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+									<th>飞机&nbsp;<a href="{:U($By_tpl.'/userlist')}&sortscate=8&sortsflag=1&cate_id={$cate_id}&keywords={$keywords}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userlist')}&sortscate=8&sortsflag=2&cate_id={$cate_id}&keywords={$keywords}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+									<th>注册渠道&nbsp;<a href="{:U($By_tpl.'/userlist')}&sortscate=2&sortsflag=1&cate_id={$cate_id}&keywords={$keywords}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userlist')}&sortscate=2&sortsflag=2&cate_id={$cate_id}&keywords={$keywords}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+									<th>VIP等级&nbsp;<a href="{:U($By_tpl.'/userlist')}&sortscate=3&sortsflag=1&cate_id={$cate_id}&keywords={$keywords}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userlist')}&sortscate=3&sortsflag=2&cate_id={$cate_id}&keywords={$keywords}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+									<th>注册时间&nbsp;<a href="{:U($By_tpl.'/userlist')}&sortscate=4&sortsflag=1&cate_id={$cate_id}&keywords={$keywords}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userlist')}&sortscate=4&sortsflag=2&cate_id={$cate_id}&keywords={$keywords}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+									<th>最近登录时间&nbsp;<a href="{:U($By_tpl.'/userlist')}&sortscate=5&sortsflag=1&cate_id={$cate_id}&keywords={$keywords}"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userlist')}&sortscate=5&sortsflag=2&cate_id={$cate_id}&keywords={$keywords}"><img src="__PUBLIC__/images/red.gif" ></a></th>
+									<th>查看详情</th>
+									<th>金币日志</th>
+									<th>玩牌日志</th>
+									<th>转账记录</th>
+									<th>礼物记录</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <volist	name="list" id="vo">
+										<tr>
+                                            <td>{$vo.id}</td>
+                                            <td>{$vo.user_id}</td>
+											<td>{$vo.nickname}</td>
+											<td>{$vo.today_pay}</td>
+											<td>{$vo.gold}</td>
+											<td>{$vo.car}</td>
+											<td>{$vo.villa}</td>
+											<td>{$vo.yacht}</td>
+											<td>{$vo.channel}</td>
+											<td>{$vo.viplevel}</td>
+											<td>{$vo.register_date}</td>
+											<td>{$vo.last_login_date}</td>
+											<td><a href="{:U($By_tpl.'/userlist','id='.$vo['user_id'].'&act=info')}" target="_blank">查看详情</a></td>
+											<td><a href="{:U($By_tpl.'/userlist','id='.$vo['user_id'].'&act=jinbi')}" target="_blank">金币日志</a></td>
+											<td><a href="{:U($By_tpl.'/userlist','id='.$vo['user_id'].'&act=play')}" target="_blank">玩牌日志</a></td>
+											<td><a href="{:U($By_tpl.'/userlist','id='.$vo['user_id'].'&act=trans')}" target="_blank">转账记录</a></td>
+											<td><a href="{:U($By_tpl.'/userlist','id='.$vo['user_id'].'&act=gift')}" target="_blank">礼物记录</a></td>
+                                        </tr>
+
+                                        </volist>
+                                 </tbody>
+                            </table>
+							<div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+
+}   
+</script>
+
+<include file = "public:footer"/>

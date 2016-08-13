@@ -1,0 +1,121 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">系统喇叭</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        
+						<div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							<if condition="$caozuo.add eq 1"><a class="btn btn-primary btn-sm" href="{:U($By_tpl.'/laba_add')}"><i class="fa fa-plus"></i> 添加系统喇叭</a></if>
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <div class="form-group">
+
+										
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th width="10%"><div style="text-align:center">修改类型</div></th>
+									<th width="5%"><div style="text-align:center">状态</div></th>
+									
+									<th width="30%"><div style="text-align:center">类型</div></th>
+									<th width="30%"><div style="text-align:center">内容</div></th>
+									<th width="30%"><div style="text-align:center">颜色</div></th>
+									<th width="30%"><div style="text-align:center">间隔时间</div></th>
+									<th width="30%"><div style="text-align:center">显示时间</div></th>
+									<th width="30%"><div style="text-align:center">显示次数</div></th>
+									<th width="15%"><div style="text-align:center">开始时间</div></th>
+									<th width="15%"><div style="text-align:center">结束时间</div></th>
+								    <th width="30%"><div style="text-align:center">状态</div></th>
+   
+									<th width="5%"><div style="text-align:center">提交人</div></th>
+									<th width="10%"><div style="text-align:center">提交时间</div></th>
+                                    <th width="10%"><div style="text-align:center">操作</div></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <volist	name="list" id="vo">
+										<tr>
+                                            <td><div style="text-align:center">{$vo.cate}</div></td>
+											<td><div style="text-align:center">{$vo.flagshow}</div></td>
+											
+											<td><div style="text-align:center">{$vo.startime}</div></td>
+											<td><div style="text-align:center">{$vo.endtime}</div></td>
+                                            <td><div style="text-align:center">{$vo.message}</div></td>
+											<td><div style="text-align:center">{$vo.username}</div></td>
+											<td><div style="text-align:center">{$vo.addtime}</div></td>
+											
+                                            <td><div style="text-align:center"><if condition="$caozuo.edit eq 1"><a href="{:U($By_tpl.'/laba_edit','id='.$vo['id'])}">编辑</a></if><if condition="$caozuo.pub eq 1"><if condition="$vo.flag eq 0"> | <a onclick="shenheon('{$vo.id}');" href="javascript:;">审核通过</a> | <a onclick="shenheoff('{$vo.id}');" href="javascript:;">审核取消</a></if><if condition="$vo.notice eq 0"> | <a onclick="notice_service('{$vo.id}','{$vo.flag}','{$vo.cate}');" href="javascript:;">通知服务器</a></if></if></div></td>
+                                        </tr>
+                                        </volist>
+                                </tbody>
+                            </table>
+							
+							<div class="showpage">{$pageshow}</div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+	<script>
+	function shenheon(id){
+		url = "{:U($By_tpl.'/waitshang_show','act=on')}" + "&id="+ id;
+		if (confirm('您确定审核通过该商品吗？')){
+			$.get(url, function(result){
+				if (result == "1"){alert("审核完成");} else {alert("审核失败");}
+				location.reload();
+			});
+		}
+	}
+	
+	function shenheoff(id){
+		url = "{:U($By_tpl.'/waitshang_show','act=off')}" + "&id="+ id;
+		if (confirm('您确定删除该纪录吗？')){
+			$.get(url, function(result){
+				if (result == "1"){alert("审核完成");} else {alert("审核失败");}
+				location.reload();
+			});
+		}
+	}
+	
+	function notice_service(id,flag,cate){
+		
+		if (flag == "0"){
+			alert("请先审核");
+		}else{
+		
+			url = "{:U($By_tpl.'/notice')}" + "&id="+ id + "&flag="+ cate;
+			$.get(url, function(result){
+	
+				if (result == "1"){
+					alert("通知服务器成功");
+				}else{
+					alert("通知服务器失败，请再试一次");
+				}
+				location.reload();
+			});
+		}
+	}
+	</script>
+
+<include file = "public:footer"/>

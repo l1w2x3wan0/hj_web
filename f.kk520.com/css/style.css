@@ -1,0 +1,39 @@
+@charset "utf-8";
+@CHARSET "UTF-8";
+* {margin: 0px;padding: 0px;border:none;}
+html {margin: 0px;padding: 0px;}
+body {margin: auto;padding: 0px;background:url(../images/bg.png);-moz-background-size: 100% 100%;-o-background-size: 100% 100%;-webkit-background-size: 100% 100%; background-size: 100% 100%;background-repeat:no-repeat\9;  }
+.clearBoth{clear:both}
+.container{width:100%;margin:0 auto;}
+.header{width:96%;margin:0 auto;padding:13px 0;}
+.header .top .logo{display:block;float: left;}
+.header .top .nav{display:block;float:right;padding-right:17px;}
+.header .top .nav ul{margin-top:40px;}
+.header .top ul li{display:inline-block;float:left;color:#fff;width:80px;height:26px;text-align: center;line-height: 26px;}
+.header .top ul li.linked{background:url(../images/navgation_bg.png) no-repeat left center;}
+.header .top ul li:hover{background:url(../images/navgation_bg.png) no-repeat left center;}
+.content{width:96%;margin:0 auto;}
+.slideshow{text-align: center;width:100%;border:2px solid #FFFFFF;float:left;}
+.slideshow #slideshow{text-align: center;width:100%;margin: 0 auto;}
+#slider{display:block;text-align: center;height:322px;} 
+.slideshow ul li{list-style:none;display:inline;float:left;}
+.appWrapper{width:100%;margin-top:16px;height:87px;border:1px solid #c9c9c9;background:#eef1f7;}
+.appWrapper .appIcon{float:left;margin:10px 0px 10px 10px;width:72px;}
+.appWrapper .appInfo{float:left;width:89px;margin-left:.8em;margin-top:25px;margin-right: .2em}
+.appInfo .appName{height:20px;color:#878787;}
+.appInfo .appVersion{height:20px;color:#569E4b;font-size:12px;background:url(../images/new.png) no-repeat 5em top transparent;}
+.appWrapper .appDownload{float:right;width:7em;margin-top:20px;margin-right:1em;text-align: center;height:45px;line-height:45px;}
+.appWrapper .appDownload a{font-size:19px;text-decoration: none;color:#888888;}
+.thanks{float:left;width:7.2em;height:4.7em;margin-left:-0.2em;margin-top:0.4em;background:url(../images/thanks.png) no-repeat left center transparent;}
+.thanks .icode{line-height: 3.4em;padding-top: 1.2em; margin-left:-0.2em; text-indent: 1em;color:#ffdf09;font-size:1.2em;font-weight: bold;}
+.gameHelp{width:100%;}
+.gameHelp .gameTitle{width:100%;float:left;margin-bottom: 7.5px;}
+.gameHelp .gameTitle h2{font-size: 16px;font-weight: lighter;color:#19191b;}
+.tab{width:100%;float:left;border:1px solid #C9C9C9}
+.tab ul{display:block;width:100%;float:left;}
+.tab ul li{display:inline-block;float:left;width:100px;}
+.main-banner-wrapper {position: relative;float:left;background:url(../images/11.png);-moz-background-size: 100% 100%;-o-background-size: 100% 100%;-webkit-background-size: 100% 100%; background-size: 100% 100%;background-repeat:no-repeat\9;}
+.main-banner-wrapper .b-item {position: absolute;left: 0;top: 0;overflow: hidden;}
+.main-banner-wrapper .pl-ul {bottom: 20px;display: block;font: bold 12px arial;height: 12px;position: absolute;right: 12px;z-index: 21;}
+.main-banner-wrapper .pl-ul li.number {background:url(../images/item_bg.png) no-repeat left center transparent ;color: #4b2b1c;cursor: pointer;margin-left:9px;float: left;height: 12px;width:12px;list-style: none outside none;overflow: hidden;}
+.main-banner-wrapper .pl-ul .number.over_item {background:url(../images/over_item.png) no-repeat left center transparent ;}

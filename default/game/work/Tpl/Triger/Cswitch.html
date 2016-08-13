@@ -1,0 +1,60 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">时时彩开关列表</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        
+						<div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							<if condition="$caozuo.add eq 1"><a class="btn btn-primary btn-sm" href="{:U($By_tpl.'/Cswitch_add')}"><i class="fa fa-plus"></i> 添加时时彩开关</a></if>
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th ><div style="text-align:center">ID</div></th>
+                                    <th ><div style="text-align:center">渠道id</div></th>
+									<th ><div style="text-align:center">状态</div></th>
+                                    <th ><div style="text-align:center">操作</div></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <volist	name="list" id="vo">
+										<tr>
+                                            <td><div style="text-align:center">{$vo.id}</div></td>
+                                            <td><div style="text-align:center">{$vo.channelid}</div></td>
+											<td><div style="text-align:center">{$vo.ison}</div></td>
+                                            <td><div style="text-align:center"><if condition="$caozuo.edit eq 1"><a href="{:U($By_tpl.'/Cswitch_edit','id='.$vo['id'])}">编辑</a></if> | <if condition="$caozuo.del eq 1"><a onclick="return confirm('您确定删除该纪录吗？')" href="{:U($By_tpl.'/Cswitch_delete','id='.$vo['id'])}">删除</a></if></div></td>
+                                        </tr>
+                                        </volist>
+                                </tbody>
+                            </table>
+							
+							<div class="showpage">{$pageshow}</div>
+                                                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+<include file = "public:footer"/>

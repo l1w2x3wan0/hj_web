@@ -1,0 +1,174 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">破产分析</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							
+							<a onclick="showtongji('idnew');" href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="" id="textnew" class="text01">新用户</a> | 
+							<a onclick="showtongji('idall');" href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="" id="textall" class="text02">总用户</a>
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <div class="form-group">
+										<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="开始时间" value="{$date11}">
+                                        -
+                                        <input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="endTime" id="endTime" placeholder="结束时间" value="{$date12}">&nbsp;<a onclick="selday('1');" href="javascript:;">今日</a>&nbsp;|&nbsp;<a onclick="selday('-1');" href="javascript:;">昨日</a>&nbsp;|&nbsp;<a onclick="selday('7');" href="javascript:;">近7日</a>&nbsp;|&nbsp;<a onclick="selday('30');" href="javascript:;">近30日</a>&nbsp;
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+					<div class="panel-body">
+                        <div class="table-responsive" style="width:100%;overflow:auto">
+                            <table class="table table-bordered" id="idall" style="display:none;">
+                                <thead>
+								<tr class="order_tr">
+                                    <th height="40"><div style="text-align:center; ">日期</div></th>
+									<th ><div style="text-align:center">活跃</div></th>
+									<th ><div style="text-align:center">未破产局数之和</div></th>
+									<th ><div style="text-align:center">未破产平均局数</div></th>
+									<th ><div style="text-align:center">首次破产局数之和</div></th>
+									<th ><div style="text-align:center">首次破产平均局数</div></th>
+									<th ><div style="text-align:center">二次破产局数之和</div></th>
+									<th ><div style="text-align:center">二次破产平均局数</div></th>
+                                    <th ><div style="text-align:center">三次破产局数之和</div></th>
+									<th ><div style="text-align:center">三次破产平均局数</div></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+										<volist	name="tongji1" id="vo">
+                                        <tr class="order_tr">
+                                            <td height="35" align="center">{$vo.date}</td>
+											<td  align="center">{$vo.dau_all}</td>
+											<td  align="center">{$vo.count11}</td>
+											<td  align="center">{$vo.count12}</td>
+											<td  align="center">{$vo.count13}</td>
+											<td  align="center">{$vo.count14}</td>
+											<td  align="center">{$vo.count15}</td>
+											<td  align="center">{$vo.count16}</td>
+											<td  align="center">{$vo.count17}</td>
+											<td  align="center">{$vo.count18}</td>
+                                        </tr>
+										</volist>
+                                </tbody>
+                            </table>
+							
+							<table class="table table-bordered" id="idnew" >
+                                <thead>
+								<tr class="order_tr">
+                                    <th height="40"><div style="text-align:center; ">日期</div></th>
+									<th ><div style="text-align:center">新增</div></th>
+									<th ><div style="text-align:center">活跃</div></th>
+									<th ><div style="text-align:center">未破产局数之和</div></th>
+									<th ><div style="text-align:center">未破产平均局数</div></th>
+									<th ><div style="text-align:center">首次破产局数之和</div></th>
+									<th ><div style="text-align:center">首次破产平均局数</div></th>
+									<th ><div style="text-align:center">二次破产局数之和</div></th>
+									<th ><div style="text-align:center">二次破产平均局数</div></th>
+                                    <th ><div style="text-align:center">三次破产局数之和</div></th>
+									<th ><div style="text-align:center">三次破产平均局数</div></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+										<volist	name="tongji1" id="vo">
+                                        <tr class="order_tr">
+                                            <td height="35" align="center">{$vo.date}</td>
+											<td  align="center">{$vo.user_add}</td>
+											<td  align="center">{$vo.dau}</td>
+											<td  align="center">{$vo.count21}</td>
+											<td  align="center">{$vo.count22}</td>
+											<td  align="center">{$vo.count23}</td>
+											<td  align="center">{$vo.count24}</td>
+											<td  align="center">{$vo.count25}</td>
+											<td  align="center">{$vo.count26}</td>
+											<td  align="center">{$vo.count27}</td>
+											<td  align="center">{$vo.count28}</td>
+                                        </tr>
+										</volist>
+                                </tbody>
+                            </table>
+							
+							
+                            <div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+<script>
+function selday(id){
+	if (id=="1"){
+		$('#beginTime').val("{$seldate[0].date1}");
+		$('#endTime').val("{$seldate[0].date2}");
+	}else if (id=="-1"){
+		$('#beginTime').val("{$seldate[1].date1}");
+		$('#endTime').val("{$seldate[1].date2}");
+	}else if (id=="7"){
+		$('#beginTime').val("{$seldate[2].date1}");
+		$('#endTime').val("{$seldate[2].date2}");
+	}else if (id=="30"){
+		$('#beginTime').val("{$seldate[3].date1}");
+		$('#endTime').val("{$seldate[3].date2}");
+	}
+	document.form1.submit();
+}
+
+tongjiid = 'idnew';
+function showtongji(id){
+	show1 = "#"+id;
+	show2 = "#"+tongjiid;
+	$(show2).hide();
+	$(show1).show();
+	tongjiid = id;
+	
+	if (id=="idall"){
+		$("#textall").attr("class","text01");
+		$("#textnew").attr("class","text02");
+		$("#textold").attr("class","text02");
+	}else if (id=="idnew"){
+		$("#textnew").attr("class","text01");
+		$("#textall").attr("class","text02");
+		$("#textold").attr("class","text02");
+	}else if (id=="idold"){
+		$("#textold").attr("class","text01");
+		$("#textall").attr("class","text02");
+		$("#textnew").attr("class","text02");
+	}
+	
+}
+
+$('[data-toggle="tooltip"]').tooltip();
+</script>
+		
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script>

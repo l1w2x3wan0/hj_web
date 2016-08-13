@@ -1,0 +1,63 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">黑名单列表</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        
+						<div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;">
+							<if condition="$caozuo.add eq 1"><a class="btn btn-primary btn-sm" href="{:U($By_tpl.'/mingdan_add')}"><i class="fa fa-plus"></i> 添加黑名单</a></if>
+							</div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                    <div class="form-group">
+
+										<input type="text" class="form-control input-sm date" name="user_id" id="user_id" placeholder="USER_ID" value="{$user_id}">
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th width="10%"><div style="text-align:center">USER_ID</div></th>
+                                    <th width="75%"><div style="text-align:center">是否禁止喇叭</div></th>
+                                    <th width="15%"><div style="text-align:center">操作</div></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <volist	name="list" id="vo">
+										<tr>
+                                            <td><div style="text-align:center">{$vo.user_id}</div></td>
+                                            <td><div style="text-align:center">{$vo.hornshow}</div></td>
+                                            <td><div style="text-align:center"><if condition="$caozuo.edit eq 1"><a href="{:U($By_tpl.'/mingdan_update','user_id='.$vo['user_id'])}">编辑</a></if><if condition="$caozuo.del eq 1"> | <a onclick="return confirm('您确定删除该纪录吗？')" href="{:U($By_tpl.'/mingdan_delete','user_id='.$vo['user_id'])}">删除</a></if></div></td>
+                                        </tr>
+                                        </volist>
+                                </tbody>
+                            </table>
+							
+							<div class="showpage">{$pageshow}</div>
+                                                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+<include file = "public:footer"/>

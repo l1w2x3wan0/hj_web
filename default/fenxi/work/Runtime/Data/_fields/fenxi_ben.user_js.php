@@ -1,0 +1,1 @@
+<?php	return array ( 0 => 'id', 1 => 'js_name', 2 => 'js_power', 3 => 'js_flag', 4 => 'addtime', '_autoinc' => true, '_pk' => 'id', '_type' => array ( 'id' => 'int(7)', 'js_name' => 'varchar(100)', 'js_power' => 'text', 'js_flag' => 'tinyint(3)', 'addtime' => 'int(7)', ), );?>

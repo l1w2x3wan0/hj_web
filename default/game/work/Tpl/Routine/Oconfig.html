@@ -1,0 +1,192 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">常规配置</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading" style="padding:10px;">
+                       <div class="row">
+                            <div class="col-sm-10" style="padding-top:10px; color:#FF0000; font-weight:bold;">
+
+							</div>
+                        </div>    
+    
+                    </div>
+                    
+					<div class="panel-body">
+						<form name="form1" action="" method="post">
+						<div style="width:97%; background-color:#FCFCFC; float:left; padding:10px; margin-bottom:10px;">
+						<table class="table-bordered"  style="width:100%; ">
+							<tr class="order_tr">
+								<td height="45" width="35%"><div style="text-align:right; font-weight:bold;padding:5px;">游客注册送金币数</div></td>
+								<td ><div class="col-sm-8"><input type="text" class="form-control" name="registergivegold" id="registergivegold" placeholder="游客注册送金币数" value="{$registergivegold}"></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">绑定手机送金币数</div></td>
+								<td ><div class="col-sm-8"><input type="text" class="form-control" name="bindphone" id="bindphone" placeholder="绑定手机送金币数" value="{$bindphone}"></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="45" width="35%"><div style="text-align:right; font-weight:bold;padding:5px;">发喇叭的金币数</div></td>
+								<td ><div class="col-sm-8"><input type="text" class="form-control" name="horngold" id="horngold" placeholder="发喇叭的金币数" value="{$horngold}"></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">破产次数</div></td>
+								<td ><div class="col-sm-8"><input type="text" class="form-control" name="bankruptcy_num" id="bankruptcy_num" placeholder="破产次数" value="{$bankruptcy_num}"></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">破产金币数</div></td>
+								<td ><div class="col-sm-8"><input type="text" class="form-control" name="bankruptcy_gold" id="bankruptcy_gold" placeholder="破产金币数" value="{$bankruptcy_gold}"></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">创建私人房的VIP最低等级</div></td>
+								<td ><div class="col-sm-8"><input type="text" class="form-control" name="viptablelevel" id="viptablelevel" placeholder="创建私人房的VIP最低等级" value="{$viptablelevel}"></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">T人的金币数</div></td>
+								<td ><div class="col-sm-8"><input type="text" class="form-control" name="kickplayergold" id="kickplayergold" placeholder="T人的金币数" value="{$kickplayergold}"></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">T人最低VIP等级</div></td>
+								<td ><div class="col-sm-8"><input type="text" class="form-control" name="kickplayerviplieve" id="kickplayerviplieve" placeholder="T人最低VIP等级" value="{$kickplayerviplieve}"></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">金币商城售价范围</div></td>
+								<td ><div class="col-sm-8"><input style="width:120px; height:25px; text-align:center;font-weight:bold;" type="text" name="GOLDMALL_SELL_MIN" id="GOLDMALL_SELL_MIN" placeholder="金币商城售价范围" value="{$GOLDMALL_SELL_MIN}">&nbsp;<= 1钻石 <=&nbsp;<input style="width:120px; height:25px; text-align:center;font-weight:bold;" type="text"  name="GOLDMALL_SELL_MAX" id="GOLDMALL_SELL_MAX" placeholder="金币商城售价范围" value="{$GOLDMALL_SELL_MAX}"></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">金币商城税率(%)</div></td>
+								<td ><div class="col-sm-8"><input type="text" class="form-control" name="GOLDMALL_TAX" id="GOLDMALL_TAX" placeholder="金币商城税率" value="{$GOLDMALL_TAX}"></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">购买钻石比例说明</div></td>
+								<td ><div class="col-sm-8"><input type="text" class="form-control" name="DIAMOND_BL_MENO" id="DIAMOND_BL_MENO" placeholder="购买钻石比例说明" value="{$DIAMOND_BL_MENO}"></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">超级会员累计充值金额</div></td>
+								<td ><div class="col-sm-8"><input type="text" class="form-control" name="SUPER_USER" id="SUPER_USER" placeholder="超级会员累计充值金额" value="{$SUPER_USER}"></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">充值赠送的时间</div></td>
+								<td ><div class="col-sm-8">开始时间：<input style="width:150px; height:25px; text-align:center;font-weight:bold;" type="text" name="paygive_starttime" id="paygive_starttime" placeholder="开始时间" value="{$paygive_starttime}">&nbsp;&nbsp;&nbsp;&nbsp;结束时间：<input style="width:150px; height:25px; text-align:center;font-weight:bold;" type="text"  name="paygive_endtime" id="paygive_endtime" placeholder="结束时间" value="{$paygive_endtime}"></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">充值赠送的时间段</div></td>
+								<td ><div class="col-sm-8">
+								<input style="width:50px; height:25px; text-align:center;font-weight:bold;" type="text" name="paygive_section_start1" id="paygive_section_start1" placeholder="开始时间1" value="{$paygive_section_start1}">&nbsp;-&nbsp;<input style="width:50px; height:25px; text-align:center;font-weight:bold;" type="text"  name="paygive_section_end1" id="paygive_section_end1" placeholder="结束时间1" value="{$paygive_section_end1}">&nbsp;&nbsp;&nbsp;&nbsp;
+								<input style="width:50px; height:25px; text-align:center;font-weight:bold;" type="text" name="paygive_section_start2" id="paygive_section_start2" placeholder="开始时间2" value="{$paygive_section_start2}">&nbsp;-&nbsp;<input style="width:50px; height:25px; text-align:center;font-weight:bold;" type="text"  name="paygive_section_end2" id="paygive_section_end2" placeholder="结束时间2" value="{$paygive_section_end2}">
+								</div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">购买钻石客服电话</div></td>
+								<td ><div class="col-sm-8"><input type="text" class="form-control" name="DIAMOND_KF_TEL" id="DIAMOND_KF_TEL" placeholder="购买钻石客服电话" value="{$DIAMOND_KF_TEL}"></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">用户在线判断开关</div></td>
+								<td ><div class="col-sm-8"><input type="text" class="form-control" name="ONLINE_SWITCH" id="ONLINE_SWITCH" placeholder="用户在线判断开关" value="{$ONLINE_SWITCH}"></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">一个ip每天注册的账号上限</div></td>
+								<td ><div class="col-sm-8"><input type="text" class="form-control" name="ip_register_max_count" id="ip_register_max_count" placeholder="一个ip每天注册的账号上限" value="{$ip_register_max_count}"></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">新手发大喇叭牌局限制</div></td>
+								<td ><div class="col-sm-8"><input type="text" class="form-control" name="broadcast_play_limit" id="broadcast_play_limit" placeholder="新手发大喇叭牌局限制" value="{$broadcast_play_limit}"></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">进私人房游戏局数限制</div></td>
+								<td ><div class="col-sm-8"><input type="text" class="form-control" name="private_play_limit" id="private_play_limit" placeholder="进私人房游戏局数限制" value="{$private_play_limit}"></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">进入私人房的最低VIP等级</div></td>
+								<td ><div class="col-sm-8"><input type="text" class="form-control" name="private_vip_limit" id="private_vip_limit" placeholder="进入私人房的最低VIP等级" value="{$private_vip_limit}"></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">排行榜显示数量</div></td>
+								<td ><div class="col-sm-8">财富榜:<input style="width:150px; height:25px; text-align:center;font-weight:bold;" type="text" name="RANKING_ASSETS" id="RANKING_ASSETS" placeholder="财富榜" value="{$RANKING_ASSETS}">&nbsp;&nbsp;魅力榜:<input style="width:150px; height:25px; text-align:center;font-weight:bold;" type="text" name="RANKING_CHARM" id="RANKING_CHARM" placeholder="魅力榜" value="{$RANKING_CHARM}">&nbsp;&nbsp;钻石榜:<input style="width:150px; height:25px; text-align:center;font-weight:bold;" type="text" name="RANKING_DIAMONDS" id="RANKING_DIAMONDS" placeholder="钻石榜" value="{$RANKING_DIAMONDS}">&nbsp;</div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">客服自动回复内容</div></td>
+								<td ><div class="col-sm-8" style="padding:5px;"><textarea name="CUSTOMER_AUTO_RECALL" id="CUSTOMER_AUTO_RECALL" rows="5" class="form-control">{$CUSTOMER_AUTO_RECALL}</textarea></div></td>
+							    
+							</tr>
+							
+							
+							<tr class="order_tr">
+								<td height="45" ><div style="text-align:right; font-weight:bold;padding:5px;">修改原因</div></td>
+								<td ><div class="col-sm-8"><input type="text" class="form-control" name="remark" id="remark" placeholder="请输入修改原因" value=""></div></td>
+							    
+							</tr>
+							<tr class="order_tr">
+								<td height="50" colspan="2" ><div style="text-align:center;">
+								  <input type="submit" name="Submit" style=" font-size:14px; font-weight:bold; width:200px; height:40px;" value="修 改 参 数" />&nbsp;&nbsp;<input onclick="reconfig();" type="button" name="Submit" style=" font-size:14px; font-weight:bold; width:200px; height:40px;" value="恢 复 默 认" />
+								</div></td>
+							</tr>
+						</table>
+						</div>
+						
+						
+						</form>
+					</div>
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+<script>
+function reconfig(){
+
+	$("#registergivegold").val(10000);
+	$("#bindphone").val(3000);
+	$("#bankruptcy_num").val(3);
+	$("#bankruptcy_gold").val(3000);
+	$("#privetableviplevel").val(1);
+	
+}
+
+</script>
+		
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script> 

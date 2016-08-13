@@ -1,0 +1,182 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">在线宝箱配置</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading" style="padding:10px;">
+                       <div class="row">
+                            <div class="col-sm-10" style="padding-top:10px; color:#FF0000; font-weight:bold;">
+
+							</div>
+                        </div>    
+    
+                    </div>
+                    
+					<div class="panel-body">
+						<form name="form1" action="" method="post">
+						<div style="width:97%; background-color:#FCFCFC; float:left; padding:10px; margin-bottom:10px;">
+					
+						<table class="table-bordered"  style="width:100%; ">
+							<tr class="order_tr">
+								<td height="45" width="15%"><div style="text-align:right; font-weight:bold;padding:5px;">间隔时间(单位：秒)</div></td>
+								<td width="35%"><div class="col-sm-8">{$info.minute1}</div></td>
+							    <td width="15%"><div style="text-align:right; font-weight:bold;padding:5px;">领取金币数</div></td>
+								<td width="35%"><div class="col-sm-8">{$info.coin1}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="45" width="15%"><div style="text-align:right; font-weight:bold;padding:5px;">间隔时间(单位：秒)</div></td>
+								<td width="35%"><div class="col-sm-8">{$info.minute2}</div></td>
+							    <td width="15%"><div style="text-align:right; font-weight:bold;padding:5px;">领取金币数</div></td>
+								<td width="35%"><div class="col-sm-8">{$info.coin2}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="45" width="15%"><div style="text-align:right; font-weight:bold;padding:5px;">间隔时间(单位：秒)</div></td>
+								<td width="35%"><div class="col-sm-8">{$info.minute3}</div></td>
+							    <td width="15%"><div style="text-align:right; font-weight:bold;padding:5px;">领取金币数</div></td>
+								<td width="35%"><div class="col-sm-8">{$info.coin3}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="45" width="15%"><div style="text-align:right; font-weight:bold;padding:5px;">间隔时间(单位：秒)</div></td>
+								<td width="35%"><div class="col-sm-8">{$info.minute4}</div></td>
+							    <td width="15%"><div style="text-align:right; font-weight:bold;padding:5px;">领取金币数</div></td>
+								<td width="35%"><div class="col-sm-8">{$info.coin4}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="45" width="15%"><div style="text-align:right; font-weight:bold;padding:5px;">间隔时间(单位：秒)</div></td>
+								<td width="35%"><div class="col-sm-8">{$info.minute5}</div></td>
+							    <td width="15%"><div style="text-align:right; font-weight:bold;padding:5px;">领取金币数</div></td>
+								<td width="35%"><div class="col-sm-8">{$info.coin5}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="45" width="15%"><div style="text-align:right; font-weight:bold;padding:5px;">间隔时间(单位：秒)</div></td>
+								<td width="35%"><div class="col-sm-8">{$info.minute6}</div></td>
+							    <td width="15%"><div style="text-align:right; font-weight:bold;padding:5px;">领取金币数</div></td>
+								<td width="35%"><div class="col-sm-8">{$info.coin6}</div></td>
+							</tr>
+							<tr class="order_tr">
+								<td height="45" width="15%"><div style="text-align:right; font-weight:bold;padding:5px;">间隔时间(单位：秒)</div></td>
+								<td width="35%"><div class="col-sm-8">{$info.minute7}</div></td>
+							    <td width="15%"><div style="text-align:right; font-weight:bold;padding:5px;">领取金币数</div></td>
+								<td width="35%"><div class="col-sm-8">{$info.coin7}</div></td>
+							</tr>
+							
+							<tr class="order_tr">
+								<td height="45" width="15%"><div style="text-align:right; font-weight:bold;padding:5px;">修改原因</div></td>
+								<td colspan="3"><div class="col-sm-8">{$info.remark}</div></td>
+							    
+							</tr>
+							
+						</table>
+						</div>
+						
+
+						</form>
+					</div>
+					
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jquery-ui-timepicker-addon.css" type="text/css" />
+    <script src="{$Think.const.JS_PATH}jquery-ui.min.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-addon.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="{$Think.const.JS_PATH}jquery-ui-timepicker-zh-CN.js"></script>
+
+    <link rel="stylesheet" href="{$Think.const.CSS_PATH}jBox.css" />
+    <script src="{$Think.const.JS_PATH}jBox.min.js"></script>
+	
+	
+<include file = "public:footer"/>
+<script>
+function reconfig(){
+
+	for (t=1; t<=7; t++){
+		temp1 = "#minuserbet" + t;
+		temp2 = "#maxuserbet" + t;
+		temp3 = "#minperrobitbet" + t;
+		temp4 = "#maxperrobitbet" + t;
+		temp5 = "#minrobitsumbet" + t;
+		temp6 = "#maxrobitsumbet" + t;
+		if (t == 1){
+			$(temp1).val(0);
+			$(temp2).val(0);
+			$(temp3).val(0);
+			$(temp4).val(1);
+			$(temp5).val(10);
+			$(temp6).val(20);
+		}else if (t == 2){
+			$(temp1).val(1);
+			$(temp2).val(2);
+			$(temp3).val(0);
+			$(temp4).val(1);
+			$(temp5).val(20);
+			$(temp6).val(30);
+		}else if (t == 3){
+			$(temp1).val(3);
+			$(temp2).val(5);
+			$(temp3).val(0);
+			$(temp4).val(2);
+			$(temp5).val(30);
+			$(temp6).val(40);
+		}else if (t == 4){
+			$(temp1).val(6);
+			$(temp2).val(8);
+			$(temp3).val(1);
+			$(temp4).val(2);
+			$(temp5).val(40);
+			$(temp6).val(60);
+		}else if (t == 5){
+			$(temp1).val(9);
+			$(temp2).val(13);
+			$(temp3).val(1);
+			$(temp4).val(3);
+			$(temp5).val(50);
+			$(temp6).val(80);
+		}else if (t == 6){
+			$(temp1).val(14);
+			$(temp2).val(20);
+			$(temp3).val(1);
+			$(temp4).val(3);
+			$(temp5).val(60);
+			$(temp6).val(100);
+		}else if (t == 7){
+			$(temp1).val(21);
+			$(temp2).val(-1);
+			$(temp3).val(1);
+			$(temp4).val(4);
+			$(temp5).val(-1);
+			$(temp6).val(-1);
+		}
+	}
+
+	$("#deftaxrate").val(10);
+	$("#mintaxrate").val(-5);
+	$("#maxtaxrate").val(5);
+	$("#xzmaxcount").val(100);
+	$("#xztime").val(120);
+	$("#jstime").val(10);
+
+	
+	$("input[name='multiplebet']").eq(0).attr("checked","checked");
+    $("input[name='multiplebet']").eq(1).removeAttr("checked");
+    $("input[name='multiplebet']").eq(0).click();
+	
+}
+
+</script>
+		
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/modules/exporting.js"></script> 

@@ -1,0 +1,86 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <form name="form1" class="form-inline " method="post" action="">
+			<input type="hidden" name="act" value="play" />
+			<input type="hidden" name="id" value="{$id}" />  
+			<div class="col-lg-12">
+                <h4 class="page-header" style="line-height:30px;">玩牌日志&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="beginTime" id="beginTime" placeholder="开始时间" value="{$date11}"> - <input type="text" onClick="WdatePicker()" class="form-control input-sm date" name="endTime" id="endTime" placeholder="结束时间" value="{$date12}">&nbsp;<button class="btn btn-primary btn-sm" type="submit">查询</button><br>本页：&nbsp;胜率:{$shenglv}%&nbsp;&nbsp;|&nbsp;<volist name="types" key="k" id="vo1"><if condition="$k neq 1">&nbsp;|&nbsp;</if>{$vo1.name}:{$vo1.num}{$vo1.bl}</volist><br>当月：&nbsp;胜率:{$shenglv0}%&nbsp;&nbsp;|&nbsp;<volist name="types" key="k" id="vo1"><if condition="$k neq 1">&nbsp;|&nbsp;</if>{$vo1.name}:{$vo1.allnum}{$vo1.allbl}</volist></h4>
+            </div>
+			</form>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+		
+		<div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+
+								<tr>
+                                   <td><div style="text-align:center;">GAMEID(查看本局)</div></td>
+								   <td><div style="text-align:center;">用户UID</div></td>
+								   <td><div style="text-align:center;">牌</div></td>
+								   <td><div style="text-align:center;">胜负</div></td>
+								   <td><div style="text-align:center;">局前金币数</div></td>
+                                   <td><div style="text-align:center;">当前金币数</div></td>
+								   <td><div style="text-align:center;">变动金币数</div></td>
+								   <td><div style="text-align:center;">税收金币数</div></td>
+								   <td><div style="text-align:center;">场次</div></td>
+								   <td><div style="text-align:center;">时间&nbsp;<a href="{:U($By_tpl.'/userlist')}&id={$id}&act=play&sortscate=1&sortsflag=1"><img src="__PUBLIC__/images/green.gif" ></a><a href="{:U($By_tpl.'/userlist')}&id={$id}&act=play&sortscate=1&sortsflag=2"><img src="__PUBLIC__/images/red.gif" ></a></div></td>
+                                </tr>
+								
+								<volist	name="info" id="vo">
+								<tr>
+                                   <td><div style="text-align:center; padding-top:10px;"><a href="{:U($By_tpl.'/userlist','gameid='.$vo['gameid'].'&act=gameplay')}" target="_blank">{$vo.gameid}</a></div></td>
+								   <td><div style="text-align:center; padding-top:10px;">{$vo.user_id}</div></td>
+								   <td><div style="text-align:center;">{$vo.showcards} {$vo.cardstype}</div></td>
+								   <td><div style="text-align:center; padding-top:10px;"><if condition="$vo.iswin eq 0"><font color="#FF0000">赢</font><else />输</if></div></td>
+								   <td><div style="text-align:center; padding-top:10px;">{$vo.beforegold}</div></td>
+                                   <td><div style="text-align:center; padding-top:10px;">{$vo.aftergold}</div></td>
+								   <td><div style="text-align:center; padding-top:10px;">{$vo.changegold}</div></td>
+								   <td><div style="text-align:center; padding-top:10px;">{$vo.taxgold}</div></td>
+								   <td><div style="text-align:center; padding-top:10px;">
+								   <if condition="$vo.roomid eq 1">初级场
+								   <elseif condition="$vo.roomid eq 2"/>中级场
+								   <elseif condition="$vo.roomid eq 3"/>高级场
+								   <elseif condition="$vo.roomid eq 4"/>私人房
+								   <elseif condition="$vo.roomid eq 6"/>百人场
+								   <elseif condition="$vo.roomid eq 7"/>土豪场
+								   <else />未知场								   </if>
+								   </div></td>
+								   <td><div style="text-align:center; padding-top:10px;">{$vo.date}</div></td>
+								</tr>
+								</volist>	
+								
+                            </table>
+							<div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+
+}   
+</script>
+
+<include file = "public:footer"/>

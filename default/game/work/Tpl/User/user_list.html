@@ -1,0 +1,52 @@
+<include file = "public:head"/>
+	<div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">操作员列表</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <if condition="$caozuo.add eq 1"><a class="btn btn-primary btn-sm" href="{:U('User/user_add')}"><i class="fa fa-plus"></i> 添加操作员</a></if>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>用户名</th>
+                                    <th>角色</th>
+                                    <th>状态</th>
+                                    <th>创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        <volist	name="list" id="vo">
+										<tr>
+                                            <td>{$vo.id}</td>
+                                            <td>{$vo.username}</td>
+                                            <td>{$vo.jsname}</td>
+                                            <td>{$vo.status}</td>
+                                            <td>{$vo.created_at}</td>
+                                            <td><if condition="$vo.del eq 1"><if condition="$caozuo.edit eq 1"><a href="{:U('User/user_edit','id='.$vo['id'])}">修改操作员</a></if>&nbsp;<if condition="$caozuo.del eq 1"><a onclick="return confirm('您确定删除该纪录吗？')" href="{:U('User/user_delete','id='.$vo['id'])}">删除操作员</a></if></if></td>
+                                        </tr>
+                                        </volist>
+                                                                                                    </tbody>
+                            </table>
+                                                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+<include file = "public:footer"/>

@@ -1,0 +1,673 @@
+<?php
+// 概况文件
+
+class GaiAction extends BaseAction {
+
+	protected $By_tpl = 'Gai'; 
+	
+	//欢迎页面
+	public function wel(){
+				
+		$this->assign('left_css',"36");
+		$this->assign('list',$tongji_show);
+		$this->assign('totalall',$totalall);
+		
+		$this->assign('By_tpl',$this->By_tpl);
+		$lib_display = $this->By_tpl."/wel";
+		$this->display($lib_display);
+	}
+	
+	//日报表
+	public function gaiday(){
+		$table = "fx_gai_tongji1";
+		$row = M($table);
+		$table3 = "pay_now_config.zjh_order";
+		$row3 = M($table3);
+		$table1 = "user_info";
+		$row1 = M($table1, '', DB_CONFIG2);
+		//$table2 = "login_log";
+		$table2 = "login_log_".date("Ym");
+		$row2 = M($table2, '', DB_CONFIG2);
+		
+		
+		$beginTime = I("beginTime");
+		$endTime = I("endTime");
+		$channel = I("channel");
+		
+		//查询不能大于当天
+		$timenow = strtotime(date("Y-m-d"));
+		$day1 = date("Y-m-d", strtotime("-1 day"));
+		$day7 = date("Y-m-d", strtotime("-8 day"));
+		//echo $beginTime."**".date("Y-m-d")."<br>".strtotime($beginTime)."**".$timenow; exit;
+		if (strtotime($beginTime)>$timenow){
+			$this->error('开始日期不能大于当日');
+			exit;
+		}
+		
+		if (empty($beginTime)){
+			$beginTime = date("Y-m-d", strtotime("-1 day"));
+		}
+		//echo $day_jian;
+		//$date11 .= " 00:00:00"; 
+		//$date12 .= " 23:59:59"; 
+		$tongji_day = array($beginTime);
+		$this->assign('beginTime',$beginTime);
+		$this->assign('date12',$date12);
+		$this->assign('channel',$channel);
+		
+		$day_jian = 7;
+		//环比上日
+		$hbr_time = strtotime($beginTime) - 60 * 60 * 24;
+		$hbr = date("Y-m-d", $hbr_time);
+		//同比上周
+		$tbz_time = strtotime($beginTime) - 60 * 60 * 24 * $day_jian;
+		$tbz = date("Y-m-d", $tbz_time);
+		$this->assign('hbr',$hbr);
+		$this->assign('tbz',$tbz);
+		$zrq = array();
+		for($i=0; $i<$day_jian; $i++){
+			$time_temp = strtotime($beginTime) - 60 * 60 * 24 * ($i + 1);
+			$zrq[] = array('date' => date("Y-m-d", $time_temp));
+			$tongji_day[$i+1] = date("Y-m-d", $time_temp);
+		}
+		$this->assign('zrq',$zrq);
+		
+		//栏目
+		$showlanmu = array();
+		$showlanmu[0] = array('flag'=>0, 'show'=>'', 'name'=>'用户类');
+		$showlanmu[1] = array('flag'=>1, 'show'=>'count1', 'name'=>'设备激活');
+		$showlanmu[2] = array('flag'=>1, 'show'=>'count2', 'name'=>'注册账户');
+		$showlanmu[3] = array('flag'=>1, 'show'=>'count3', 'name'=>'次日留存率(%)');
+		$showlanmu[4] = array('flag'=>1, 'show'=>'count4', 'name'=>'7日留存率(%)');
+		$showlanmu[5] = array('flag'=>1, 'show'=>'count5', 'name'=>'DAU');
+		$showlanmu[6] = array('flag'=>1, 'show'=>'count6', 'name'=>'DAU(老玩家)');
+		$showlanmu[7] = array('flag'=>1, 'show'=>'count7', 'name'=>'平均在线');
+		$showlanmu[8] = array('flag'=>1, 'show'=>'count8', 'name'=>'峰值在线');
+		$showlanmu[9] = array('flag'=>0, 'show'=>'', 'name'=>'收入类');
+		$showlanmu[10] = array('flag'=>1, 'show'=>'shou1', 'name'=>'日收入(¥)');
+		$showlanmu[11] = array('flag'=>1, 'show'=>'shou2', 'name'=>'付费玩家数');
+		$showlanmu[12] = array('flag'=>1, 'show'=>'shou3', 'name'=>'日付费率(%)');
+		$showlanmu[13] = array('flag'=>1, 'show'=>'shou6', 'name'=>'新增付费玩家');
+		$showlanmu[14] = array('flag'=>1, 'show'=>'shou7', 'name'=>'新增玩家付费率(%)');
+		$showlanmu[15] = array('flag'=>1, 'show'=>'shou8', 'name'=>'老玩家付费人数');
+		$showlanmu[16] = array('flag'=>1, 'show'=>'shou9', 'name'=>'老玩家充值收入(元)');
+		$showlanmu[17] = array('flag'=>1, 'show'=>'shou4', 'name'=>'ARPU(¥)');
+		$showlanmu[18] = array('flag'=>1,'show'=>'shou5', 'name'=>'ARPPU(¥)');
+		$showlanmu[19] = array('flag'=>0, 'show'=>'', 'name'=>'总量类');
+		$showlanmu[20] = array('flag'=>1, 'show'=>'zong1', 'name'=>'累计激活');
+		$showlanmu[21] = array('flag'=>1, 'show'=>'zong2', 'name'=>'累计账户');
+		$showlanmu[22] = array('flag'=>1, 'show'=>'zong3', 'name'=>'累计收入(¥)');
+		$showlanmu[23] = array('flag'=>1, 'show'=>'zong4', 'name'=>'总体付费率(%)');
+		$showlanmu[24] = array('flag'=>1, 'show'=>'zong5', 'name'=>'总付费用户数');
+			  
+		$sql1 = " and !((user_id>=".ROBERT1_BEGIN." and user_id<".ROBERT1_END.") or (user_id>=".ROBERT2_BEGIN." and user_id<=".ROBERT2_END."))";
+		//运营日报
+		$tongji1 = array();
+		foreach ($tongji_day as $key => $val){
+			$time1 = strtotime($val);
+			$time2 = $time1 + 60 * 60 * 24;
+			$date1 = date("Y-m-d", $time1);
+			$date2 = date("Y-m-d", $time2);
+			//echo $date1."<br>";
+			$flag = 1;
+			$total = $row->where("data='$date1' and flag=$flag")->count();
+			
+			if ($total == 0){
+				//用户类
+				//设备激活
+				$count1 = $row1->where("register_date>='$date1' and register_date<'$date2' $sql1")->count('distinct imei');
+				//if ($date1=="2015-12-30") {dump($row1->_sql()); echo $count1;}
+				//注册账户
+				$count2 = $row1->where("register_date>='$date1' and register_date<'$date2' $sql1")->count('user_id');
+				//if ($date1=="2015-11-03") dump($row1->_sql());
+				$count11 = 0;
+				$count12 = 0;
+				//次日留存率(%)
+				$time31 = $time1 + 60 * 60 * 24;
+				$time32 = $time31 + 60 * 60 * 24;
+				$date31 = date("Y-m-d", $time31);
+				$date32 = date("Y-m-d", $time32);
+				//7日留存率(%)
+				$time41 = $time1 + 60 * 60 * 24 * 7;
+				$time42 = $time41 + 60 * 60 * 24;
+				$date41 = date("Y-m-d", $time41);
+				$date42 = date("Y-m-d", $time42);
+				$shou6 = 0;
+				$shou90 = 0;
+				$res1 = $row1->field('user_id')->where("register_date>='$date1' and register_date<'$date2' $sql1")->select();
+				foreach ($res1 as $key1 => $val1){
+					$total1 = $row2->where("login_date>='$date31' and login_date<'$date32' and user_id=".$val1['user_id'])->count('user_id');
+					if ($total1 > 0){$count11++;}
+							
+					$total2 = $row2->where("login_date>='$date41' and login_date<'$date42' and user_id=".$val1['user_id'])->count('user_id');
+					if ($total2 > 0){$count12++;}
+					
+					//新增付费玩家
+					$total3 = $row3->where("order_create_time>='$time1' and order_create_time<'$time2' and payment_status in ('1','-2') and user_id=".$val1['user_id'])->count('user_id');
+					if ($total3 > 0){
+						$shou6++;
+						$shou91 = $row3->where("order_create_time>='$time1' and order_create_time<'$time2' and payment_status in ('1','-2') and user_id=".$val1['user_id'])->sum('result_money');
+						if (!empty($shou91)) $shou90 += $shou91; 
+					}
+				}
+				$shou90 = $shou90 / 100;
+				if ($count2 == 0){
+					$count3 = 0;
+					$count4 = 0;
+					//新增玩家转化率(%)
+					$shou7 = 0;
+				}else{
+					$count3 = round($count11 / $count2, 3) * 100;
+					$count4 = round($count12 / $count2, 3) * 100;
+					$shou7 = round($shou6 / $count2, 3) * 100;
+				}
+				//echo $count11."**".$count2."<br>";
+				//当日DAU
+				$count5 = $row2->where("login_date>='$date1' and login_date<'$date2' $sql1")->count('distinct user_id');
+				//当日DAU[老玩家]
+				$count6 = $count5 - $count2;
+				//当日平均在线
+				$table4 = "log_online_data_".date("Ym",$time1);
+				$row4 = M($table4);
+				$count70 = $row4->where("daytime=".$time1)->count('id');
+				$count71 = $row4->where("daytime=".$time1)->sum('room1+room2+room3');
+				$count7 = empty($count70) ? 0 : round($count71 / $count70, 1);
+				//当日峰值在线
+				$res8 = $row4->field('room1+room2+room3 as sum8')->where("daytime=".$time1)->order("sum8 desc")->find();
+				//dump($row4->_sql());
+				$count8 = empty($res8['sum8']) ? 0 : $res8['sum8'];
+				//平均游戏局数
+				//$count9 = 0;
+				//平均游戏时长
+				//$count10 = 0;
+				
+				//收入类
+				//日收入 (¥)
+				$shou1 = $row3->where("order_create_time>='$time1' and order_create_time<'$time2' and payment_status in ('1','-2')")->sum('result_money');
+				//if ($date1=="2015-12-30") {dump($row3->_sql()); echo "<br>".$shou1."<br>";}
+				if (empty($shou1)) $shou1 = 0;  else $shou1 = $shou1 / 100;
+				//付费玩家数
+				$shou2 = $row3->where("order_create_time>='$time1' and order_create_time<'$time2' and payment_status in ('1','-2')")->count('distinct user_id');
+				//if ($date1=="2015-12-30") dump($row3->_sql());
+				//当日活跃玩家
+				$shou30 = $row2->where("login_date>='$date1' and login_date<'$date2' $sql1")->count('distinct user_id');
+				//日付费率(%)
+				$shou3 = ($shou30==0) ? 0 : round($shou2/$shou30,3) * 100;
+				//ARPU (¥)
+				$shou4 = ($shou30==0) ? 0 : round($shou1/$shou30,3);
+				//ARPPU (¥)
+				$shou5 = ($shou2==0) ? 0 : round($shou1/$shou2,3);
+				//echo $shou1."**".$shou2."<br>";
+				//老玩家付费人数
+				$shou8 = $shou2 - $shou6;
+				//老玩家充值收入(元)
+				$shou9 = $shou1 - $shou90;
+				
+				//总量类
+				//累计激活
+				$zong1 = $row1->where("register_date<'$date2' $sql1")->count('distinct imei');
+				//累计账户
+				$zong2 = $row1->where("register_date<'$date2' $sql1")->count('user_id');
+				//累计收入(¥)
+				$zong3 = $row3->where("order_create_time<'$time2' and payment_status in ('1','-2')")->sum('result_money');
+				if (empty($zong3)) $zong3 = 0; 
+				$zong3 = $zong3 / 100;
+				//付费玩家数
+				$zong5 = $row3->where("order_create_time<'$time2' and payment_status in ('1','-2')")->count('distinct user_id');
+				//总体付费率(%)
+				$zong4 = ($zong2==0) ? 0 : round($zong5/$zong2,3) * 100;
+				
+				$tongji = array('data' => $date1,
+								'count1' => $count1,
+								'count2' => $count2,
+								'count3' => $count3,
+								'count4' => $count4,
+								'count5' => $count5,
+								'count6' => $count6,
+								'count7' => $count7,
+								'count8' => $count8,
+								'count9' => $count9,
+								'count10' => $count10,
+								'shou1' => $shou1,
+								'shou2' => $shou2,
+								'shou3' => $shou3,
+								'shou4' => $shou4,
+								'shou5' => $shou5,
+								'shou6' => $shou6,
+								'shou7' => $shou7,
+								'shou8' => $shou8,
+								'shou9' => $shou9,
+								'zong1' => $zong1,
+								'zong2' => $zong2,
+								'zong3' => $zong3,
+								'zong4' => $zong4,
+								'zong5' => $zong5);
+				//echo $date1."**".$yesday."<br>";
+				//echo $date1."**".$day1."**".$day7."<br>";
+				if ($date1<=$day7){
+					$data9 = array('data' => $date1,
+							   'channel' => empty($channel) ? "all" : $channel,
+							   'flag' => $flag,
+							   'tongji' => json_encode($tongji),
+							   'addtime' => time());
+					$result = $row->add($data9);
+				}
+					
+				$tongji1[$key] = $tongji;
+			}else{
+				$info = $row->where("data='$date1' and flag=$flag")->find();
+				$tongji1[$key] = json_decode($info['tongji'], true);
+			}
+		}
+		//print_r($tongji1); //print_r($tongji3);
+		//$this->assign('tongji1',$tongji1);
+		
+		foreach($showlanmu as $key => $val){
+			$showlanmu[$key]['day'] = array();
+			foreach($tongji1 as $key2 => $val2){
+				if ($val2['data'] == $beginTime){
+					$t1 = $val2[$val['show']];
+					$showlanmu[$key]['today'] = $t1;
+				}elseif ($val2['data'] == $hbr){
+					$t2 = $val2[$val['show']];
+				}elseif ($val2['data'] == $tbz){
+					$t3 = $val2[$val['show']];
+				}
+				$showlanmu[$key]['day'][] = array('date' => $val2['data'],
+												  'show' => $val2[$val['show']]);
+			}
+			
+			//总量类不统计
+			if ($key < 19){
+				if (empty($t2)){
+					if (empty($t1)){
+						$showlanmu[$key]['hbr'] = 0;
+						$showlanmu[$key]['hbr_flag'] = 0; //1增长2减少
+					}else{
+						$showlanmu[$key]['hbr'] = 100;
+						$showlanmu[$key]['hbr_flag'] = 1; //1增长2减少
+					}
+				}else{
+					$t0 = $t1 - $t2;
+					$showlanmu[$key]['hbr_flag'] = ($t0 > 0) ? 1 : 2;
+					$showlanmu[$key]['hbr'] = round(abs($t0) / $t2, 3) * 100;
+				}
+				
+				if (empty($t3)){
+					if (empty($t1)){
+						$showlanmu[$key]['tbz'] = 0;
+						$showlanmu[$key]['tbz_flag'] = 0; //1增长2减少
+					}else{
+						$showlanmu[$key]['tbz'] = 100;
+						$showlanmu[$key]['tbz_flag'] = 1; //1增长2减少
+					}
+				}else{
+					$t0 = $t1 - $t3;
+					$showlanmu[$key]['tbz_flag'] = ($t0 > 0) ? 1 : 2;
+					$showlanmu[$key]['tbz'] = round(abs($t0) / $t3, 3) * 100;
+				}
+			}else{
+				$showlanmu[$key]['hbr'] = '';
+				$showlanmu[$key]['hbr_flag'] = '9'; 
+				$showlanmu[$key]['tbz'] = '';
+				$showlanmu[$key]['tbz_flag'] = '9'; 
+			}
+			
+		}
+		//print_r($showlanmu);
+		$this->assign('showlanmu',$showlanmu);	
+		
+		//渠道日报
+		$tongji2 = array();
+		$flag = 2;
+		$total = $row->where("data='$beginTime' and flag=$flag")->count();
+		if ($total == 0){
+			$res1 = $row1->field('channel')->group('channel')->select();
+			foreach($res1 as $key1 => $val1){
+				//当日
+				$time11 = strtotime($beginTime);
+				$time12 = $time11 + 60 * 60 * 24;
+				$date11 = date("Y-m-d", $time11);
+				$date12 = date("Y-m-d", $time12);
+				//环比上日
+				$time21 = strtotime($hbr);
+				$time22 = $time21 + 60 * 60 * 24;
+				$date21 = date("Y-m-d", $time21);
+				$date22 = date("Y-m-d", $time22);
+				//同比上周
+				$time31 = strtotime($tbz);
+				$time32 = $time31 + 60 * 60 * 24;
+				$date31 = date("Y-m-d", $time31);
+				$date32 = date("Y-m-d", $time32);
+				//设备激活
+				$c11 = $row1->where("register_date>='$date11' and register_date<'$date12' $sql1 and channel=".$val1['channel'])->count('distinct imei');
+				$c21 = $row1->where("register_date>='$date21' and register_date<'$date22' $sql1 and channel=".$val1['channel'])->count('distinct imei');
+				$c31 = $row1->where("register_date>='$date31' and register_date<'$date32' $sql1 and channel=".$val1['channel'])->count('distinct imei');
+				if (empty($c21)){
+					if (empty($c11)){
+						$hbr1 = 0;
+						$hbr_flag1 = 0; //1增长2减少
+					}else{
+						$hbr1 = 100;
+						$hbr_flag1 = 1; //1增长2减少
+					}
+				}else{
+					$t0 = $c11 - $c21;
+					$hbr_flag1 = ($t0 > 0) ? 1 : 2;
+					$hbr1 = round(abs($t0) / $c21, 3) * 100;
+				}
+				if (empty($c31)){
+					if (empty($c11)){
+						$tbz1 = 0;
+						$tbz_flag1 = 0; //1增长2减少
+					}else{
+						$tbz1 = 100;
+						$tbz_flag1 = 1; //1增长2减少
+					}
+				}else{
+					$t0 = $c11 - $c31;
+					$tbz_flag1 = ($t0 > 0) ? 1 : 2;
+					$tbz1 = round(abs($t0) / $c31, 3) * 100;
+				}
+				//新增用户
+				$c12 = $row1->where("register_date>='$date11' and register_date<'$date12' $sql1 and channel=".$val1['channel'])->count('user_id');
+				$c22 = $row1->where("register_date>='$date21' and register_date<'$date22' $sql1 and channel=".$val1['channel'])->count('user_id');
+				$c32 = $row1->where("register_date>='$date31' and register_date<'$date32' $sql1 and channel=".$val1['channel'])->count('user_id');
+				if (empty($c22)){
+					if (empty($c12)){
+						$hbr2 = 0;
+						$hbr_flag2 = 0; //1增长2减少
+					}else{
+						$hbr2 = 100;
+						$hbr_flag2 = 1; //1增长2减少
+					}
+				}else{
+					$t0 = $c12 - $c22;
+					$hbr_flag2 = ($t0 > 0) ? 1 : 2;
+					$hbr2 = round(abs($t0) / $c22, 3) * 100;
+				}
+				if (empty($c32)){
+					if (empty($c12)){
+						$tbz2 = 0;
+						$tbz_flag2 = 0; //1增长2减少
+					}else{
+						$tbz2 = 100;
+						$tbz_flag2 = 1; //1增长2减少
+					}
+				}else{
+					$t0 = $c12 - $c32;
+					$tbz_flag2 = ($t0 > 0) ? 1 : 2;
+					$tbz2 = round(abs($t0) / $c32, 3) * 100;
+				}
+				//收入
+				$s1 = $row3->where("order_create_time>='$time11' and order_create_time<'$time12' and payment_status in ('1','-2') and package_id=".$val1['channel'])->sum('result_money');
+				if (empty($s1)) $s1 = 0; else $s1 = $s1/100;
+				$s2 = $row3->where("order_create_time>='$time21' and order_create_time<'$time22' and payment_status in ('1','-2') and package_id=".$val1['channel'])->sum('result_money');
+				if (empty($s2)) $s2 = 0; else $s2 = $s2/100;
+				$s3 = $row3->where("order_create_time>='$time31' and order_create_time<'$time32' and payment_status in ('1','-2') and package_id=".$val1['channel'])->sum('result_money');
+				if (empty($s3)) $s3 = 0; else $s3 = $s3/100;
+				if (empty($s2)){
+					if (empty($s1)){
+						$hbr3 = 0;
+						$hbr_flag3 = 0; //1增长2减少
+					}else{
+						$hbr3 = 100;
+						$hbr_flag3 = 1; //1增长2减少
+					}
+				}else{
+					$t0 = $s1 - $s2;
+					$hbr_flag3 = ($t0 > 0) ? 1 : 2;
+					$hbr3 = round(abs($t0) / $s2, 3) * 100;
+				}
+				if (empty($s3)){
+					if (empty($s1)){
+						$tbz3 = 0;
+						$tbz_flag3 = 0; //1增长2减少
+					}else{
+						$tbz3 = 100;
+						$tbz_flag3 = 1; //1增长2减少
+					}
+				}else{
+					$t0 = $s1 - $s3;
+					$tbz_flag3 = ($t0 > 0) ? 1 : 2;
+					$tbz3 = round(abs($t0) / $s3, 3) * 100;
+				}
+				
+				
+				
+				$tongji2[] = array('channel' => $val1['channel'],
+								   'c11' => $c11,
+								   'hbr1' => $hbr1,
+								   'hbr_flag1' => $hbr_flag1,
+								   'tbz1' => $tbz1,
+								   'tbz_flag1' => $tbz_flag1,
+								   'c12' => $c12,
+								   'hbr2' => $hbr2,
+								   'hbr_flag2' => $hbr_flag2,
+								   'tbz2' => $tbz2,
+								   'tbz_flag2' => $tbz_flag2,
+								   's1' => $s1,
+								   'hbr3' => $hbr3,
+								   'hbr_flag3' => $hbr_flag3,
+								   'tbz3' => $tbz3,
+								   'tbz_flag3' => $tbz_flag3);
+			}
+			if ($date11<date("Y-m-d")){
+				$data9 = array('data' => $date11,
+							   'channel' => empty($channel) ? "all" : $channel,
+							   'flag' => $flag,
+							   'tongji' => json_encode($tongji2),
+							   'addtime' => time());
+				$result = $row->add($data9);
+			}
+		}else{
+			$info = $row->where("data='$beginTime' and flag=$flag")->find();
+			$tongji2 = json_decode($info['tongji'], true);
+		}
+		$this->assign('tongji2',$tongji2);
+		
+		/*引入GoogChart类*/
+		import("ORG.Util.GoogChart");
+		$chart = new GoogChart();	
+		
+		$this->assign('left_css',"36");
+		$this->assign('list',$tongji_show);
+		$this->assign('totalall',$totalall);
+		
+		$this->assign('By_tpl',$this->By_tpl);
+		$lib_display = $this->By_tpl."/tongji1";
+		$this->display($lib_display);
+	}
+	
+	//变动统计页面
+	public function goldchange(){
+		
+		$type = I("type");
+		$user_id = I("user_id");
+		if (empty($type)) $type = "1";
+		
+		$sql0 = "";
+		if (!empty($user_id)){
+			$sql0 .= " and user_id=$user_id";
+		}
+		$this->assign('user_id',$user_id);
+		
+		if ($type == "1"){
+			$Table = $this->Table_prifix."monitor_curtime_user_gold_change";
+			$lib_display = $this->By_tpl.":goldchange1";
+		}else if ($type == "2"){
+			$Table = $this->Table_prifix."monitor_biggold_change_log";
+			$lib_display = $this->By_tpl.":goldchange2";
+		}else if ($type == "3"){
+			$Table = $this->Table_prifix."monitor_record_user_gold_change";
+			$lib_display = $this->By_tpl.":goldchange3";
+		}
+		
+		$rowlist = M($Table);
+		import('ORG.Util.Page');
+		$count = $rowlist->where("1 $sql0")->count();
+		$Page       = new Page($count,PAGE_SHOW);//实例化分页类传入总记录数和每页显示的记录数		
+		$show       = $Page->show();// 分页显示输出
+		
+		$list = $rowlist->where("1 $sql0")->order('changetime desc')->limit($Page->firstRow.','.$Page->listRows)->select();
+		//dump($rowlist->_sql());
+		foreach($list as $key=>$val){
+			if ($type == "2"){
+				switch($val['module']){
+					case "1": $list[$key]['moduleshow'] = "注册账号"; break; 
+					case "2": $list[$key]['moduleshow'] = "每日登入"; break; 
+					case "3": $list[$key]['moduleshow'] = "游戏"; break; 
+					case "4": $list[$key]['moduleshow'] = "破产"; break; 
+					case "5": $list[$key]['moduleshow'] = "充值"; break; 
+					case "6": $list[$key]['moduleshow'] = "在线宝箱"; break; 
+					case "7": $list[$key]['moduleshow'] = "任务赠送"; break; 
+					case "8": $list[$key]['moduleshow'] = "AI申请"; break; 
+					case "9": $list[$key]['moduleshow'] = "后台操作"; break; 
+					case "10": $list[$key]['moduleshow'] = "大喇叭"; break;
+					case "11": $list[$key]['moduleshow'] = "道具发送"; break; 
+					case "12": $list[$key]['moduleshow'] = "机器人金币变动"; break; 
+					case "13": $list[$key]['moduleshow'] = "赠送礼物"; break; 
+					case "14": $list[$key]['moduleshow'] = "变卖礼物"; break; 
+					case "15": $list[$key]['moduleshow'] = "老虎机买"; break; 
+					case "16": $list[$key]['moduleshow'] = "绑定账号"; break; 
+					case "17": $list[$key]['moduleshow'] = "T人金币数"; break; 
+					case "18": $list[$key]['moduleshow'] = "时时彩"; break; 
+					case "19": $list[$key]['moduleshow'] = "转账"; break; 
+					case "20": $list[$key]['moduleshow'] = "抽奖金币变动日志"; break;
+					case "21": $list[$key]['moduleshow'] = "存取款日志"; break; 
+					case "22": $list[$key]['moduleshow'] = "创建私人房"; break; 
+					case "23": $list[$key]['moduleshow'] = "钻石兑换金币"; break; 
+					case "24": $list[$key]['moduleshow'] = "用户推广奖励"; break;
+					default:  $list[$key]['moduleshow'] = "未知"; break;
+				}
+			}
+			$list[$key]['changetime'] = date("Y-m-d H:i:s", $val['changetime']);
+		}
+		
+		//增加操作记录
+		$logs = C('SHANG_MSG_RECORD');
+		$remark = "";
+		adminlog($logs, $remark);
+		
+		$this->assign('left_css',"7");
+		$this->assign('list',$list);
+		$this->assign('pageshow',$show);
+		
+		$this->assign('By_tpl',$this->By_tpl);
+		
+		$this->display($lib_display);
+	}
+	
+	//周报表
+	public function week(){
+		
+		//栏目
+		$showlanmu = array();
+		$showlanmu[0] = array('flag'=>1, 'show'=>'count0', 'name'=>'用户总量');
+		$showlanmu[1] = array('flag'=>1, 'show'=>'count1', 'name'=>'周活跃用户');
+		$showlanmu[2] = array('flag'=>1, 'show'=>'count2', 'name'=>'周新增');
+		$showlanmu[3] = array('flag'=>1, 'show'=>'count3', 'name'=>'周有效新增');
+		$showlanmu[4] = array('flag'=>1, 'show'=>'count4', 'name'=>'周有效率');
+		$showlanmu[5] = array('flag'=>1, 'show'=>'count5', 'name'=>'日均新增');
+		$showlanmu[6] = array('flag'=>1, 'show'=>'count6', 'name'=>'日均活跃');
+		$showlanmu[7] = array('flag'=>1, 'show'=>'count7', 'name'=>'日均次日留存');
+		$showlanmu[8] = array('flag'=>1, 'show'=>'count8', 'name'=>'日均三日留存');
+		$showlanmu[9] = array('flag'=>1, 'show'=>'count9', 'name'=>'日均活跃');
+		$showlanmu[10] = array('flag'=>1, 'show'=>'count10', 'name'=>'周充值总额');
+		$showlanmu[11] = array('flag'=>1, 'show'=>'count11', 'name'=>'周付费人数');
+		$showlanmu[12] = array('flag'=>1, 'show'=>'count12', 'name'=>'周付费次数');
+		$showlanmu[13] = array('flag'=>1, 'show'=>'count13', 'name'=>'周付费率');
+		$showlanmu[14] = array('flag'=>1, 'show'=>'count14', 'name'=>'周新增付费金额');
+		$showlanmu[15] = array('flag'=>1, 'show'=>'count15', 'name'=>'周新增付费人数');
+		$showlanmu[16] = array('flag'=>1, 'show'=>'count16', 'name'=>'周新增付费率');
+		$showlanmu[17] = array('flag'=>1, 'show'=>'count17', 'name'=>'ARPU(¥)');
+		$showlanmu[18] = array('flag'=>1, 'show'=>'count18', 'name'=>'ARPPU(¥)');
+        
+		$sql1 = " and !((user_id>=".ROBERT1_BEGIN." and user_id<".ROBERT1_END.") or (user_id>=".ROBERT2_BEGIN." and user_id<=".ROBERT2_END."))";
+		//本周
+		$week = date("w");
+		if ($week == "1"){
+			$jiange = 0;
+			$date1 = date("Y-m-d");
+			$date2 = date("Y-m-d");
+			$time1 = strtotime($date1);
+			$time2 = strtotime($date2);
+		}else{
+			$jiange = ($week=="0") ? 6 : $week - 1;
+			$date1 = date("Y-m-d",strtotime("-$jiange day"));
+			$date2 = date("Y-m-d");
+			$time1 = strtotime($date1);
+			$time2 = strtotime($date2);
+		}
+		//用户总量
+		$row1 = M("user_info");
+		$count1 = $row1->where("1 $sql1")->count('user_id');
+		//周活跃用户
+		$row2 = M("login_log");
+		$count2 = $row2->where("login_date>='$date1' and login_date<'$date2 23:59:59' $sql1")->count('distinct user_id');
+		//周新增
+		$count3 = $row1->where("register_date>='$date1' and register_date<'$date2 23:59:59' $sql1")->count('user_id');
+		//周有效新增
+		for ($i=0; $i<=$jiange; $i++){
+			
+		}
+		$table1 = "log_game_record_log_".date("Ym", $time1);
+		$row3 = M($table1);
+		$user_add_ok = 0;
+		$res = $row1->where("register_date>='$date1' and register_date<'$date2 23:59:59' $sql1")->select();
+		$count3 = 0;
+		$sql4 = "";
+		foreach($res as $key => $row){
+			$count3++;
+			$sql4 .= (empty($sql4)) ? $row['user_id'] : ",".$row['user_id'];
+			
+			//有效新增用户
+			$user_add_count = $row3->where("curtime>='$time1' and curtime<'$time2' and user_id='".$row['user_id']."'")->count('id');
+			if ($user_add_count > 3){
+				$user_add_ok++;
+			}
+		}
+		if (!empty($sql4)) $sql4 = " and user_id in ($sql4)";
+		//有效率
+		$user_ok_lv = (empty($count3)) ? 0 : round($user_add_ok/$count3,2);
+		
+		
+		//前6周
+		for($i=1; $i<=6; $i++){
+			$time4 = strtotime($date1) -  24 * 60 * 60 - 24 * 60 * 60 * 7 * ($i -1);
+			$time3 = strtotime($date1) -  24 * 60 * 60 * 7 - 24 * 60 * 60 * 7 * ($i -1);
+			$date3 = date("Y-m-d", $time3);
+			$date4 = date("Y-m-d", $time4);
+			echo $date3."**".$date4."<br>";
+		}
+		
+		$this->assign('left_css',"36");
+		$this->assign('list',$tongji_show);
+		$this->assign('totalall',$totalall);
+		
+		$this->assign('By_tpl',$this->By_tpl);
+		$lib_display = $this->By_tpl."/week";
+		$this->display($lib_display);
+	}
+	
+	//判断目录是否为空
+	public function is_empty_dir($fp)    
+    {    
+        $H = @opendir($fp); 
+        $i=0;    
+        while($_file=readdir($H)){    
+            $i++;    
+        }    
+        closedir($H);    
+        if($i>2){ 
+            return 1; 
+        }else{ 
+            return 2;  //true
+        } 
+    } 
+	
+	//空方法
+	 public function _empty() {  
+        $this->display("Index/index");
+    }
+}

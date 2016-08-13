@@ -1,0 +1,101 @@
+<include file = "public:head"/>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"  id="postTip">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <form name="form1" class="form-inline " method="post" action="">
+			<input type="hidden" name="act" value="play" />
+			<input type="hidden" name="id" value="{$id}" />  
+			<div class="col-lg-12">
+                <h4 class="page-header" style="line-height:30px;">奖券兑换记录</h4>
+            </div>
+			</form>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+		
+		<div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="row">
+                            <div class="col-sm-4" style="padding-top:10px;"></div>
+							<div class="col-sm-8">
+                                <form name="form1" class="form-inline pull-right" method="post" action="">
+                                   <div class="form-group">
+										USER_ID：<input type="text" name="user_id" id="user_id" value="{$user_id}" />&nbsp;&nbsp;
+										奖品类型：<select name="type" id="type" style="height:25px;"><option value="0">请选择</option><option value="1" <if condition="$type eq 1">selected</if>>金币</option><option value="3" <if condition="$type eq 3">selected</if>>话费卡</option><option value="4" <if condition="$type eq 4">selected</if>>SVIP卡</option></select>&nbsp;&nbsp;
+										状态：<select name="status" id="status" style="height:25px;"><option value="0">请选择</option><option value="1" <if condition="$status eq 1">selected</if>>成功</option><option value="3" <if condition="$status eq 3">selected</if>>已兑换</option><option value="2" <if condition="$status eq 2">selected</if>>失败</option></select>&nbsp;
+                                    </div>
+                                    <button class="btn btn-primary btn-sm" type="submit">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+
+								<tr>
+                                   <td><div style="text-align:center;">ID</div></td>
+								   <td><div style="text-align:center;">用户UID</div></td>
+								   <td><div style="text-align:center;">中奖类型</div></td>
+								   <td><div style="text-align:center;">兑换礼品</div></td>
+								   <td><div style="text-align:center;">消费奖券</div></td>
+								   <td><div style="text-align:center;">奖券消费前</div></td>
+								   <td><div style="text-align:center;">奖券消费后</div></td>
+								   <td><div style="text-align:center;">兑换金币</div></td>
+								   <td><div style="text-align:center;">金币兑换前</div></td>
+								   <td><div style="text-align:center;">金币兑换后</div></td>
+								   <td><div style="text-align:center;">状态</div></td>
+								   <td><div style="text-align:center;">时间</div></td>
+								   <td><div style="text-align:center;">备注</div></td>
+								   <td><div style="text-align:center;">操作</div></td>
+                                </tr>
+								
+								<volist	name="list" id="vo">
+								<tr>
+                                   <td><div style="text-align:center;">{$vo.id}</div></td>
+								   <td><div style="text-align:center;">{$vo.user_id}({$vo.nickname})</div></td>
+								   <td><div style="text-align:center;">{$vo.showtype}</div></td>
+								   <td><div style="text-align:center;">{$vo.names}</div></td>
+								   <td><div style="text-align:center;">{$vo.nums}</div></td>
+								   <td><div style="text-align:center;">{$vo.ticket_before}</div></td> 
+								   <td><div style="text-align:center;">{$vo.ticket_after}</div></td>
+								   <td><div style="text-align:center;">{$vo.gold}</div></td>
+								   <td><div style="text-align:center;">{$vo.gold_before}</div></td> 
+								   <td><div style="text-align:center;">{$vo.gold_after}</div></td>
+								   <td><div style="text-align:center;">{$vo.status}</div></td>
+								   <td><div style="text-align:center;">{$vo.addtime}</div></td>
+								   <td><div style="text-align:center;">{$vo.meno}</div></td>
+								   <td><div style="text-align:center;"><a href="{:U($By_tpl.'/lottery','id='.$vo['id'].'&act=edit')}">编辑</a></div></td>
+								</tr>
+								</volist>	
+								
+                            </table>
+							<div class="showpage">{$pageshow}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+	    	
+
+            
+    <script src="{$Think.const.JS_PATH}jquery.form.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+
+}   
+</script>
+
+<include file = "public:footer"/>

@@ -1,0 +1,25 @@
+预发布的分析服务器的本地库，需要执行
+ALTER TABLE  `fx_other_jinbi` ADD  `diamond` INT( 11 ) NULL DEFAULT  '0' COMMENT  '添加钻石数量',
+ADD  `deposit` INT( 11 ) NULL DEFAULT  '0' COMMENT  '添加存款数量'
+
+
+阿里云新增表
+CREATE TABLE `user_login_inter` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `channel` varchar(20) DEFAULT '0' COMMENT '渠道',
+  `url` varchar(100) DEFAULT '0' COMMENT '接口地址',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `user_reg_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `showdata` text COMMENT 'DATA数据',
+  `channel` varchar(30) DEFAULT NULL COMMENT '渠道',
+  `user_sdk` varchar(30) DEFAULT NULL,
+  `uid` varchar(50) NOT NULL,
+  `server_id` varchar(30) DEFAULT NULL,
+  `plugin_id` varchar(20) DEFAULT NULL,
+  `flag` tinyint(3) DEFAULT '1' COMMENT '状态1有效0失效',
+  `addtime` int(7) DEFAULT NULL COMMENT '新增时间',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
